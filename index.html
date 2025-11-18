@@ -44,25 +44,10 @@
       50%{opacity:.9}
     }
 
-    /* SABİT ÜST REKLAM */
-    .fixed-ad{
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:68px;
-      background:rgba(13,0,32,.95);
-      z-index:999;
-      text-align:center;
-      padding:6px 0;
-      border-bottom:3px solid var(--zap);
-      backdrop-filter:blur(10px)
-    }
-
-    /* BAŞLIK – HEMEN GÖRÜNÜR */
+    /* BAŞLIK */
     header{
       position:fixed;
-      top:68px;
+      top:0;
       left:0;
       width:100%;
       text-align:center;
@@ -91,7 +76,7 @@
     .container{
       max-width:1400px;
       margin:0 auto;
-      padding:150px 15px 100px
+      padding:120px 15px 100px
     }
 
     .tools{
@@ -224,13 +209,6 @@
 </head>
 <body>
 
-  <!-- SABİT REKLAM -->
-  <div class="fixed-ad">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1554661709211540" crossorigin="anonymous"></script>
-    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1554661709211540" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
-  </div>
-
   <!-- SABİT BAŞLIK -->
   <header>
     <h1>NEYAPAY</h1>
@@ -241,8 +219,7 @@
 
   <div class="container">
     <div class="tools">
-      <!-- Araçlar buraya aynı şekilde -->
-      <!-- Örnek: Ne Nick -->
+      <!-- Örnek Araç -->
       <div class="tool">
         <h2>Ne Nick?</h2>
         <input placeholder="Oyun, TikTok rap..." id="nickIn">
@@ -253,7 +230,7 @@
           <button onclick="share('nickOut','WA')">WhatsApp</button>
         </div>
       </div>
-      <!-- Diğer araçlar da aynı şekilde devam edecek... -->
+      <!-- Diğer araçlar burada devam edebilir -->
     </div>
   </div>
 
@@ -300,62 +277,6 @@
       L('nickOut');
       const r=await neAI(`2025'te ${c} için 5 ultra havalı nickname, sadece liste`);
       document.getElementById('nickOut').innerHTML=r.replace(/\n/g,'<br>')
-    }
-
-    async function askNe(){
-      const a=document.getElementById('ad1').value||'Sen',
-            b=document.getElementById('ad2').value||'Sevdiğin';
-      const p=Math.floor(Math.random()*35)+65;
-      L('askOut');
-      const y=await neAI(`${a} ile ${b} arasında %${p} aşk var, 2050 cyberpunk tarzı komik yorum yaz`);
-      document.getElementById('askOut').innerHTML=`${a} ${b}<br><strong>%${p} UYUM</strong><br>${y}`
-    }
-
-    async function olumNe(){
-      const a=document.getElementById('olumAd').value||'Sen';
-      L('olumOut');
-      const r=await neAI(`${a} ne zaman ölecek? 3000'li yıllarda, çok komik olsun`);
-      document.getElementById('olumOut').innerHTML=r;
-    }
-
-    async function bebekNe(){
-      const c=document.getElementById('cins').value;
-      L('bebekOut');
-      const r=await neAI(`${c} bebek için 2025-2030 trend 3 isim + anlamı`);
-      document.getElementById('bebekOut').innerHTML=r.replace(/\n/g,'<br>');
-    }
-
-    async function ruyaNe(){
-      const t=document.getElementById('ruyaIn').value;
-      if(!t) return;
-      L('ruyaOut');
-      const r=await neAI(`"${t}" rüyasının 2025 yorumu, komik olsun`);
-      document.getElementById('ruyaOut').innerHTML=r;
-    }
-
-    async function plakaNe(){
-      const p=document.getElementById('plakaIn').value;
-      if(!p) return;
-      L('plakaOut');
-      const r=await neAI(`${p} plakalı araba sahibine 2050 falı, komik olsun`);
-      document.getElementById('plakaOut').innerHTML=r;
-    }
-
-    async function fikirNe(){
-      const c=document.getElementById('fikirIn').value||'viral';
-      L('fikirOut');
-      const r=await neAI(`2026'da ${c} için patlayacak çılgın fikir`);
-      document.getElementById('fikirOut').innerHTML=r;
-    }
-
-    function sansNe(){
-      const n=Array.from({length:6},()=>Math.floor(Math.random()*99)+1);
-      document.getElementById('sansOut').innerHTML=`<strong>${n.join(' ')}</strong><br>Bugün şanslı günün!`
-    }
-
-    function kararNe(){
-      const d=["KESİNLİKLE YAP!","ASLA YAPMA!","YAP GİTSİN!","BUGÜN ŞANSLISIN","DÜŞÜN BİRAZ"];
-      document.getElementById('kararOut').innerHTML=`<strong>${d[Math.floor(Math.random()*d.length)]}</strong>`
     }
 
     function share(id,p){
