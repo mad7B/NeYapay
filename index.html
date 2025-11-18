@@ -215,73 +215,157 @@ body.light{
 
 <header>
   <h1>NE YAPAY!</h1>
-  <div class="tagline">GEL BİZ YAPAY OLSUN!</div>
+  <div class="tagline">GEL BİZ YAPAY!</div>
 </header>
 
 <div class="api-limit" id="limitInfo">Zap: ∞ / ∞</div>
 
+<!-- ÜST REKLAM -->
+<div style="margin-bottom:20px;text-align:center;">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1554661709211540"
+   crossorigin="anonymous"></script>
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-1554661709211540"
+       data-ad-slot="1234567890"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+</div>
+
 <div class="container">
-
-  <!-- En üst Adsense reklam -->
-  <div style="margin-bottom:20px;text-align:center;">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1554661709211540"
-     crossorigin="anonymous"></script>
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-1554661709211540"
-         data-ad-slot="1234567890"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
-  </div>
-
   <div class="tools">
 
-    <!-- Ne Prompt kutucuğu -->
+    <!-- Ne Prompt -->
     <div class="tool">
       <h2>💡 Ne Prompt?</h2>
       <input placeholder="Konu gir, örn: oyun nickname" id="promptIn">
       <button onclick="promptNe()">AI Ne Yazmalı?</button>
       <div class="result" id="promptOut">Prompt önerisi burada görünecek...</div>
-      <!-- Adsense -->
-      <div style="margin-top:12px;text-align:center;">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-1554661709211540"
-             data-ad-slot="1234567891"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
-      </div>
     </div>
 
-    <!-- Ne Nick kutucuğu -->
+    <!-- Ne Nick -->
     <div class="tool">
       <h2>🎮 Ne Nick?</h2>
       <input placeholder="Oyun, TikTok rap..." id="nickIn">
       <button onclick="neNick()">NE YAPAY!</button>
       <div class="result" id="nickOut">Sonucu gör!</div>
-      <!-- Adsense -->
-      <div style="margin-top:12px;text-align:center;">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-1554661709211540"
-             data-ad-slot="1234567892"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
-      </div>
     </div>
 
-    <!-- Diğer araçlar benzer şekilde devam ediyor, her kutunun altına Adsense eklenebilir -->
+    <!-- Ne Aşk -->
+    <div class="tool">
+      <h2>❤️ Ne Aşk?</h2>
+      <input placeholder="Sen" id="ad1">
+      <input placeholder="O" id="ad2">
+      <button onclick="askNe()">NE YAPAY!</button>
+      <div class="result" id="askOut">❤️</div>
+    </div>
+
+    <!-- Ne Ölüm -->
+    <div class="tool">
+      <h2>⚰️ Ne Ölüm?</h2>
+      <input placeholder="Adın" id="olumAd">
+      <button onclick="olumNe()">NE YAPAY!</button>
+      <div class="result" id="olumOut">Kaderin yazılıyor...</div>
+    </div>
+
+    <!-- Ne Bebek -->
+    <div class="tool">
+      <h2>👶 Ne Bebek?</h2>
+      <select id="cins">
+        <option>Kız</option>
+        <option>Erkek</option>
+        <option>Genderless</option>
+      </select>
+      <button onclick="bebekNe()">NE YAPAY!</button>
+      <div class="result" id="bebekOut">İsimler geliyor...</div>
+    </div>
+
+    <!-- Ne Rüya -->
+    <div class="tool">
+      <h2>🌙 Ne Rüya?</h2>
+      <input placeholder="Rüyanda ne gördün?" id="ruyaIn">
+      <button onclick="ruyaNe()">NE YAPAY!</button>
+      <div class="result" id="ruyaOut">Yorumlanıyor...</div>
+    </div>
+
+    <!-- Ne Plaka -->
+    <div class="tool">
+      <h2>🚗 Ne Plaka?</h2>
+      <input placeholder="34 ABC 123" id="plakaIn">
+      <button onclick="plakaNe()">NE YAPAY!</button>
+      <div class="result" id="plakaOut">Falına bakılıyor...</div>
+    </div>
+
+    <!-- Ne Fikir -->
+    <div class="tool">
+      <h2>💡 Ne Fikir?</h2>
+      <input placeholder="TikTok, iş, viral..." id="fikirIn">
+      <button onclick="fikirNe()">NE YAPAY!</button>
+      <div class="result" id="fikirOut">Fikir geliyor...</div>
+    </div>
+
+    <!-- Günün Şansı -->
+    <div class="tool">
+      <h2>🍀 Günün Şansı?</h2>
+      <button onclick="sansNe()">NE YAPAY!</button>
+      <div class="result" id="sansOut">Şansın açılıyor...</div>
+    </div>
+
+    <!-- Ne Karar -->
+    <div class="tool">
+      <h2>❓ Ne Karar?</h2>
+      <button onclick="kararNe()">EVET Mİ HAYIR MI?</button>
+      <div class="result" id="kararOut">Kaderin belirleniyor...</div>
+    </div>
+
+    <!-- Mini Araçlar -->
+    <div class="tool">
+      <h2>😂 Meme Önerisi</h2>
+      <input placeholder="Konu gir..." id="memeIn">
+      <button onclick="memeNe()">NE YAPAY!</button>
+      <div class="result" id="memeOut">Meme önerisi buraya...</div>
+    </div>
+
+    <div class="tool">
+      <h2>🐦 Viral Tweet</h2>
+      <input placeholder="Konu gir..." id="tweetIn">
+      <button onclick="tweetNe()">NE YAPAY!</button>
+      <div class="result" id="tweetOut">Tweet önerisi buraya...</div>
+    </div>
+
+    <div class="tool">
+      <h2>🎬 Kısa Film Fikri</h2>
+      <input placeholder="Konu gir..." id="filmIn">
+      <button onclick="filmNe()">NE YAPAY!</button>
+      <div class="result" id="filmOut">Film fikri buraya...</div>
+    </div>
+
+    <div class="tool">
+      <h2>🖼️ Neon Avatar</h2>
+      <input placeholder="İsim gir..." id="avatarIn">
+      <button onclick="avatarNe()">NE YAPAY!</button>
+      <div class="result" id="avatarOut">Avatar önerisi buraya...</div>
+    </div>
 
   </div>
+</div>
+
+<!-- ALT REKLAM -->
+<div style="margin-top:20px;text-align:center;">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-1554661709211540"
+       data-ad-slot="1234567899"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
 </div>
 
 <footer>© 2025 Neyapay.com.tr | Made with AI</footer>
 <button id="darkToggle" onclick="toggleDark()">Ay</button>
 
-<script defer>
+<script>
 const proxyUrl = 'https://neyapay-proxy.yourname.workers.dev';
 let dailyLimit = 500;
 let used = parseInt(localStorage.getItem('neyapay_used')||'0');
