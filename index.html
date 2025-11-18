@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <title>NEYAPAY – Ne istiyorsun? AI söylesin!</title>
+  <meta name="description" content="Ne istiyorsun? Aşk mı, nick mi, rüya mı? Neyapay.com.tr'de AI'yle sorgula, kahkaha patlat! 2025'in en deli yapay eğlence merkezi.">
+  <meta property="og:title" content="NEYAPAY – Gel biz yapay olsun!">
+  <meta property="og:description" content="Türkiye’nin en komik AI sorgu merkezi!">
+  <meta property="og:image" content="https://i.ibb.co/your-real-image/neyapay-og.jpg"> <!-- Gerçek OG image yükle -->
+  <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/325/zap_26a1.png">
+  <link rel="icon" type="image/png" href="/favicon.png"> <!-- 32x32 PNG ekle -->
+
+  <!-- Fonts Preload -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo+2:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root { --zap: #00f7ff; --bg: #0d0020; --card: #1a0039; --text: #e0e0ff; --glow: 0 0 30px rgba(0,247,255,0.6); }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background: radial-gradient(circle at top, #1a0039, #0d0020); color: var(--text); font-family: 'Exo 2', sans-serif; min-height: 100vh; overflow-x: hidden; }
+    header { text-align: center; padding: 40px 20px; }
+    h1 { font-family: 'Orbitron', sans-serif; font-size: 4.5rem; background: linear-gradient(90deg, #00f7ff, #ff00ff, #00ff88); -webkit-background-clip: text; color: transparent; text-shadow: var(--glow); animation: pulseGlow 3s infinite; }
+    .tagline { font-size: 1.4rem; margin-top: 10px; opacity: 0.9; letter-spacing: 2px; }
+    .tools { max-width: 1400px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+    .tool { background: var(--card); border: 3px solid transparent; border-radius: 24px; padding: 28px; position: relative; overflow: hidden; transition: all 0.4s; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+    .tool::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(0,247,255,0.15), transparent); animation: rotate 20s linear infinite; pointer-events: none; }
+    .tool:hover { transform: translateY(-12px) scale(1.03); border-color: var(--zap); box-shadow: var(--glow), 0 20px 50px rgba(0,247,255,0.3); }
+    .tool h2 { color: var(--zap); text-align: center; font-size: 1.7rem; margin-bottom: 20px; text-shadow: 0 0 15px var(--zap); }
+    input, select, button { width: 100%; padding: 16px; margin: 12px 0; border: none; border-radius: 16px; font-size: 1.1rem; font-family: inherit; }
+    input, select { background: rgba(255,255,255,0.08); color: white; backdrop-filter: blur(10px); }
+    button { background: linear-gradient(45deg, #00f7ff, #ff00ff); color: black; font-weight: 800; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 20px rgba(0,247,255,0.4); }
+    button:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(0,247,255,0.6); }
+    .result { background: rgba(0,0,0,0.5); padding: 20px; border-radius: 16px; min-height: 90px; text-align: center; font-size: 1.3rem; line-height: 1.6; backdrop-filter: blur(10px); border: 1px solid rgba(0,247,255,0.3); }
+    .loading { color: var(--zap); animation: blink 1s infinite; }
+    .share-btn { display: flex; gap: 10px; margin-top: 10px; }
+    .share-btn button { width: 50%; font-size: 1rem; padding: 10px; }
+    .ad-banner { max-width: 900px; margin: 20px auto; text-align: center; }
+    .ad-banner:first-child { position: sticky; top: 0; z-index: 100; background: rgba(13,0,32,0.9); backdrop-filter: blur(10px); }
+    .horizontal-ad { grid-column: 1/-1; }
+    @keyframes pulseGlow { 0%,100% { text-shadow: var(--glow); } 50% { text-shadow: 0 0 50px rgba(0,247,255,0.9); } }
+    @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+    /* Dark mode toggle basit */
+    #darkToggle { position: fixed; bottom: 20px; right: 20px; padding: 10px; background: var(--zap); color: black; border-radius: 50%; cursor: pointer; }
+    body.light { --bg: #f0f0ff; --card: #e0e0ff; --text: #0d0020; --zap: #ff00ff; --glow: 0 0 30px rgba(255,0,255,0.6); background: radial-gradient(circle at top, #ffffff, #f0f0ff); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>NEYAPAY</h1>
+    <p class="tagline">GEL BİZ YAPAY OLSUN!</p>
+  </header>
+
+  <!-- Üst sticky reklam -->
+  <div class="ad-banner">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-155466170921540" crossorigin="anonymous"></script>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-155466170921540" data-ad-slot="YOUR_REAL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="tools">
+
+    <div class="tool"><h2>Ne Nick?</h2><input placeholder="Oyun, TikTok, rap..." id="nickIn"><button onclick="neNick()">NE YAPAY!</button><div class="result" id="nickOut">Sonucu gör!</div><div class="share-btn"><button onclick="shareResult('nickOut','X')">X'te Paylaş</button><button onclick="shareResult('nickOut','WA')">WhatsApp</button></div><button onclick="resetTool('nickIn','nickOut')">Yeni Ne?</button></div>
+
+    <div class="tool"><h2>Ne Aşk?</h2><input placeholder="Sen" id="ad1"><input placeholder="O" id="ad2"><button onclick="askNe()">NE YAPAY!</button><div class="result" id="askOut">❤️</div><div class="share-btn"><button onclick="shareResult('askOut','X')">X'te Paylaş</button><button onclick="shareResult('askOut','WA')">WhatsApp</button></div><button onclick="resetTool('ad1,ad2','askOut')">Yeni Ne?</button></div>
+
+    <div class="tool"><h2>Ne Ölüm?</h2><input placeholder="Adın" id="olumAd"><button onclick="olumNe()">NE YAPAY!</button><div class="result" id="olumOut">Kaderin yazılıyor...</div><div class="share-btn"><button onclick="shareResult('olumOut','X')">X'te Paylaş</button><button onclick="shareResult('olumOut','WA')">WhatsApp</button></div><button onclick="resetTool('olumAd','olumOut')">Yeni Ne?</button></div>
+
+    <div class="tool"><h2>Ne Bebek?</h2><select id="cins"><option>Kız</option><option>Erkek</option><option>Genderless</option></select><button onclick="bebekNe()">NE YAPAY!</button><div class="result" id="bebekOut">İsimler geliyor...</div><div class="share-btn"><button onclick="shareResult('bebekOut','X')">X'te Paylaş</button><button onclick="shareResult('bebekOut','WA')">WhatsApp</button></div><button onclick="resetTool('cins','bebekOut')">Yeni Ne?</button></div>
+
+    <!-- Horizontal reklam her 4 tool arasına -->
+    <div class="ad-banner horizontal-ad">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-155466170921540" crossorigin="anonymous"></script>
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-155466170921540" data-ad-slot="YOUR_HORIZONTAL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <div class="tool"><h2>Ne Rüya?</h2><input placeholder="Rüyanda ne gördün?" id="ruyaIn"><button onclick="ruyaNe()">NE YAPAY!</button><div class="result" id="ruyaOut">Yorumlanıyor...</div><div class="share-btn"><button onclick="shareResult('ruyaOut','X')">X'te Paylaş</button><button onclick="shareResult('ruyaOut','WA')">WhatsApp</button></div><button onclick="resetTool('ruyaIn','ruyaOut')">Yeni Ne?</button></div>
+
+    <div class="tool"><h2>Ne Plaka?</h2><input placeholder="34 ABC 123" id="plakaIn"><button onclick="plakaNe()">NE YAPAY!</button><div class="result" id="plakaOut">Falına bakılıyor...</div><div class="share-btn"><button onclick="shareResult('plakaOut','X')">X'te Paylaş</button><button onclick="shareResult('plakaOut','WA')">WhatsApp</button></div><button onclick="resetTool('plakaIn','plakaOut')">Yeni Ne?</button></div>
+
+    <div class="tool"><h2>Ne Fikir?</h2><input placeholder="TikTok, Reels, iş..." id="fikirIn"><button onclick="fikirNe()">NE YAPAY!</button><div class="result" id="fikirOut">Fikir geliyor...</div><div class="share-btn"><button onclick="shareResult('fikirOut','X')">X'te Paylaş</button><button onclick="shareResult('fikirOut','WA')">WhatsApp</button></div><button onclick="resetTool('fikirIn','fikirOut')">Yeni Ne?</button></div>
+
+    <div class="tool"><h2>Ne Şans?</h2><button onclick="sansNe()">NE YAPAY!</button><div class="result" id="sansOut">Şansın açılıyor...</div><div class="share-btn"><button onclick="shareResult('sansOut','X')">X'te Paylaş</button><button onclick="shareResult('sansOut','WA')">WhatsApp</button></div><button onclick="resetTool('','sansOut')">Yeni Ne?</button></div>
+
+    <!-- Bir horizontal daha -->
+    <div class="ad-banner horizontal-ad">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-155466170921540" crossorigin="anonymous"></script>
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-155466170921540" data-ad-slot="YOUR_HORIZONTAL_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <div class="tool"><h2>Ne Karar?</h2><button onclick="kararNe()">EVET Mİ HAYIR MI?</button><div class="result" id="kararOut">Kaderin belirleniyor...</div><div class="share-btn"><button onclick="shareResult('kararOut','X')">X'te Paylaş</button><button onclick="shareResult('kararOut','WA')">WhatsApp</button></div><button onclick="resetTool('','kararOut')">Yeni Ne?</button></div>
+
+    <div class="tool"><h2>Ne Sesli?</h2><button onclick="sesliNe()">SONUCU SESLİ DİNLE</button></div>
+
+    <div class="tool"><h2>Ne Paylaş?</h2><button onclick="whatsappNe()">WHATSAPP’TAN GÖNDER</button></div>
+
+  </div>
+
+  <!-- Alt reklam -->
+  <div class="ad-banner">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-155466170921540" crossorigin="anonymous"></script>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-155466170921540" data-ad-slot="YOUR_BOTTOM_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- Dark mode toggle -->
+  <button id="darkToggle" onclick="toggleDark()">🌙</button>
+
+  <script>
+    const proxyUrl = 'https://neyapay-proxy.yourname.workers.dev'; // DEĞİŞTİR
+
+    async function neAI(prompt) {
+      try {
+        const res = await fetch(proxyUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prompt }) });
+        if (!res.ok) throw new Error('Proxy error');
+        const data = await res.json();
+        return data.cevap;
+      } catch (e) {
+        console.error(e);
+        return "Ne biraz gecikti, sonra dene kanka!";
+      }
+    }
+
+    function setLoading(id){ document.getElementById(id).innerHTML = '<span class="loading">⚡️ YAPILIYOR...</span>'; }
+    function resetTool(inputs, outId) { if(inputs) inputs.split(',').forEach(i => { if(i) document.getElementById(i).value = ''; }); document.getElementById(outId).innerHTML = 'Yeni sonucu gör!'; }
+
+    function shareResult(outId, platform) {
+      const text = document.getElementById(outId).innerText || "NEYAPAY'da deli şeyler oluyor!";
+      const url = 'https://neyapay.com.tr';
+      if (platform === 'X') window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text + "\n🔥 NEYAPAY → " + url)}`);
+      if (platform === 'WA') window.open(`https://wa.me/?text=${encodeURIComponent(text + "\n\n🔥 NEYAPAY: " + url)}`);
+    }
+
+    async function neNick(){ const c=document.getElementById('nickIn').value||'oyuncu'; setLoading('nickOut'); const r=await neAI(`2025'te ${c} için ultra havalı 5 nickname öner, sadece liste`); document.getElementById('nickOut').innerHTML=r.replace(/\n/g,'<br>'); }
+    async function askNe(){ const a=document.getElementById('ad1').value||'Sen', b=document.getElementById('ad2').value||'Sevdiğin'; const p=Math.floor(Math.random()*35)+65; setLoading('askOut'); const y=await neAI(`${a} ile ${b} arasında %${p} aşk var. 2050 cyberpunk tarzı komik yorum yaz`); document.getElementById('askOut').innerHTML=`${a} ⚡️ ${b}<br><strong>%${p} UYUM</strong><br>${y}`; }
+    async function olumNe(){ const a=document.getElementById('olumAd').value||'Sen'; setLoading('olumOut'); const r=await neAI(`${a} ne zaman ölecek? 3000’li yıllarda, komik ve mutlu olsun`); document.getElementById('olumOut').innerHTML=r; }
+    async function bebekNe(){ const c=document.getElementById('cins').value; setLoading('bebekOut'); const r=await neAI(`${c} bebek için 2025-2030 trend olacak 3 futuristik isim + anlamı`); document.getElementById('bebekOut').innerHTML=r.replace(/\n/g,'<br>'); }
+    async function ruyaNe(){ const t=document.getElementById('ruyaIn').value; if(!t)return; setLoading('ruyaOut'); const r=await neAI(`"${t}" rüyasının 2025 yorumu, komik ve pozitif olsun`); document.getElementById('ruyaOut').innerHTML=r; }
+    async function plakaNe(){ const p=document.getElementById('plakaIn').value; if(!p)return; setLoading('plakaOut'); const r=await neAI(`${p} plakalı araba sahibine 2050 falı bak, komik olsun`); document.getElementById('plakaOut').innerHTML=r; }
+    async function fikirNe(){ const c=document.getElementById('fikirIn').value||'viral'; setLoading('fikirOut'); const r=await neAI(`2026’da ${c} için patlayacak tek çılgın fikir`); document.getElementById('fikirOut').innerHTML=r; }
+    function sansNe(){ const n=Array.from({length:6},()=>Math.floor(Math.random()*99)+1); document.getElementById('sansOut').innerHTML=`<strong>${n.join(' ⚡️ ')}</strong><br>Bugün şansın ne gibi!`; }
+    function kararNe(){ const d=["KESİNLİKLE YAP!", "ASLA YAPMA!", "BUGÜN ŞANSLISIN", "YAP GITSIN!", "DÜŞÜN BİRAZ", "ORTAMI YAKAR!"]; document.getElementById('kararOut').innerHTML=`<strong>${d[Math.floor(Math.random()*d.length)]}</strong>`; }
+    function sesliNe(){ const txt=document.querySelectorAll('.result')[document.querySelectorAll('.result').length-1]?.innerText||"NEYAPAY eğlencesi"; const utter=new SpeechSynthesisUtterance(txt); utter.lang="tr-TR"; speechSynthesis.speak(utter); }
+    function whatsappNe(){ const txt=document.querySelectorAll('.result')[document.querySelectorAll('.result').length-1]?.innerText||"NEYAPAY manyak bi site!"; window.open(`https://wa.me/?text=${encodeURIComponent(txt+"\n\n🔥 NEYAPAY: https://neyapay.com.tr")}`); }
+    function toggleDark(){ document.body.classList.toggle('light'); document.getElementById('darkToggle').innerText = document.body.classList.contains('light') ? '☀️' : '🌙'; }
+  </script>
+</body>
+</html>
