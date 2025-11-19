@@ -1,0 +1,36 @@
+<!doctype html><html lang="tr"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Tweet Generator — NEYAPAY</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo+2:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{--zap:#00f7ff;--bg:#0d0020;--text:#e0e0ff}*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;padding-top:92px}
+header{position:fixed;top:0;width:100%;text-align:center;padding:18px;background:linear-gradient(0deg, rgba(13,0,32,.85), rgba(13,0,32,.6));z-index:999}
+.container{max-width:1100px;margin:0 auto;padding:120px 16px 80px}
+.tool{background:linear-gradient(180deg, rgba(26,0,57,.85), rgba(21,0,46,.9));padding:20px;border-radius:12px}
+.return{display:inline-block;margin-bottom:14px;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,.04);text-decoration:none;color:var(--text)}
+</style>
+</head>
+<body>
+<div id="burger" onclick="toggleSidebar()">☰</div>
+<div id="sidebar" aria-hidden="true"><h3 style="color:var(--zap)">NEYAPAY</h3><a class="module-link" href="/modules/tweet.html">🐦 Tweet Generator</a><a class="module-link" href="/index.html">🏠 Anasayfa</a></div>
+
+<header><h1>Tweet Generator</h1><div style="opacity:.9">280 karaktere sığan komik tweetler</div></header>
+
+<div class="container">
+  <a class="return" href="/index.html">← Anasayfaya Dön</a>
+
+  <div class="tool">
+    <h2>Tweet Üret</h2>
+    <input id="twIn" placeholder="Konu (örn: internet güldürüleri)" style="width:100%;padding:10px;border-radius:8px;background:rgba(255,255,255,.04);color:#fff">
+    <button style="margin-top:8px" onclick="genTweet()">Üret</button>
+    <div id="twOut" class="result" style="margin-top:10px">Tweet</div>
+  </div>
+</div>
+
+<script>
+const proxyUrl="https://neyapay-api.vercel.app/api/zap";
+function toggleSidebar(){const s=document.getElementById('sidebar');s.classList.toggle('open');s.setAttribute('aria-hidden',(!s.classList.contains('open')).toString())}
+async function neAI(p){try{const r=await fetch(proxyUrl,{method:'POST',headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt:p})});const d=await r.json();return d.cevap||d.result||JSON.stringify(d)}catch(e){return"Bağlantı hatası."}}
+async function genTweet(){const t=document.getElementById('twIn').value||'gündem';const out=document.getElementById('twOut');out.innerHTML='Yükleniyor...';const prompt=`280 karakteri aşmayacak şekilde komik bir tweet: ${t}`;const r=await neAI(prompt);out.innerHTML=r.replace(/\n/g,'<br>')}
+</script>
+</body></html>
