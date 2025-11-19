@@ -1,1 +1,104 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Oyun Merkezi — NEYAPAY</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo+2:wght@600;800&display=swap" rel="stylesheet">
+<style>
+/* --- Kısa: index.html ile aynı stil (kesinlikle tutarlı) --- */
+:root{--zap:#00f7ff;--pink:#ff00ff;--bg:#0d0020;--text:#e0e0ff;--glow:0 0 30px rgba(0,247,255,.7);}
+*{margin:0;padding:0;box-sizing:border-box}html,body{height:100%}
+body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;min-height:100vh;padding-top:92px;transition:background .35s,color .35s}
+header{position:fixed;top:0;left:0;width:100%;text-align:center;padding:18px 10px;z-index:999;background:linear-gradient(0deg, rgba(13,0,32,.85), rgba(13,0,32,.6));border-bottom:2px solid rgba(0,247,255,.08)}
+h1{font-family:'Orbitron',sans-serif;font-size:clamp(1.8rem,5vw,2.6rem);background:linear-gradient(90deg,#00f7ff,#ff00ff,#00ff88);-webkit-background-clip:text;color:transparent;text-shadow:0 0 12px #00f7ff}
+.container{max-width:1100px;margin:0 auto;padding:120px 16px 80px;z-index:2}
+.tool{background:linear-gradient(180deg, rgba(26,0,57,.85), rgba(21,0,46,.9));padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,.03)}
+button{padding:12px 14px;border-radius:12px;border:none;background:linear-gradient(45deg,#00f7ff,#ff00ff);font-weight:800;cursor:pointer}
+#sidebar{position:fixed;top:0;left:-260px;width:240px;height:100%;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);padding:20px;z-index:1000;transition:left .28s}
+#sidebar.open{left:0}#burger{position:fixed;top:18px;left:18px;width:46px;height:46px;border-radius:50%;background:var(--zap);display:grid;place-items:center;z-index:1001;cursor:pointer;box-shadow:var(--glow)}
+a.module-link{display:block;padding:10px;margin:8px 0;color:var(--text);text-decoration:none;background:rgba(255,255,255,.03);border-radius:8px}
+.return{display:inline-block;margin-bottom:14px;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,.04);text-decoration:none;color:var(--text)}
+.small{font-size:.92rem;color:rgba(255,255,255,.7);margin-top:8px}
+</style>
+</head>
+<body>
 
+<div id="burger" onclick="toggleSidebar()">☰</div>
+<div id="sidebar" aria-hidden="true">
+  <h3 style="color:var(--zap)">NEYAPAY</h3>
+  <a class="module-link" href="/modules/oyun.html">🎮 Oyun Merkezi</a>
+  <a class="module-link" href="/modules/yapayzeka.html">🤖 Yapay Zeka Lab</a>
+  <a class="module-link" href="/modules/youtube.html">🎥 YouTube</a>
+  <a class="module-link" href="/modules/tiktok.html">🎵 TikTok</a>
+  <a class="module-link" href="/modules/kripto.html">🤑 Kripto</a>
+  <a class="module-link" href="/index.html">🏠 Anasayfa</a>
+</div>
+
+<header>
+  <h1>Oyun Merkezi</h1>
+  <div class="small">NE YAPAY! — Oyun fikirleri, nickname, hikaye</div>
+</header>
+
+<div class="container">
+  <a class="return" href="/index.html">← Anasayfaya Dön</a>
+
+  <div class="tool">
+    <h2>Oyun Nick & Konsept Jeneratörü</h2>
+    <input id="gameGenre" placeholder="Tür (ör: battle royale, indie, RPG)" style="width:100%;padding:10px;border-radius:8px;margin-top:8px;background:rgba(255,255,255,.04);color:#fff">
+    <button style="margin-top:8px" onclick="generateGame()">AI ile Üret</button>
+    <div id="gameOut" class="result" style="margin-top:12px">Sonuç burada</div>
+    <div class="small">Bu araç API'ye `proxyUrl` üzerinden bağlanır.</div>
+  </div>
+
+  <div class="tool" style="margin-top:16px">
+    <h2>Mini Oyun Hikayesi (30–60s)</h2>
+    <input id="gameIdea" placeholder="Basit ana fikir (örn: terkedilmiş uzay istasyonu)" style="width:100%;padding:10px;border-radius:8px;margin-top:8px;background:rgba(255,255,255,.04);color:#fff">
+    <button style="margin-top:8px" onclick="storyGame()">Hikaye Üret</button>
+    <div id="storyOut" class="result" style="margin-top:12px">Hikaye burada</div>
+  </div>
+</div>
+
+<script>
+const proxyUrl = "https://neyapay-api.vercel.app/api/zap";
+
+/* sidebar toggle */
+function toggleSidebar(){
+  const s = document.getElementById('sidebar');
+  s.classList.toggle('open');
+  const open = s.classList.contains('open');
+  s.setAttribute('aria-hidden', (!open).toString());
+}
+
+/* neAI helper (basit) */
+async function neAI(promptText){
+  try{
+    const r = await fetch(proxyUrl, {method:'POST',headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt:promptText})});
+    const d = await r.json();
+    return d.cevap || d.result || JSON.stringify(d);
+  }catch(e){
+    return "Bağlantı hatası, tekrar dene!";
+  }
+}
+
+/* oyun modülleri */
+async function generateGame(){
+  const g = document.getElementById('gameGenre').value || 'battle royale';
+  const out = document.getElementById('gameOut');
+  out.innerHTML = 'Yükleniyor...';
+  const prompt = `2026'da ${g} türü için 5 orijinal oyun nickname + 1 satırlık konsept (her satır). Sadece liste.`;
+  const r = await neAI(prompt);
+  out.innerHTML = r.replace(/\n/g,'<br>');
+}
+
+async function storyGame(){
+  const t = document.getElementById('gameIdea').value || 'terkedilmiş uzay istasyonu';
+  const out = document.getElementById('storyOut');
+  out.innerHTML = 'Yükleniyor...';
+  const prompt = `Kısa oyun fikri: "${t}". 3 bölümlük kısa açıklama: Başlangıç - Gelişme - Zirve. Her bölüm 2 cümle.`;
+  const r = await neAI(prompt);
+  out.innerHTML = r.replace(/\n/g,'<br>');
+}
+</script>
+</body>
+</html>
