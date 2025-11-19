@@ -6,198 +6,141 @@
 <title>NEYAPAY — Kripto Analiz</title>
 <meta name="description" content="Kripto fikirleri — NEYAPAY" />
 <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/325/zap_26a1.png">
-
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo+2:wght@600;800&display=swap" rel="stylesheet">
+
 <style>
-:root{
-  --zap:#00f7ff; --pink:#ff00ff; --bg:#0d0020; --card1:#1a0039; --card2:#15002e; --text:#e0e0ff; --glow:0 0 30px rgba(0,247,255,.7);
-}
+:root{--zap:#00f7ff;--pink:#ff00ff;--bg:#0d0020;--card:#1a0039;--text:#e0e0ff;--glow:0 0 30px rgba(0,247,255,.7);}
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%}
 body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:'Exo 2',sans-serif;
-  min-height:100vh;
-  overflow-x:hidden;
-  padding-top:82px; /* header daha sıkı oturdu */
-  position:relative;
-  transition:background .4s,color .4s;
+  background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;
+  min-height:100vh;overflow-x:hidden;padding-top:88px;position:relative;transition:background .4s,color .4s;
 }
 body::before{
-  content:''; position:fixed; inset:0;
+  content:'';position:fixed;inset:0;
   background:repeating-radial-gradient(circle at 20% 20%,rgba(0,247,255,.04)0,transparent 12px),
              repeating-radial-gradient(circle at 80% 80%,rgba(255,0,255,.04)0,transparent 12px);
-  pointer-events:none; animation:stars 40s linear infinite; z-index:0;
+  pointer-events:none;animation:stars 40s linear infinite;z-index:0;
 }
 @keyframes stars{0%,100%{opacity:.5}50%{opacity:.9}}
 
-/* HEADER — daha sıkı, Zap ile Anasayfa aynı hizada */
+/* YENİ ATEŞLİ HEADER */
 header{
-  position:fixed; top:0; left:0; width:100%; z-index:999;
-  background:linear-gradient(180deg, rgba(13,0,32,.96), rgba(13,0,32,.85));
-  backdrop-filter:blur(12px);
-  border-bottom:2px solid rgba(0,247,255,.15);
-  padding:12px 16px;
-  display:flex; align-items:center; justify-content:space-between;
+  position:fixed;top:0;left:0;width:100%;z-index:999;
+  background:rgba(10,0,30,.94);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(0,247,255,.2);padding:14px 18px;
 }
-.header-left{display:flex; align-items:center; gap:12px}
-h1{
-  font-family:'Orbitron',sans-serif;
-  font-size:clamp(1.8rem,6vw,2.6rem);
-  background:linear-gradient(90deg,#00f7ff,#ff00ff,#00ff88);
-  -webkit-background-clip:text;color:transparent;text-shadow:0 0 12px #00f7ff; margin:0; line-height:1;
-}
-.tagline{font-size:0.85rem;opacity:.92;margin-left:8px}
+.header-content{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+.header-left{display:flex;align-items:center;gap:12px;}
+h1{font-family:'Orbitron',sans-serif;font-size:clamp(2rem,6vw,2.8rem);background:linear-gradient(90deg,#00f7ff,#ff00ff,#39ff14);-webkit-background-clip:text;color:transparent;text-shadow:0 0 20px rgba(0,247,255,.6);margin:0;}
+.tagline{font-size:.85rem;opacity:.9;color:#aaa;}
 
-/* Zap limit sağ üstte, daha şık */
-.api-limit{
-  position:fixed; top:12px; right:16px; background:rgba(0,0,0,.65); padding:7px 14px; border-radius:20px; font-size:0.88rem; z-index:1000;
-  border:1px solid var(--zap); backdrop-filter:blur(8px); box-shadow:var(--glow);
+/* ATEŞLİ ZAP COUNTER */
+.zap-counter */
+.zap-counter{
+  display:flex;align-items:center;gap:12px;
+  background:linear-gradient(135deg,rgba(255,50,0,.15),rgba(255,150,0,.1));
+  backdrop-filter:blur(12px);padding:12px 20px;border-radius:50px;
+  border:2px solid rgba(255,100,0,.6);
+  box-shadow:0 0 25px rgba(255,80,0,.5),inset 0 0 20px rgba(255,100,0,.15);
+  animation:firePulse 3s infinite;
 }
+.fire-icon{width:32px;height:36px;position:relative;}
+.fire-icon span{position:absolute;bottom:0;width:8px;height:8px;background:#ff3300;border-radius:50%;animation:fire 1.5s infinite ease-in-out;box-shadow:0 0 15px #ff5500;}
+.fire-icon span:nth-child(1){left:4px;animation-delay:0s;height:28px;width:10px;background:#ff6600;}
+.fire-icon span:nth-child(2){left:12px;animation-delay:.2s;height:32px;width:12px;background:#ff3300;}
+.fire-icon span:nth-child(3){left:20px;animation-delay:.4s;height:24px;width:9px;background:#ff8800;}
+.zap-count{font-weight:900;font-size:1.15rem;color:#fff;text-shadow:0 0 15px #ff3300;background:rgba(0,0,0,.5);padding:8px 16px;border-radius:30px;border:1px solid rgba(255,80,0,.7);min-width:88px;text-align:center;}
+@keyframes fire{0%,100%{transform:translateY(0) scale(1);opacity:.8}50%{transform:translateY(-16px) scale(1.3);opacity:1}}
+@keyframes firePulse{0%,100%{box-shadow:0 0 25px rgba(255,80,0,.5),inset 0 0 20px rgba(255,100,0,.15)}50%{box-shadow:0 0 40px rgba(255,80,0,.8),inset 0 0 30px rgba(255,100,0,.25)}}
 
-/* BURGER — daha güzel glow */
-#burger{
-  width:48px; height:48px; border-radius:50%; background:var(--zap); color:#000; display:grid; place-items:center; font-size:1.5rem; z-index:1002; cursor:pointer;
-  box-shadow:var(--glow); transition:transform .3s;
-}
-#burger:hover{transform:scale(1.12)}
-
-/* SIDEBAR — çok daha havalı hale geldi */
-#sidebar{
-  position:fixed; top:0; left:-300px; width:280px; height:100%; background:rgba(10,0,25,.96);
-  backdrop-filter:blur(12px); border-right:2px solid rgba(0,247,255,.2); padding:92px 20px 20px; z-index:1001;
-  transition:left .35s ease; overflow-y:auto;
-}
+/* BURGER & SIDEBAR */
+#burger{position:fixed;top:18px;left:18px;width:48px;height:48px;border-radius:50%;background:var(--zap);color:#000;display:grid;place-items:center;font-size:1.5rem;z-index:1002;cursor:pointer;box-shadow:var(--glow);}
+#sidebar{position:fixed;top:0;left:-300px;width:280px;height:100%;background:rgba(10,0,25,.96);backdrop-filter:blur(12px);border-right:2px solid rgba(0,247,255,.2);padding:92px 20px 20px;z-index:1001;transition:left .35s ease;overflow-y:auto;}
 #sidebar.open{left:0}
-#sidebar h3{
-  color:var(--zap); text-align:center; font-size:1.6rem; margin-bottom:24px; text-shadow:0 0 15px var(--zap);
-}
-.sidebar-item{
-  display:flex; align-items:center; gap:16px; padding:16px 18px; margin:6px 0; background:rgba(255,255,255,.04);
-  border-radius:14px; color:var(--text); text-decoration:none; font-weight:600; transition:.3s;
-  border-left:4px solid transparent;
-}
-.sidebar-item:hover{
-  background:rgba(0,247,255,.12); transform:translateX(8px); border-left-color:var(--zap);
-}
-.sidebar-item.active{
-  background:rgba(0,247,255,.18); border-left-color:var(--zap); font-weight:800;
-}
-.sidebar-item svg{ width:26px; height:26px; flex-shrink:0; }
+#sidebar h3{color:var(--zap);text-align:center;font-size:1.6rem;margin-bottom:24px;text-shadow:0 0 15px var(--zap);}
+.sidebar-item{display:flex;align-items:center;gap:16px;padding:16px;padding:16px 18px;margin:6px 0;background:rgba(255,255,255,.04);border-radius:14px;color:var(--text);text-decoration:none;font-weight:600;transition:.3s;border-left:4px solid transparent;}
+.sidebar-item:hover{background:rgba(0,247,255,.12);transform:translateX(8px);border-left-color:var(--zap);}
+.sidebar-item.active{background:rgba(0,247,255,.18);border-left-color:var(--zap);font-weight:800;}
 
-/* THEME PANEL — sağ alt floating, açılır kapanır */
-#themePanel{
-  position:fixed; bottom:80px; right:16px; background:rgba(15,0,35,.96); backdrop-filter:blur(12px);
-  border:1px solid rgba(0,247,255,.3); border-radius:16px; padding:16px; z-index:998; width:200px;
-  box-shadow:0 10px 40px rgba(0,0,0,.8); transform:translateY(120%); opacity:0; visibility:hidden; transition:all .35s ease;
-}
-#themePanel.open{transform:translateY(0); opacity:1; visibility:visible;}
-.theme-btn{
-  display:block; width:100%; padding:12px; margin:6px 0; border-radius:10px; text-align:center; font-weight:600;
-  background:rgba(255,255,255,.06); cursor:pointer; transition:.3s;
-}
+/* THEME PANEL */
+#themePanel{position:fixed;bottom:80px;right:16px;background:rgba(15,0,35,.96);backdrop-filter:blur(12px);border:1px solid rgba(0,247,255,.3);border-radius:16px;padding:16px;z-index:998;width:200px;box-shadow:0 10px 40px rgba(0,0,0,.8);transform:translateY(120%);opacity:0;visibility:hidden;transition:all .35s;}
+#themePanel.open{transform:translateY(0);opacity:1;visibility:visible;}
+.theme-btn{display:block;width:100%;padding:12px;margin:6px 0;border-radius:10px;text-align:center;font-weight:600;background:rgba(255,255,255,.06);cursor:pointer;transition:.3s;}
 .theme-btn:hover{background:rgba(0,247,255,.25);}
+#themeToggle{position:fixed;bottom:18px;right:18px;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--zap);color:#000;font-weight:800;z-index:999;box-shadow:var(--glow);cursor:pointer;}
 
-/* Theme toggle button */
-#themeToggle{
-  position:fixed; bottom:18px; right:18px; width:56px; height:56px; border-radius:50%; display:grid; place-items:center;
-  background:var(--zap); color:#000; font-weight:800; z-index:999; box-shadow:var(--glow); cursor:pointer; transition:.3s;
-}
-#themeToggle:hover{transform:scale(1.1)}
-
-/* container */
-.container{max-width:1100px;margin:0 auto;padding:24px 18px;position:relative;z-index:2}
-
-/* cards */
-.card{
-  background:linear-gradient(180deg, rgba(26,0,57,.92), rgba(21,0,46,.98));
-  border-radius:20px; padding:26px; margin:20px 0; border:1px solid rgba(0,247,255,.1); box-shadow:0 12px 40px rgba(0,0,0,.7);
-}
+/* CONTENT */
+.container{max-width:1100px;margin:0 auto;padding:24px 18px;position:relative;z-index:2;}
+.card{background:linear-gradient(180deg,rgba(26,0,57,.92),rgba(21,0,46,.98));border-radius:20px;padding:26px;margin:20px 0;border:1px solid rgba(0,247,255,.1);box-shadow:0 12px 40px rgba(0,0,0,.7);}
 .input{width:100%;padding:16px;border-radius:14px;border:none;background:rgba(255,255,255,.06);color:#fff;outline:none;margin-top:12px;font-size:1rem;}
 .btn{display:block;width:100%;padding:16px;border-radius:14px;border:none;margin-top:14px;font-weight:800;background:linear-gradient(90deg,#00cfff,#7b2bff);color:#fff;cursor:pointer;transition:.3s;}
-.btn:hover{transform:scale(1.02); box-shadow:var(--glow);}
-
-/* result */
+.btn:hover{transform:scale(1.02);box-shadow:var(--glow);}
 .result{margin-top:14px;background:rgba(0,0,0,.5);padding:18px;border-radius:14px;color:var(--text);min-height:80px;border:1px solid rgba(0,247,255,.15);font-size:1.1rem;line-height:1.6;}
 
-/* LIGHT THEME */
-body.light{ --bg:#f8f8ff; --card1:#ffffff; --card2:#f0f0ff; --text:#1a1a1a; background:#f8f8ff; }
-body.light .card{background:#fff; border-color:#ddd;}
+/* TEMALAR */
+body.light{--bg:#f8f8ff;--card:#fff;--text:#1a1a1a;background:#f8f8ff;}
+body.light .card{background:#fff;border-color:#ddd;}
+body.neon{--zap:#39ff14;--pink:#ff00ff;--glow:0 0 35px rgba(57,255,20,.8);}
+body.hacker{--zap:#00ff00;--pink:#00ff00;--bg:#000;--text:#00ff00;font-family:'Courier New',monospace;}
+body.hacker .card{background:#000;border-color:#00ff00;}
 
-/* NEON THEME */
-body.neon{ --zap:#39ff14; --pink:#ff00ff; --glow:0 0 35px rgba(57,255,20,.8); }
-
-/* HACKER THEME */
-body.hacker{ --zap:#00ff00; --pink:#00ff00; --bg:#000; --text:#00ff00; font-family:'Courier New',monospace; }
-body.hacker .card{background:#000; border-color:#00ff00;}
-
-/* spinner */
+/* MOBİL */
+@media(max-width:480px){
+  .header-content{gap:10px;}
+  .zap-counter{padding:10px 16px;gap:10px;}
+  .fire-icon{width:28px;height:32px;}
+  .zap-count{font-size:1rem;padding:6px 12px;min-width:78px;}
+}
 @keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 
 <!-- BURGER -->
-<div id="burger" onclick="toggleSidebar()">☰</div>
+<div id="burger" onclick="toggleSidebar()">Menu</div>
 
-<!-- SIDEBAR — çok daha güzel, aktif sayfa vurgulu -->
+<!-- SIDEBAR -->
 <div id="sidebar" aria-hidden="true">
   <h3>NEYAPAY</h3>
-  <a href="/index.html" class="sidebar-item">
-    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-    Anasayfa
-  </a>
-  <a href="/modules/kripto.html" class="sidebar-item active">
-    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.5L18.3 20H5.7L12 5.5z"/></svg>
-    Kripto Analiz
-  </a>
-  <a href="/modules/prompt.html" class="sidebar-item">
-    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-    Prompt Jeneratör
-  </a>
-  <a href="/modules/nick.html" class="sidebar-item">
-    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-    Nick Generator
-  </a>
-  <a href="/modules/ruya.html" class="sidebar-item">
-    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-1.66 1.34-3 3-3 .38 0 .73.15.99.39.27.24.62.39 1.01.39 1.66 0 3-1.34 3-3s-1.34-3-3-3z"/></svg>
-    Rüya Yorum
-  </a>
-  <a href="/modules/meme.html" class="sidebar-item">
-    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
-    Meme Fabrikası
-  </a>
-  <a href="/modules/film.html" class="sidebar-item">
-    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 1.99 2H20c1.1 0 2-.9 2-2V4h-4z"/></svg>
-    Film Fikir
-  </a>
+  <a href="/index.html" class="sidebar-item">Ana Sayfa</a>
+  <a href="/modules/kripto.html" class="sidebar-item active">Kripto Analiz</a>
+  <a href="/modules/prompt.html" class="sidebar-item">Prompt Jeneratör</a>
+  <a href="/modules/nick.html" class="sidebar-item">Nick Generator</a>
+  <a href="/modules/ruya.html" class="sidebar-item">Rüya Yorum</a>
+  <a href="/modules/meme.html" class="sidebar-item">Meme Fabrikası</a>
+  <a href="/modules/film.html" class="sidebar-item">Film Fikir</a>
 </div>
 
-<!-- THEME PANEL — sağ alt açılır kapanır -->
+<!-- THEME PANEL -->
 <div id="themePanel">
-  <div class="theme-btn" onclick="setTheme('dark')">🌙 Dark (Default)</div>
-  <div class="theme-btn" onclick="setTheme('light')">☀️ Light</div>
-  <div class="theme-btn" onclick="setTheme('neon')">⚡ Neon Green</div>
-  <div class="theme-btn" onclick="setTheme('hacker')">💻 Hacker Matrix</div>
+  <div class="theme-btn" onclick="setTheme('dark')">Dark</div>
+  <div class="theme-btn" onclick="setTheme('light')">Light</div>
+  <div class="theme-btn" onclick="setTheme('neon')">Neon</div>
+  <div class="theme-btn" onclick="setTheme('hacker')">Hacker</div>
 </div>
-<div id="themeToggle" onclick="toggleThemePanel()">⚡</div>
+<div id="themeToggle" onclick="toggleThemePanel()">Theme</div>
 
+<!-- YENİ ATEŞLİ HEADER -->
 <header>
-  <div class="header-left">
-    <h1>NE YAPAY!</h1>
-    <div class="tagline">GEL BİZ YAPAY!</div>
+  <div class="header-content">
+    <div class="header-left">
+      <h1>NE YAPAY!</h1>
+      <div class="tagline">GEL BİZ YAPAY!</div>
+    </div>
+    <div class="zap-counter">
+      <div class="fire-icon"><span></span><span></span><span></span></div>
+      <span class="zap-count" id="limitInfo">405/500</span>
+    </div>
   </div>
-  <a href="/index.html" style="color:var(--zap);text-decoration:none;font-weight:800;font-size:0.95rem;">← Anasayfa</a>
 </header>
 
-<div class="api-limit" id="limitInfo">Zap: ∞ / ∞</div>
-
+<!-- İÇERİK -->
 <div class="container">
-  <div class="card" aria-labelledby="tokenTitle">
-    <h3 id="tokenTitle" style="font-size:1.5rem;margin-bottom:10px;color:var(--zap)">Token Fikir Üret</h3>
+  <div class="card">
+    <h3 style="font-size:1.5rem;margin-bottom:10px;color:var(--zap)">Token Fikir Üret</h3>
     <input id="tokenInput" class="input" placeholder="Örn: yeni meme coin fikri">
-    <button class="btn" id="genBtn" onclick="generate()">Üret</button>
+    <button class="btn" onclick="generate()">Üret</button>
     <div id="tokenResult" class="result">Token fikri burada görünecek...</div>
   </div>
 
@@ -210,33 +153,25 @@ body.hacker .card{background:#000; border-color:#00ff00;}
 <script>
 const proxyUrl = "https://neyapay-api.vercel.app/api/zap";
 
-/* limit sistemi aynı */
 let dailyLimit = 500;
 let used = parseInt(localStorage.getItem('neyapay_used')||'0');
 const today = new Date().toDateString();
 if(localStorage.getItem('neyapay_day') !== today){
   used = 0; localStorage.setItem('neyapay_used','0'); localStorage.setItem('neyapay_day', today);
 }
-document.getElementById('limitInfo').innerText = `Zap: ${dailyLimit-used}/${dailyLimit}`;
+document.getElementById('limitInfo').innerText = `${dailyLimit-used}/${dailyLimit}`;
 
-/* AI */
 async function neAI(promptText){
-  if(used >= dailyLimit) return "Bugün limit doldu! Yarın görüşürüz 🚀";
+  if(used >= dailyLimit) return "Bugün limit doldu! Yarın görüşürüz";
   try{
-    const r = await fetch(proxyUrl, {
-      method: "POST",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify({ prompt: promptText })
-    });
-    if(!r.ok) throw new Error(r.status);
+    const r = await fetch(proxyUrl, {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt:promptText})});
+    if(!r.ok) throw '';
     const d = await r.json();
     used++;
     localStorage.setItem('neyapay_used', used);
-    document.getElementById('limitInfo').innerText = `Zap: ${dailyLimit-used}/${dailyLimit}`;
-    return d.cevap || d.result || "Yapay zeka şu an biraz utangaç...";
-  }catch(e){
-    return "Bağlantı hatası veya API meşgul. Biraz sonra tekrar dene!";
-  }
+    document.getElementById('limitInfo').innerText = `${dailyLimit-used}/${dailyLimit}`;
+    return d.cevap || "Yapay zeka biraz utangaç...";
+  }catch{ return "Bağlantı hatası, tekrar dene!"; }
 }
 
 function L(id){
@@ -245,40 +180,23 @@ function L(id){
 
 async function generate(){
   const topic = document.getElementById('tokenInput').value.trim();
-  if(!topic){ document.getElementById('tokenResult').innerText = 'Boş bırakma, bi şeyler yaz!'; return; }
+  if(!topic){ document.getElementById('tokenResult').innerText = 'Boş bırakma, yaz bi şeyler!'; return; }
   L('tokenResult');
-  const res = await neAI(`Çok kısa ve dikkat çekici şekilde: "${topic}" için 3 kripto token fikri üret. Her biri başlık + 2 cümlelik komik açıklama olsun.`);
+  const res = await neAI(`Çok kısa ve komik şekilde: "${topic}" için 3 tane meme coin fikri üret. Başlık + 2 cümlelik açıklama.`);
   document.getElementById('tokenResult').innerText = res;
 }
 
-/* Sidebar toggle */
-function toggleSidebar(){
-  const sb = document.getElementById('sidebar');
-  sb.classList.toggle('open');
-  sb.setAttribute('aria-hidden', (!sb.classList.contains('open')).toString());
-}
-
-/* Theme panel toggle */
-function toggleThemePanel(){
-  document.getElementById('themePanel').classList.toggle('open');
-}
-
-/* Theme system — tamamen düzeltildi */
+function toggleSidebar(){ document.getElementById('sidebar').classList.toggle('open'); }
+function toggleThemePanel(){ document.getElementById('themePanel').classList.toggle('open'); }
 function setTheme(t){
-  document.body.className = ''; // temizle
-  if(t && t !== 'dark') document.body.classList.add(t);
-  localStorage.setItem('neyapay_theme', t || 'dark');
+  document.body.className = '';
+  if(t!=='dark') document.body.classList.add(t);
+  localStorage.setItem('neyapay_theme', t||'dark');
 }
-(function(){
-  const saved = localStorage.getItem('neyapay_theme') || 'dark';
-  setTheme(saved);
-})();
+(function(){ const saved = localStorage.getItem('neyapay_theme')||'dark'; setTheme(saved); })();
 
-/* Sayfa yüklendiğinde aktif link vurgula (otomatik) */
 document.querySelectorAll('.sidebar-item').forEach(item => {
-  if(item.href === window.location.href || window.location.href.includes(item.href.replace('.html',''))){
-    item.classList.add('active');
-  }
+  if(item.href===location.href) item.classList.add('active');
 });
 </script>
 </body>
