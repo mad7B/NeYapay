@@ -1,159 +1,50 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
     <title>Kripto Analiz</title>
 
-    <!-- INDEX İLE AYNI CSS DOSYALARI -->
-    <link rel="stylesheet" href="../styles/global.css">
-    <link rel="stylesheet" href="../styles/sidebar.css">
-    <link rel="stylesheet" href="../styles/main.css">
+    <script src="/scripts/kripto.js" defer></script>
 
     <style>
-        /* Sayfa özel padding ayarı */
-        .container-page {
-            max-width: 900px;
-            margin: auto;
-            padding: 120px 25px 50px 25px;
+        body {
+            font-family: Georgia, serif;
+            padding: 20px;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 18px;
-            padding: 25px;
-            margin-top: 25px;
-            backdrop-filter: blur(10px);
+        input {
+            padding: 10px;
+            border-radius: 8px;
+            width: 260px;
+            border: 1px solid #ccc;
         }
 
-        .card h2 {
-            margin-top: 0;
-            font-size: 22px;
-        }
-
-        .input-box {
-            width: 100%;
-            padding: 15px;
-            border-radius: 12px;
+        button {
+            padding: 10px 18px;
+            border-radius: 8px;
             border: none;
-            background: rgba(255,255,255,0.12);
-            color: white;
-            margin-top: 10px;
         }
 
-        .result-box {
-            margin-top: 15px;
-            padding: 15px;
-            background: rgba(255,255,255,0.08);
-            border-radius: 12px;
-            min-height: 60px;
-        }
-
-        .loading {
-            animation: blink 1s infinite;
-        }
-        @keyframes blink {
-            0% { opacity: .4 }
-            100% { opacity: 1 }
+        #tokenResult {
+            margin-top: 20px;
+            font-size: 18px;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- MENU BUTTON -->
-    <div class="menu-button" onclick="toggleSidebar()">
-        <span>☰</span>
-    </div>
+    <a href="/index.html">← Anasayfaya Dön</a>
 
-    <!-- SIDEBAR -->
-    <div id="sidebar" class="sidebar">
-        <button class="close-btn" onclick="toggleSidebar()">✕</button>
+    <h1>Kripto Analiz</h1>
+    <p>Piyasa için eğlenceli, yapay zeka destekli token fikirleri üret.</p>
 
-        <h2>Menü</h2>
-        <a href="../index.html">Anasayfa</a>
-        <a href="kripto.html">Kripto Analiz</a>
-        <a href="plaka.html">Plaka Sorgu</a>
-        <a href="sohbet.html">Sohbet</a>
-    </div>
+    <h2>Token Fikir & Başlık</h2>
 
-    <!-- HEADER (index.html ile aynı) -->
-    <header class="site-header">
-        <div class="logo-box">
-            <span class="logo-icon">🧠</span>
-            <span class="logo-text">NEYAPAY</span>
-        </div>
-    </header>
+    <input id="tokenInput" type="text" placeholder="Örn: yeni meme coin fikri" />
+    <button onclick="uretilenTokenFikri()">Üret</button>
 
-    <!-- CONTENT -->
-    <div class="container-page">
-
-        <a href="../index.html" class="back-button">← Anasayfaya Dön</a>
-
-        <h1>Kripto Analiz</h1>
-        <p>Piyasa için eğlenceli, yapay zeka destekli token fikirleri üret.</p>
-
-        <!-- TOKEN ANALİZ KARTI -->
-        <div class="card">
-            <h2>Token Fikir & Başlık</h2>
-
-            <input 
-                id="tokenInput" 
-                class="input-box"
-                placeholder="Örn: yeni meme coin fikri"
-            >
-
-            <button class="btn-primary" onclick="generateCryptoAI()">
-                Üret
-            </button>
-
-            <div id="result" class="result-box">
-                Sonuç burada görünecek...
-            </div>
-        </div>
-
-        <div class="card">
-            <h2>Risk Notu</h2>
-            <p>Yatırım tavsiyesi değildir. Sadece eğlence ve eğitim amaçlı tahminler.</p>
-        </div>
-
-    </div>
-
-    <!-- AI + Sidebar Script (index.html ile aynı sistem) -->
-    <script>
-        function toggleSidebar() {
-            document.getElementById("sidebar").classList.toggle("open");
-            document.body.classList.toggle("sidebar-open");
-        }
-
-        // 🔥 INDEX’TEKİ YAPAY ZEKA ÜRETME FONKSİYONU ENTEGRE EDİLDİ
-        async function generateCryptoAI() {
-            const input = document.getElementById("tokenInput").value.trim();
-            const resultBox = document.getElementById("result");
-
-            if (input === "") {
-                resultBox.innerHTML = "❗ Lütfen bir fikir gir.";
-                return;
-            }
-
-            resultBox.innerHTML = "<span class='loading'>AI analiz yapıyor...</span>";
-
-            try {
-                const response = await fetch("https://api.neyapay.com/ai", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        prompt: `Bu token fikrini eğlenceli ve yaratıcı anlat: ${input}`
-                    })
-                });
-
-                const data = await response.json();
-                resultBox.innerText = data.result ?? "Bir sonuç alınamadı.";
-            } catch (err) {
-                resultBox.innerHTML = "⚠ AI sunucusu yanıt vermedi.";
-            }
-        }
-    </script>
+    <p id="tokenResult">Sonuç burada görünecek...</p>
 
 </body>
 </html>
