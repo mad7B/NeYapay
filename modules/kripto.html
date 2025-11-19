@@ -3,222 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kripto Analiz - NeYapay</title>
+    <title>Kripto Analiz</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
 
     <style>
         body {
+            background: linear-gradient(135deg, #0b0015, #16002e);
+            color: #fff;
+            font-family: "Inter", sans-serif;
             margin: 0;
-            font-family: "Montserrat", sans-serif;
-            background: radial-gradient(circle at top, #1b0026, #090011);
-            color: white;
-            overflow-x: hidden;
+            padding: 0;
         }
 
-        /* ------------------------------ SIDEBAR ------------------------------ */
+        /* Sidebar */
         .sidebar {
+            width: 260px;
+            height: 100vh;
+            background: rgba(10, 10, 25, 0.95);
             position: fixed;
-            left: 0;
             top: 0;
-            width: 250px;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(12px);
-            border-right: 1px solid rgba(255,255,255,0.1);
+            left: -260px;
             padding: 20px;
-            z-index: 999;
-            transform: translateX(-260px);
-            transition: 0.35s ease;
+            transition: 0.3s ease;
+            z-index: 999999;
+            backdrop-filter: blur(12px);
+            border-right: 1px solid rgba(255,255,255,0.05);
         }
         .sidebar.open {
-            transform: translateX(0);
+            left: 0;
         }
-
-        .sidebar h2 {
-            color: #00eaff;
-            margin-bottom: 15px;
-        }
-
         .sidebar a {
             display: block;
-            padding: 12px 0;
-            text-decoration: none;
+            margin: 15px 0;
             color: #fff;
-            opacity: 0.85;
-            font-size: 15px;
+            text-decoration: none;
+            font-size: 18px;
         }
 
-        .sidebar a:hover {
-            opacity: 1;
-        }
-
-        /* --------------------------- MENU BUTTON --------------------------- */
+        /* Menü butonu */
         .menu-button {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: #00eaff;
-            color: black;
-            width: 45px;
-            height: 45px;
+            width: 46px;
+            height: 46px;
+            background: #00e5ff;
             border-radius: 50%;
             display: flex;
-            justify-content: center;
             align-items: center;
-            z-index: 1001;
-            font-size: 22px;
+            justify-content: center;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 9999999 !important;
             cursor: pointer;
         }
 
-        /* --------------------------- PAGE CONTAINER --------------------------- */
-        .page-container {
-            max-width: 700px;
-            margin: 100px auto 60px auto;
-            padding: 25px;
+        .menu-button span {
+            font-size: 26px;
+            color: #000;
+            margin-top: -2px;
         }
 
-        h1 {
-            font-size: 34px;
-            font-weight: 700;
-            text-shadow: 0 0 12px rgba(0, 238, 255, 0.4);
+        /* Container */
+        .container {
+            padding: 100px 25px;
         }
 
-        .subtitle {
-            opacity: 0.8;
-            margin-top: -10px;
-            margin-bottom: 30px;
-        }
-
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 25px;
-            padding: 10px 18px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-decoration: none;
-            color: #fff;
-            transition: 0.2s;
-        }
-
-        .back-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        /* --------------------------- CARD BOX --------------------------- */
         .card {
-            padding: 20px;
-            margin-bottom: 25px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(8px);
-            border-radius: 18px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255,255,255,0.05);
+            padding: 25px;
+            border-radius: 16px;
+            margin-top: 25px;
+            border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
         }
 
-        input {
+        input, textarea {
             width: 100%;
-            padding: 12px;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            background: rgba(255, 255, 255, 0.08);
-            color: white;
-            backdrop-filter: blur(6px);
+            padding: 16px;
+            margin-top: 10px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            font-size: 16px;
         }
 
         button {
             width: 100%;
-            padding: 12px;
+            padding: 16px;
+            margin-top: 15px;
+            font-size: 18px;
             border-radius: 12px;
             border: none;
-            cursor: pointer;
-            background: linear-gradient(90deg, #00eaff, #7b2cff);
+            background: linear-gradient(90deg, #00c6ff, #7d2bff);
             color: white;
-            font-size: 16px;
-            margin-bottom: 10px;
+            cursor: pointer;
         }
 
-        button:hover {
-            opacity: 0.85;
-        }
-
-        .result-box {
-            margin-top: 10px;
-            padding: 14px;
+        a.back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 12px 20px;
+            background: rgba(255,255,255,0.08);
             border-radius: 12px;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255,255,255,0.15);
+            color: white;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
         }
     </style>
 </head>
 
 <body>
 
-    <!-- ===================== SIDEBAR ===================== -->
-    <div class="sidebar" id="sidebar">
-        <h2>NE YAPAY</h2>
-
-        <a href="index.html">🏠 Anasayfa</a>
-        <a href="kripto.html">💰 Kripto Analiz</a>
-        <a href="youtube.html">▶️ YouTube Fikirleri</a>
-        <a href="tiktok.html">🎵 TikTok içerikleri</a>
-        <a href="oyun.html">🎮 Oyun Üretici</a>
-        <a href="hikaye.html">📚 Hikaye Oluşturucu</a>
-        <a href="nick.html">🔥 Nick Üretici</a>
-        <a href="meme.html">🤣 Meme Üretici</a>
-        <a href="aforizma.html">💬 Aforizma</a>
-        <a href="logo.html">🌐 Logo Fikri</a>
-        <a href="slogan.html">⚡ Slogan Üretici</a>
-        <a href="film.html">🎬 Film Fikirleri</a>
-        <a href="uygulama.html">📱 Uygulama Fikirleri</a>
-        <a href="yapayzeka.html">🤖 AI Araçları</a>
+    <!-- MENÜ BUTONU -->
+    <div class="menu-button" onclick="toggleSidebar()">
+        <span>☰</span>
     </div>
 
-    <!-- ===================== MENU BUTTON ===================== -->
-    <div class="menu-button" onclick="toggleSidebar()">☰</div>
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+        <h2>Menü</h2>
+        <a href="../index.html">Anasayfa</a>
+        <a href="kripto.html">Kripto Analiz</a>
+        <a href="plaka.html">Plaka Sorgu</a>
+        <a href="sohbet.html">Sohbet</a>
+    </div>
 
-    <!-- ===================== PAGE CONTENT ===================== -->
-    <div class="page-container">
+    <!-- ANA İÇERİK -->
+    <div class="container">
 
-        <a href="index.html" class="back-btn">← Anasayfaya Dön</a>
+        <a href="../index.html" class="back-button">← Anasayfaya Dön</a>
 
         <h1>Kripto Analiz</h1>
-        <p class="subtitle">Kısa, eğlenceli ve yapay zeka destekli piyasa fikirleri (bilgilendirme amaçlı)</p>
+        <p>Kısa, eğlenceli, yapay zeka destekli piyasa fikirleri (bilgilendirme amaçlı)</p>
 
         <div class="card">
             <h2>Token Fikir & Başlık</h2>
-
-            <input id="token" placeholder="Örn: meme coin fikri">
-            <button onclick="generateIdea()">Üret</button>
-
-            <div id="result" class="result-box">Sonuç burada görünecek…</div>
+            <input id="tokenInput" placeholder="Örn: yeni meme coin fikri">
+            <button onclick="generateCrypto()">Üret</button>
+            <p id="result">Sonuç burada görünecek...</p>
         </div>
 
         <div class="card">
             <h2>Risk Notu</h2>
-            <p>Buradaki içerikler bilgilendirme amaçlıdır. Yatırım tavsiyesi değildir.</p>
+            <p>Buradaki içerikler fikir amaçlıdır, yatırım tavsiyesi değildir.</p>
         </div>
 
     </div>
 
-    <!-- ===================== SCRIPT ===================== -->
     <script>
         function toggleSidebar() {
             document.getElementById("sidebar").classList.toggle("open");
         }
 
-        function generateIdea() {
-            let konu = document.getElementById("token").value;
-
-            if (!konu.trim()) {
-                document.getElementById("result").innerHTML = "Lütfen bir konu gir!";
-                return;
-            }
-
-            document.getElementById("result").innerHTML =
-                "⚡ '" + konu + "' için AI tarafından yaratıcı bir token konsepti hazırlanıyor...";
+        function generateCrypto() {
+            const input = document.getElementById("tokenInput").value;
+            document.getElementById("result").innerText =
+                input.trim() === "" 
+                ? "Lütfen bir fikir gir."
+                : "AI fikri oluşturuluyor...";
         }
     </script>
 
