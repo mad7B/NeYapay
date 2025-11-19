@@ -2,49 +2,195 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kripto Analiz</title>
-
-    <script src="/scripts/kripto.js" defer></script>
 
     <style>
         body {
-            font-family: Georgia, serif;
+            background: linear-gradient(135deg, #0b0015, #16002e);
+            color: #fff;
+            font-family: "Inter", sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .site-title {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .logo {
+            font-size: 34px;
+            font-weight: 800;
+            color: #00eaff;
+            text-shadow: 0 0 18px rgba(0, 255, 255, 0.6);
+        }
+
+        .menu-button {
+            width: 48px;
+            height: 48px;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background: #00e5ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999999;
+            cursor: pointer;
+        }
+        .menu-button span { font-size: 30px; color: #000;}
+
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            background: rgba(10, 10, 25, 0.96);
+            position: fixed;
+            top: 0;
+            left: -260px;
             padding: 20px;
+            transition: 0.3s ease;
+            z-index: 999999;
+            backdrop-filter: blur(12px);
+        }
+        .sidebar.open { left: 0; }
+        .sidebar a {
+            display: block;
+            margin: 15px 0;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .container { padding: 100px 25px; }
+
+        a.back-button {
+            display: inline-block;
+            margin-bottom: 25px;
+            padding: 12px 18px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.06);
+            padding: 25px;
+            border-radius: 16px;
+            margin-top: 25px;
         }
 
         input {
-            padding: 10px;
-            border-radius: 8px;
-            width: 260px;
-            border: 1px solid #ccc;
+            width: 100%;
+            padding: 16px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255,255,255,0.12);
+            color: white;
         }
 
         button {
-            padding: 10px 18px;
-            border-radius: 8px;
+            width: 100%;
+            padding: 16px;
+            margin-top: 15px;
+            border-radius: 12px;
             border: none;
+            background: linear-gradient(90deg, #00c6ff, #7d2bff);
+            color: #fff;
+            cursor: pointer;
+            font-size: 18px;
         }
 
-        #tokenResult {
-            margin-top: 20px;
-            font-size: 18px;
+        #result {
+            margin-top: 15px;
+            white-space: pre-line;
         }
     </style>
 </head>
 
 <body>
 
-    <a href="/index.html">← Anasayfaya Dön</a>
+    <!-- MENU BUTTON -->
+    <div class="menu-button" onclick="toggleSidebar()">
+        <span>☰</span>
+    </div>
 
-    <h1>Kripto Analiz</h1>
-    <p>Piyasa için eğlenceli, yapay zeka destekli token fikirleri üret.</p>
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+        <h2>Menü</h2>
+        <a href="../index.html">Anasayfa</a>
+        <a href="kripto.html">Kripto Analiz</a>
+        <a href="plaka.html">Plaka Sorgu</a>
+        <a href="sohbet.html">Sohbet</a>
+    </div>
 
-    <h2>Token Fikir & Başlık</h2>
+    <!-- HEADER -->
+    <div class="site-title">
+        <span class="logo">🧠 NEYAPAY</span>
+    </div>
 
-    <input id="tokenInput" type="text" placeholder="Örn: yeni meme coin fikri" />
-    <button onclick="uretilenTokenFikri()">Üret</button>
+    <!-- CONTENT -->
+    <div class="container">
 
-    <p id="tokenResult">Sonuç burada görünecek...</p>
+        <a href="../index.html" class="back-button">← Anasayfaya Dön</a>
+
+        <h1>Kripto Analiz</h1>
+        <p>Piyasa için eğlenceli, yapay zeka destekli token fikirleri üret.</p>
+
+        <div class="card">
+            <h2>Token Fikir & Başlık</h2>
+            <input id="tokenInput" placeholder="Örn: yeni meme coin fikri">
+            <button onclick="generateCrypto()">Üret</button>
+            <p id="result">Sonuç burada görünecek...</p>
+        </div>
+
+        <div class="card">
+            <h2>Risk Notu</h2>
+            <p>Yatırım tavsiyesi değildir.</p>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script>
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("open");
+        }
+
+        async function generateCrypto() {
+            const input = document.getElementById("tokenInput").value.trim();
+            const result = document.getElementById("result");
+
+            if (!input) {
+                result.innerText = "Lütfen bir fikir gir.";
+                return;
+            }
+
+            result.innerText = "AI fikir üretiyor...";
+
+            try {
+                const response = await fetch("/api/gpt", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({
+                        prompt: `Bana şu konuda yaratıcı bir kripto token fikri üret: ${input}
+                        Format:
+                        • Token İsmi
+                        • Açıklama
+                        • Slogan
+                        • Risk Notu`
+                    })
+                });
+
+                const data = await response.json();
+                result.innerText = data.result || "Bir hata oluştu.";
+            }
+            catch (err) {
+                result.innerText = "Sunucu hatası — Vercel API yanıt vermiyor.";
+            }
+        }
+    </script>
 
 </body>
 </html>
