@@ -1,104 +1,203 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Oyun Merkezi — NEYAPAY</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo+2:wght@600;800&display=swap" rel="stylesheet">
-<style>
-/* --- Kısa: index.html ile aynı stil (kesinlikle tutarlı) --- */
-:root{--zap:#00f7ff;--pink:#ff00ff;--bg:#0d0020;--text:#e0e0ff;--glow:0 0 30px rgba(0,247,255,.7);}
-*{margin:0;padding:0;box-sizing:border-box}html,body{height:100%}
-body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;min-height:100vh;padding-top:92px;transition:background .35s,color .35s}
-header{position:fixed;top:0;left:0;width:100%;text-align:center;padding:18px 10px;z-index:999;background:linear-gradient(0deg, rgba(13,0,32,.85), rgba(13,0,32,.6));border-bottom:2px solid rgba(0,247,255,.08)}
-h1{font-family:'Orbitron',sans-serif;font-size:clamp(1.8rem,5vw,2.6rem);background:linear-gradient(90deg,#00f7ff,#ff00ff,#00ff88);-webkit-background-clip:text;color:transparent;text-shadow:0 0 12px #00f7ff}
-.container{max-width:1100px;margin:0 auto;padding:120px 16px 80px;z-index:2}
-.tool{background:linear-gradient(180deg, rgba(26,0,57,.85), rgba(21,0,46,.9));padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,.03)}
-button{padding:12px 14px;border-radius:12px;border:none;background:linear-gradient(45deg,#00f7ff,#ff00ff);font-weight:800;cursor:pointer}
-#sidebar{position:fixed;top:0;left:-260px;width:240px;height:100%;background:rgba(0,0,0,.65);backdrop-filter:blur(6px);padding:20px;z-index:1000;transition:left .28s}
-#sidebar.open{left:0}#burger{position:fixed;top:18px;left:18px;width:46px;height:46px;border-radius:50%;background:var(--zap);display:grid;place-items:center;z-index:1001;cursor:pointer;box-shadow:var(--glow)}
-a.module-link{display:block;padding:10px;margin:8px 0;color:var(--text);text-decoration:none;background:rgba(255,255,255,.03);border-radius:8px}
-.return{display:inline-block;margin-bottom:14px;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,.04);text-decoration:none;color:var(--text)}
-.small{font-size:.92rem;color:rgba(255,255,255,.7);margin-top:8px}
-</style>
-</head>
-<body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oyun Merkezi — NEYAPAY</title>
+    <meta name="description" content="Oyun fikirleri, nickname, hikaye, karakter, harita, boss, eşya, görev… 2025’in en güçlü oyun tasarım laboratuvarı!">
+    <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/325/zap_26a1.png">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo+2:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--zap:#00f7ff;--bg:#0d0020;--text:#e0e0ff;--glow:0 0 30px rgba(0,247,255,.6);}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Exo 2',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-top:92px;overflow-x:hidden}
+        body::before{content:'';position:fixed;inset:0;background:repeating-radial-gradient(circle at 20% 20%,rgba(0,247,255,.04)0,transparent 12px),repeating-radial-gradient(circle at 80% 80%,rgba(255,0,255,.04)0,transparent 12px);pointer-events:none;animation:stars 40s linear infinite}
+        @keyframes stars{0%,100%{opacity:.4}50%{opacity:.9}}
 
-<div id="burger" onclick="toggleSidebar()">☰</div>
-<div id="sidebar" aria-hidden="true">
-  <h3 style="color:var(--zap)">NEYAPAY</h3>
-  <a class="module-link" href="/modules/oyun.html">🎮 Oyun Merkezi</a>
-  <a class="module-link" href="/modules/yapayzeka.html">🤖 Yapay Zeka Lab</a>
-  <a class="module-link" href="/modules/youtube.html">🎥 YouTube</a>
-  <a class="module-link" href="/modules/tiktok.html">🎵 TikTok</a>
-  <a class="module-link" href="/modules/kripto.html">🤑 Kripto</a>
-  <a class="module-link" href="/index.html">🏠 Anasayfa</a>
+        header{position:fixed;top:0;left:0;width:100%;text-align:center;padding:18px 10px;z-index:999;background:linear-gradient(0deg,rgba(13,0,32,.95),rgba(13,0,32,.8));border-bottom:2px solid rgba(0,247,255,.15);backdrop-filter:blur(12px)}
+        h1{font-family:'Orbitron',sans-serif;font-size:clamp(2.8rem,10vw,5rem);background:linear-gradient(90deg,#00f7ff,#ff00ff,#00ff88);-webkit-background-clip:text;color:transparent;text-shadow:0 0 20px rgba(0,247,255,.8);margin:0}
+        .tagline{font-size:1.1rem;opacity:.9;margin-top:6px;font-weight:500}
+
+        #burger{position:fixed;top:16px;left:16px;width:54px;height:54px;border-radius:50%;background:var(--zap);display:flex;flex-direction:column;justify-content:center;align-items:center;cursor:pointer;z-index:1002;box-shadow:var(--glow)}
+        #burger span{width:30px;height:4px;background:#fff;margin:4px 0;border-radius:4px;transition:.3s;box-shadow:0 0 12px #00f7ff}
+        #burger.active span:nth-child(1){transform:translateY(12px) rotate(45deg)}
+        #burger.active span:nth-child(2){opacity:0}
+        #burger.active span:nth-child(3){transform:translateY(-12px) rotate(-45deg)}
+
+        #sidebar{position:fixed;top:0;left:-300px;width:300px;height:100%;background:rgba(8,0,22,.98);backdrop-filter:blur(16px);border-right:2px solid rgba(0,247,255,.2);padding:100px 24px 30px;z-index:1001;transition:left .35s ease;overflow-y:auto}
+        #sidebar.open{left:0}
+        #sidebar h3{color:var(--zap);text-align:center;font-size:1.9rem;margin-bottom:32px;text-shadow:0 0 20px var(--zap)}
+        #sidebar a{display:block;padding:16px 20px;margin:10px 0;background:rgba(255,255,255,.06);border-radius:14px;color:var(--text);text-decoration:none;font-weight:600;transition:.3s;border:1px solid rgba(0,247,255,.1);font-size:1.05rem}
+        #sidebar a:hover{background:rgba(0,247,255,.25);transform:translateX(8px);border-color:var(--zap)}
+        #sidebar a.active{background:rgba(0,247,255,.2);border-color:var(--zap);font-weight:800}
+
+        #themeToggle{position:fixed;bottom:20px;right:20px;width:60px;height:60px;border-radius:50%;background:var(--zap);display:grid;place-items:center;color:#000;font-weight:900;box-shadow:var(--glow);cursor:pointer;z-index:999;font-size:1rem}
+        #themePanel{position:fixed;bottom:90px;right:18px;background:rgba(15,0,35,.98);backdrop-filter:blur(14px);border:1px solid rgba(0,247,255,.3);border-radius:18px;padding:18px;width:220px;box-shadow:0 12px 50px rgba(0,0,0,.9);transform:translateY(120%);opacity:0;transition:all .35s;z-index:998}
+        #themePanel.open{transform:translateY(0);opacity:1}
+
+        .container{max-width:1380px;margin:0 auto;padding:110px 20px 140px;position:relative;z-index:2}
+        .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:26px}
+        .tool{background:linear-gradient(135deg,rgba(26,0,57,.96),rgba(21,0,46,.99));border-radius:22px;padding:28px 24px 32px;box-shadow:0 16px 45px rgba(0,0,0,.75);border:1px solid rgba(0,247,255,.18);position:relative;overflow:hidden}
+        .tool::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(90deg,var(--zap),#ff00ff);opacity:.8}
+        .tool h2{color:var(--zap);font-size:1.75rem;margin-bottom:10px;text-align:center;text-shadow:0 0 16px var(--zap);font-weight:700}
+        .role{text-align:center;font-size:1.05rem;opacity:.88;margin-bottom:20px;color:#a0f7ff}
+
+        textarea{width:100%;min-height:110px;padding:16px 18px;border-radius:14px;border:none;background:rgba(255,255,255,.08);color:#fff;font-family:inherit;font-size:1.05rem;resize:vertical;margin:12px 0 0;border:1px solid rgba(0,247,255,.25);backdrop-filter:blur(6px)}
+        button{width:100%;padding:16px;border-radius:14px;margin-top:14px;font-weight:800;background:linear-gradient(45deg,#00f7ff,#ff00ff);color:#000;cursor:pointer;box-shadow:0 8px 30px rgba(0,247,255,.4);transition:.25s;font-size:1.15rem}
+        button:hover{transform:translateY(-2px);box-shadow:0 15px 40px rgba(0,247,255,.5)}
+
+        .result{margin-top:18px;background:rgba(0,0,0,.55);padding:20px;border-radius:14px;min-height:120px;border:1px solid rgba(0,247,255,.15);backdrop-filter:blur(8px);white-space:pre-wrap;line-height:1.7;font-size:1.05rem}
+
+        .loadingZap{display:flex;justify-content:center;align-items:center;padding:30px}
+        .loadingZap div{width:32px;height:32px;border:6px solid var(--zap);border-top-color:transparent;border-radius:50%;animation:spin .8s linear infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
+
+        body.neon{--zap:#39ff14;--bg:#001a0d;--text:#39ff14;background:radial-gradient(circle at 50% 50%,#001a0d,#000)}
+        body.light{--bg:#f8f9ff;--text:#1a0038;background:#f8f9ff}
+        body.light .tool{background:#ffffff;color:#333;border:1px solid #e0e0ff}
+
+        @media(max-width:480px){.tools{grid-template-columns:1fr;gap:20px;padding:0 12px}.tool{padding:24px 20px}textarea{min-height:100px}}
+    </style>
+</head>
+<body class="dark">
+
+<div id="burger" onclick="toggleSidebar()">
+    <span></span><span></span><span></span>
+</div>
+
+<div id="themeToggle" onclick="toggleThemePanel()">Tema</div>
+<div id="themePanel">
+    <div class="theme-btn" onclick="setTheme('dark')">Dark</div>
+    <div class="theme-btn" onclick="setTheme('neon')">Neon</div>
+    <div class="theme-btn" onclick="setTheme('light')">Light</div>
+    <div class="theme-btn" onclick="setTheme('hacker')">Hacker</div>
 </div>
 
 <header>
-  <h1>Oyun Merkezi</h1>
-  <div class="small">NE YAPAY! — Oyun fikirleri, nickname, hikaye</div>
+    <h1>NE YAPAY!</h1>
+    <div class="tagline">OYUN MERKEZİ — GELECEĞİN OYUNLARI BURADA DOĞUYOR!</div>
 </header>
 
+<div id="sidebar">
+    <h3>NEYAPAY</h3>
+    <a href="/index.html">Ana Sayfa</a>
+    <a href="/modules/meslek.html">Mesleki Yardım M.</a>
+    <a href="/modules/oyun.html" class="active">Oyun Merkezi</a>
+    <a href="/modules/yapayzeka.html">Yapay Zeka Lab</a>
+    <a href="/modules/youtube.html">YouTube Merkezi</a>
+    <a href="/modules/tiktok.html">TikTok Merkezi</a>
+    <a href="/modules/kripto.html">Kripto Alanı</a>
+    <a href="/modules/prompt.html">Prompt Mühendisi</a>
+    <a href="/modules/nick.html">Marka & Nick</a>
+    <a href="/modules/ruya.html">Rüya Analizi</a>
+    <a href="/modules/meme.html">İçerik Stratejisi</a>
+    <a href="/modules/film.html">Senaryo Geliştirme</a>
+    <hr>
+    <a onclick="setTheme('dark');return false;">Dark</a>
+    <a onclick="setTheme('neon');return false;">Neon</a>
+    <a onclick="setTheme('light');return false;">Light</a>
+    <a onclick="setTheme('hacker');return false;">Hacker</a>
+</div>
+
 <div class="container">
-  <a class="return" href="/index.html">← Anasayfaya Dön</a>
+    <div class="tools">
 
-  <div class="tool">
-    <h2>Oyun Nick & Konsept Jeneratörü</h2>
-    <input id="gameGenre" placeholder="Tür (ör: battle royale, indie, RPG)" style="width:100%;padding:10px;border-radius:8px;margin-top:8px;background:rgba(255,255,255,.04);color:#fff">
-    <button style="margin-top:8px" onclick="generateGame()">AI ile Üret</button>
-    <div id="gameOut" class="result" style="margin-top:12px">Sonuç burada</div>
-    <div class="small">Bu araç API'ye `proxyUrl` üzerinden bağlanır.</div>
-  </div>
+        <div class="tool">
+            <h2>Oyun Konsept Üretici</h2>
+            <textarea id="konseptIn" placeholder="Tür, tema, platform (ör: mobile battle royale + cyberpunk)"></textarea>
+            <button onclick="danis('konsept')">Konsept Üret</button>
+            <div class="result" id="konseptOut">Tam oyun konsepti burada görünecek...</div>
+        </div>
 
-  <div class="tool" style="margin-top:16px">
-    <h2>Mini Oyun Hikayesi (30–60s)</h2>
-    <input id="gameIdea" placeholder="Basit ana fikir (örn: terkedilmiş uzay istasyonu)" style="width:100%;padding:10px;border-radius:8px;margin-top:8px;background:rgba(255,255,255,.04);color:#fff">
-    <button style="margin-top:8px" onclick="storyGame()">Hikaye Üret</button>
-    <div id="storyOut" class="result" style="margin-top:12px">Hikaye burada</div>
-  </div>
+        <div class="tool">
+            <h2>Nickname Jeneratörü</h2>
+            <textarea id="nickIn" placeholder="Tarz: agresif, gizemli, komik, pro..."></textarea>
+            <button onclick="danis('nick')">20 Nick Üret</button>
+            <div class="result" id="nickOut">Nickname’ler burada...</div>
+        </div>
+
+        <div class="tool">
+            <h2>Karakter Yaratıcı</h2>
+            <textarea id="karakterIn" placeholder="Rol, ırk, yetenek (ör: elf suikastçı, robot şaman)"></textarea>
+            <button onclick="danis('karakter')">Karakter Tasarla</button>
+            <div class="result" id="karakterOut">Tam karakter profili...</div>
+        </div>
+
+        <div class="tool">
+            <h2>Boss Tasarımcısı</h2>
+            <textarea id="bossIn" placeholder="Seviye, tema, zayıf nokta"></textarea>
+            <button onclick="danis('boss')">Boss Yarat</button>
+            <div class="result" id="bossOut">Boss detayları...</div>
+        </div>
+
+        <div class="tool">
+            <h2>Harita & Dünya</h2>
+            <textarea id="haritaIn" placeholder="Boyut, biyom, hikaye bağlantısı"></textarea>
+            <button onclick="danis('harita')">Harita Oluştur</button>
+            <div class="result" id="haritaOut">Harita açıklaması...</div>
+        </div>
+
+        <div class="tool">
+            <h2>Eşya & Loot</h2>
+            <textarea id="esyaIn" placeholder="Rarity: common, legendary... Tema"></textarea>
+            <button onclick="danis('esya')">10 Eşya Üret</button>
+            <div class="result" id="esyaOut">Loot listesi...</div>
+        </div>
+
+        <div class="tool">
+            <h2>Görev & Quest</h2>
+            <textarea id="gorevIn" placeholder="Ana hikaye, yan görev, ödül"></textarea>
+            <button onclick="danis('gorev')">5 Görev Üret</button>
+            <div class="result" id="gorevOut">Quest zinciri...</div>
+        </div>
+
+        <div class="tool">
+            <h2>Oyun Hikayesi</h2>
+            <textarea id="hikayeIn" placeholder="Ana tema, kahraman, kötü adam"></textarea>
+            <button onclick="danis('hikaye')">Tam Hikaye Yaz</button>
+            <div class="result" id="hikayeOut">Epik hikaye burada...</div>
+        </div>
+
+    </div>
 </div>
 
 <script>
 const proxyUrl = "https://neyapay-api.vercel.app/api/zap";
 
-/* sidebar toggle */
-function toggleSidebar(){
-  const s = document.getElementById('sidebar');
-  s.classList.toggle('open');
-  const open = s.classList.contains('open');
-  s.setAttribute('aria-hidden', (!open).toString());
+async function neAI(prompt) {
+    try {
+        const r = await fetch(proxyUrl, {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt})});
+        const d = await r.json();
+        return d.cevap || "Bir hata oluştu.";
+    } catch { return "Bağlantı hatası. Tekrar dene."; }
 }
 
-/* neAI helper (basit) */
-async function neAI(promptText){
-  try{
-    const r = await fetch(proxyUrl, {method:'POST',headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt:promptText})});
-    const d = await r.json();
-    return d.cevap || d.result || JSON.stringify(d);
-  }catch(e){
-    return "Bağlantı hatası, tekrar dene!";
-  }
+function L(id){ document.getElementById(id).innerHTML = '<div class="loadingZap"><div></div></div>'; }
+
+async function danis(tip){
+    const input = document.getElementById(tip + 'In').value.trim() || 'genel';
+    const out = tip + 'Out';
+    L(out);
+
+    const promptlar = {
+        konsept: `Tam oyun konsepti üret: ${input}. İsim, tür, hikaye özeti, oynanış mekaniği, hedef kitle, monetizasyon fikri. Detaylı ve yaratıcı.`,
+        nick: `20 ultra havalı oyun nickname üret. Tarz: ${input}. Türkçe ve global kullanıma uygun. Sadece liste, numaralı.`,
+        karakter: `Tam RPG karakter yarat: ${input}. İsim, geçmiş, yetenekler, görünüm, motivasyon, ses tonu. Epik olsun.`,
+        boss: `Efsane boss tasarımı yap: ${input}. İsim, görünüm, saldırı patternleri, zayıf nokta, ödül. 3 fazlı olsun.`,
+        harita: `Oyun haritası tasarımı yap: ${input}. Bölgeler, gizli alanlar, etkileşimli nesneler, hikaye bağlantısı.`,
+        esya: `10 eşya/loot üret: ${input}. İsim, açıklama, rarity, efekt, hikaye bağlantısı. Madde madde.`,
+        gorev: `5 görev zinciri oluştur: ${input}. Ana görev + yan görevler + gizli görev. Ödül ve hikaye ilerlemesi olsun.`,
+        hikaye: `Tam oyun hikayesi yaz: ${input}. Giriş, yükseliş, zirve, final. Karakterler, twist, duygusal etki olsun.`
+    };
+
+    const cevap = await neAI(promptlar[tip]);
+    document.getElementById(out).innerHTML = cevap.replace(/\n/g,'<br>');
 }
 
-/* oyun modülleri */
-async function generateGame(){
-  const g = document.getElementById('gameGenre').value || 'battle royale';
-  const out = document.getElementById('gameOut');
-  out.innerHTML = 'Yükleniyor...';
-  const prompt = `2026'da ${g} türü için 5 orijinal oyun nickname + 1 satırlık konsept (her satır). Sadece liste.`;
-  const r = await neAI(prompt);
-  out.innerHTML = r.replace(/\n/g,'<br>');
-}
-
-async function storyGame(){
-  const t = document.getElementById('gameIdea').value || 'terkedilmiş uzay istasyonu';
-  const out = document.getElementById('storyOut');
-  out.innerHTML = 'Yükleniyor...';
-  const prompt = `Kısa oyun fikri: "${t}". 3 bölümlük kısa açıklama: Başlangıç - Gelişme - Zirve. Her bölüm 2 cümle.`;
-  const r = await neAI(prompt);
-  out.innerHTML = r.replace(/\n/g,'<br>');
-}
+function toggleSidebar(){ document.getElementById('sidebar').classList.toggle('open'); document.getElementById('burger').classList.toggle('active'); }
+function toggleThemePanel(){ document.getElementById('themePanel').classList.toggle('open'); }
+function setTheme(t){ document.body.className=''; document.body.classList.add(t); localStorage.setItem('neyapay_theme',t); }
+(function(){ const s=localStorage.getItem('neyapay_theme')||'dark'; setTheme(s); })();
 </script>
 </body>
 </html>
