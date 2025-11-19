@@ -23,6 +23,7 @@
   --text:#e0e0ff;
   --glow:0 0 30px rgba(0,247,255,.7);
 }
+/* base reset */
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%}
 body{
@@ -154,13 +155,125 @@ footer{text-align:center;padding:28px 16px;color:rgba(255,255,255,.7)}
   h1{font-size:2.6rem}
   .container{padding-top:110px}
 }
+
+/* LIGHT THEME */
 body.light{
   --bg:#f4f4ff;--card1:#e0e0ff;--text:#0d0020;--zap:#ff00ff;--glow:0 0 30px rgba(255,0,255,.7);
   background:linear-gradient(to bottom,#ffffff,#f0f0ff);color:var(--text)
 }
+
+/* ====== SIDEBAR ====== */
+#sidebar{
+  position:fixed;
+  top:0;
+  left:-260px;
+  width:240px;
+  height:100%;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(6px);
+  border-right:1px solid rgba(255,255,255,.08);
+  padding:20px;
+  z-index:1000;
+  transition:left .35s ease;
+}
+#sidebar.open{left:0}
+#sidebar h3{margin-bottom:18px;color:var(--zap);text-align:center}
+#sidebar a{
+  display:block;
+  padding:12px;
+  margin:8px 0;
+  background:rgba(255,255,255,.06);
+  text-decoration:none;
+  border-radius:10px;
+  color:var(--text);
+  font-weight:600;
+  transition:.2s;
+}
+#sidebar a:hover{background:rgba(255,255,255,.12)}
+
+/* Hamburger */
+#burger{
+  position:fixed;
+  top:18px;
+  left:18px;
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  background:var(--zap);
+  color:#000;
+  display:grid;
+  place-items:center;
+  font-size:1.4rem;
+  z-index:1001;
+  cursor:pointer;
+  box-shadow:var(--glow);
+}
+
+/* THEMES */
+body.neon{
+  --bg:#050014;
+  --zap:#00f7ff;
+  --pink:#ff00ff;
+  --text:#e0e0ff;
+}
+body.hacker{
+  --bg:#000;
+  --zap:#00ff00;
+  --text:#00ff00;
+  font-family:monospace;
+}
+
+/* ====== Loading Animation ====== */
+.loadingZap{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:16px;
+}
+.loadingZap div{
+  width:26px;height:26px;
+  border-radius:50%;
+  border:4px solid var(--zap);
+  border-top-color:transparent;
+  animation:spin 0.8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ====== Ad Skeleton ====== */
+.ad-skeleton{
+  height:90px;
+  border-radius:12px;
+  background:linear-gradient(90deg, rgba(255,255,255,.05), rgba(255,255,255,.15), rgba(255,255,255,.05));
+  background-size:200% 100%;
+  animation:skeleton 1.5s infinite;
+}
+@keyframes skeleton{
+  0%{background-position:200%}
+  100%{background-position:-200%}
+}
 </style>
 </head>
 <body>
+
+<!-- SIDEBAR + BURGER -->
+<div id="burger" onclick="toggleSidebar()">☰</div>
+
+<div id="sidebar" aria-hidden="true">
+  <h3>NEYAPAY</h3>
+  <!-- Bu linkleri istediğin gibi düzenle, farklı dosyalara yönlendirir -->
+  <a href="/index.html">🏠 Ana Sayfa</a>
+  <a href="/nick.html">🎮 Ne Nick?</a>
+  <a href="/ask.html">❤️ Ne Aşk?</a>
+  <a href="/meme.html">😂 Ne Meme?</a>
+  <a href="/iletisim.html">📩 İletişim</a>
+
+  <hr style="margin:14px 0;border:0;border-top:1px solid rgba(255,255,255,.2)">
+
+  <a href="#" onclick="setTheme('dark');return false;">🌙 Dark</a>
+  <a href="#" onclick="setTheme('light');return false;">☀️ Light</a>
+  <a href="#" onclick="setTheme('neon');return false;">⚡ Neon</a>
+  <a href="#" onclick="setTheme('hacker');return false;">💻 Hacker</a>
+</div>
 
 <header>
   <h1>NE YAPAY!</h1>
@@ -169,8 +282,9 @@ body.light{
 
 <div class="api-limit" id="limitInfo">Zap: ∞ / ∞</div>
 
-<!-- ÜST REKLAM (OTOMATİK) -->
+<!-- ÜST REKLAM SKELETON -->
 <div style="max-width:1100px;margin:84px auto 6px auto;text-align:center;">
+  <div class="ad-skeleton" id="adSk1"></div>
   <ins class="adsbygoogle"
        style="display:block"
        data-ad-client="ca-pub-1554661709211540"
@@ -355,8 +469,9 @@ body.light{
   </div>
 </div>
 
-<!-- ALT REKLAM (OTOMATİK) -->
+<!-- ALT REKLAM SKELETON -->
 <div style="max-width:1100px;margin:18px auto;text-align:center;">
+  <div class="ad-skeleton" id="adSk2"></div>
   <ins class="adsbygoogle"
        style="display:block"
        data-ad-client="ca-pub-1554661709211540"
@@ -404,10 +519,10 @@ async function neAI(promptText){
   }
 }
 
-/* small helper to show loading */
+/* small helper to show loading (güncellendi: dönen zap) */
 function L(id){
   const el = document.getElementById(id);
-  if(el) el.innerHTML = '<span style="color:var(--zap)">YAPILIYOR...</span>';
+  if(el) el.innerHTML = '<div class="loadingZap"><div></div></div>';
 }
 
 /* SHARE helper */
@@ -523,6 +638,72 @@ function toggleDark(){
 
 /* Init: set darkToggle text correctly */
 document.getElementById('darkToggle').innerText = document.body.classList.contains('light') ? 'Güneş' : 'Ay';
+
+/* ===== SIDEBAR & THEME HELPERS ===== */
+function toggleSidebar(){
+  const sb = document.getElementById('sidebar');
+  sb.classList.toggle('open');
+  // aria
+  const open = sb.classList.contains('open');
+  sb.setAttribute('aria-hidden', (!open).toString());
+}
+
+/* Set theme and persist */
+function setTheme(t){
+  // remove previous theme classes
+  document.body.classList.remove('light','neon','hacker');
+  if(t && t !== 'dark') document.body.classList.add(t);
+  // store preference
+  localStorage.setItem('neyapay_theme', t || 'dark');
+  // update darkToggle label
+  document.getElementById('darkToggle').innerText = document.body.classList.contains('light') ? 'Güneş' : 'Ay';
+}
+
+/* Restore theme on load */
+(function restoreTheme(){
+  const saved = localStorage.getItem('neyapay_theme');
+  if(saved){
+    if(saved === 'light') document.body.classList.add('light');
+    else if(saved === 'neon') document.body.classList.add('neon');
+    else if(saved === 'hacker') document.body.classList.add('hacker');
+    // else dark = default
+    document.getElementById('darkToggle').innerText = document.body.classList.contains('light') ? 'Güneş' : 'Ay';
+  }
+})();
+
+/* Remove ad skeletons after a timeout (when ads presumably loaded) */
+setTimeout(()=>{
+  const a1 = document.getElementById('adSk1');
+  const a2 = document.getElementById('adSk2');
+  if(a1) a1.style.display = 'none';
+  if(a2) a2.style.display = 'none';
+}, 2000);
+
+/* Optional: fallback if proxy fails (simple second URL) */
+const proxyFallback = "https://neyapay-api-alt.vercel.app/api/zap"; // düzenle istersen
+async function neAI_withFallback(promptText){
+  try{
+    return await neAI(promptText);
+  }catch(e){
+    // try fallback
+    try{
+      const r = await fetch(proxyFallback, {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({ prompt: promptText })
+      });
+      const d = await r.json();
+      used++;
+      localStorage.setItem('neyapay_used', used);
+      document.getElementById('limitInfo').innerText = `Zap: ${dailyLimit-used}/${dailyLimit}`;
+      return d.cevap || d.result || JSON.stringify(d);
+    }catch(e2){
+      return "Bağlantı hatası, tekrar dene!";
+    }
+  }
+}
+/* Note: mevcut fonksiyonlar doğrudan neAI() kullanıyor; istersen hepsini otomatik fallback'e çevireyim. */
+
 </script>
 </body>
 </html>
