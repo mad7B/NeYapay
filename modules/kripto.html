@@ -1,60 +1,321 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kripto Alanı - NeYapay</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>NEYAPAY — Kripto Analiz</title>
+<meta name="description" content="NEYAPAY | Kripto Analiz - AI destekli token fikirleri" />
+<link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/325/zap_26a1.png">
 
-  <link rel="stylesheet" href="/styles.css"> <!-- ANA CSS -->
-  <script src="/sidebar.js" defer></script> <!-- YAN MENÜ -->
-  <script src="/api.js" defer></script>     <!-- INDEXTEKİ API SİSTEMİ -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo+2:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --zap:#00f7ff;
+  --pink:#ff00ff;
+  --bg:#0d0020;
+  --card1:#1a0039;
+  --card2:#15002e;
+  --text:#e0e0ff;
+  --glow:0 0 30px rgba(0,247,255,.7);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Exo 2',sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+  padding-top:92px;
+  position:relative;
+  transition:background .35s,color .35s;
+}
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:repeating-radial-gradient(circle at 20% 20%,rgba(0,247,255,.04)0,transparent 12px),
+             repeating-radial-gradient(circle at 80% 80%,rgba(255,0,255,.04)0,transparent 12px);
+  pointer-events:none;
+  animation:stars 40s linear infinite;
+  z-index:0;
+}
+@keyframes stars{0%,100%{opacity:.5}50%{opacity:.9}}
+
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  text-align:center;
+  padding:18px 10px;
+  z-index:999;
+  background:linear-gradient(0deg, rgba(13,0,32,.95), rgba(13,0,32,.75));
+  border-bottom:2px solid rgba(0,247,255,.06);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+}
+.header-inner{display:flex;align-items:center;gap:18px;max-width:1320px;width:100%;padding:0 16px;justify-content:center}
+h1{
+  font-family:'Orbitron',sans-serif;
+  font-size:clamp(1.8rem,6vw,2.6rem);
+  background:linear-gradient(90deg,#00f7ff,#ff00ff,#00ff88);
+  -webkit-background-clip:text;
+  color:transparent;
+  text-shadow:0 0 10px rgba(0,247,255,.18);
+  margin:0;
+  line-height:1;
+}
+.tagline{font-size:.85rem;opacity:.9;margin-top:4px;color:rgba(224,224,255,.85)}
+
+/* container */
+.container{max-width:1100px;margin:0 auto;padding:120px 18px 80px;position:relative;z-index:2}
+
+/* page cards */
+.card{
+  background:linear-gradient(180deg, rgba(26,0,57,.85), rgba(21,0,46,.9));
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,.6);
+  border:1px solid rgba(255,255,255,.03);
+}
+.card h2{font-size:1.6rem;color:var(--zap);margin-bottom:12px;text-shadow:var(--glow)}
+
+/* inputs/buttons */
+input,select,textarea,button{
+  width:100%;
+  padding:12px 14px;
+  margin:8px 0;
+  border-radius:12px;
+  border:none;
+  font-size:1rem;
+  outline:none;
+}
+input,select,textarea{background:rgba(255,255,255,.04);color:#fff;backdrop-filter:blur(6px)}
+button.primary{
+  background:linear-gradient(90deg,#00c8ff,#7d2bff);
+  color:#fff;font-weight:800;cursor:pointer;box-shadow:0 8px 24px rgba(0,247,255,.06);
+  border-radius:12px;padding:14px;
+}
+
+/* result */
+.result{
+  margin-top:12px;
+  background:rgba(0,0,0,.35);
+  padding:14px;border-radius:10px;
+  min-height:72px;color:var(--text);
+  border:1px solid rgba(0,247,255,.08);backdrop-filter:blur(6px);
+  white-space:pre-wrap;line-height:1.45;font-size:1rem;
+}
+
+/* sidebar */
+#sidebar{
+  position:fixed;
+  top:0;
+  left:-260px;
+  width:260px;
+  height:100%;
+  background:linear-gradient(180deg, rgba(4,4,8,.98), rgba(12,8,20,.98));
+  padding:18px;
+  z-index:10000;
+  transition:left .28s ease;
+  box-shadow:4px 0 30px rgba(0,0,0,.6);
+  backdrop-filter:blur(8px);
+}
+#sidebar.open{left:0}
+#sidebar h3{color:var(--zap);margin-bottom:14px;text-align:left;font-size:1.15rem}
+#sidebar a{display:block;padding:12px;margin:8px 0;border-radius:12px;color:var(--text);text-decoration:none;background:rgba(255,255,255,.02)}
+#sidebar a:hover{background:rgba(255,255,255,.03)}
+
+/* burger */
+#burger{
+  position:fixed;
+  top:18px;
+  left:18px;
+  width:50px;height:50px;border-radius:50%;
+  background:#00e5ff;color:#000;display:grid;place-items:center;font-size:1.4rem;
+  z-index:10001;cursor:pointer;box-shadow:0 0 30px rgba(0,229,255,.25);
+}
+
+/* api-limit small badge */
+.api-limit{position:fixed;top:110px;right:14px;background:rgba(0,0,0,.6);padding:8px 14px;border-radius:26px;font-size:.95rem;z-index:999;border:1px solid var(--zap);backdrop-filter:blur(6px);color:var(--text)}
+
+/* dark toggle */
+#darkToggle{position:fixed;bottom:18px;right:18px;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--zap);color:#000;font-weight:800;z-index:999;box-shadow:var(--glow);cursor:pointer}
+
+/* small screens tweaks */
+@media(max-width:480px){
+  .container{padding-top:120px}
+  header{padding:14px}
+  h1{font-size:1.6rem}
+}
+
+/* ensure content shifts on wide screens when sidebar open */
+@media(min-width:900px){
+  body.sidebar-open .container{transform:translateX(240px);transition:transform .28s}
+}
+</style>
 </head>
-
 <body>
 
-  <!-- 🔥 Sidebar (Ana Sayfadakiyle %100 Aynı) -->
-  <div id="sidebar" class="sidebar">
-      <button class="closeSidebar" onclick="toggleSidebar()">✖</button>
+<!-- burger + sidebar -->
+<div id="burger" onclick="toggleSidebar()">☰</div>
 
-      <h2 class="sidebar-title">NE YAPAY</h2>
+<div id="sidebar" aria-hidden="true">
+  <h3>NEYAPAY</h3>
+  <a href="/index.html">🏠 Anasayfa</a>
+  <a href="/modules/oyun.html">🎮 Oyun Merkezi</a>
+  <a href="/modules/yapayzeka.html">🤖 Yapay Zeka Lab</a>
+  <a href="/modules/youtube.html">🎥 YouTube Merkezi</a>
+  <a href="/modules/tiktok.html">🎵 TikTok Merkezi</a>
+  <a href="/modules/kripto.html">🤑 Kripto Alanı</a>
+  <a href="/modules/prompt.html">💡 Prompt Jeneratör</a>
+  <a href="/modules/nick.html">✨ Nick Generator</a>
+  <a href="/modules/ask.html">💕 Aşk Merkezi</a>
+  <a href="/modules/ruya.html">🌙 Rüya Yorum</a>
+  <a href="/modules/meme.html">😂 Meme Fabrikası</a>
+  <a href="/modules/film.html">🎬 Film Fikir</a>
+  <a href="/modules/tweet.html">🐦 Tweet Generator</a>
+  <a href="/modules/plaka.html">🚗 Plaka Analiz</a>
+  <a href="/modules/sans.html">🍀 Günün Şansı</a>
+  <hr style="margin:12px 0;border:0;border-top:1px solid rgba(255,255,255,.06)">
+  <a href="#" onclick="setTheme('dark');return false;">🌙 Dark</a>
+  <a href="#" onclick="setTheme('light');return false;">☀️ Light</a>
+  <a href="#" onclick="setTheme('neon');return false;">⚡ Neon</a>
+  <a href="#" onclick="setTheme('hacker');return false;">💻 Hacker</a>
+</div>
 
-      <a href="/index.html">🏠 Anasayfa</a>
-      <a href="/modules/kripto.html">💸 Kripto Alanı</a>
-      <a href="/modules/prompt.html">💡 Prompt Jeneratör</a>
-      <a href="/modules/nick.html">✨ Nick Generator</a>
-      <a href="/modules/ruya.html">🌙 Rüya Yorum</a>
-      <a href="/modules/meme.html">😂 Meme Fabrikası</a>
-      <a href="/modules/ask.html">💕 Aşk Merkezi</a>
-      <a href="/modules/tiktok.html">🎵 TikTok Alanı</a>
-      <a href="/modules/youtube.html">📺 YouTube Merkezi</a>
+<header>
+  <div class="header-inner">
+    <div style="width:60px"></div> <!-- space left to balance burger -->
+    <div style="text-align:center">
+      <h1>NE YAPAY!</h1>
+      <div class="tagline">GEL BİZ YAPAY!</div>
+    </div>
+    <div style="width:60px"></div>
+  </div>
+</header>
+
+<div class="api-limit" id="limitInfo">Zap: ∞ / ∞</div>
+
+<div class="container">
+  <!-- back button -->
+  <a href="/index.html" style="display:inline-block;margin-bottom:14px;background:rgba(255,255,255,.04);padding:12px 16px;border-radius:12px;color:var(--text);text-decoration:none;">← Anasayfaya Dön</a>
+
+  <h2 style="font-size:2rem;margin:6px 0 8px;color:#fff">🤑 Kripto Analiz</h2>
+  <p style="margin-bottom:14px;color:rgba(255,255,255,.8)">Kısa, eğlenceli, yapay zeka destekli piyasa fikirleri (bilgilendirme amaçlı).</p>
+
+  <div class="card">
+    <h2>Token Fikir & Başlık</h2>
+    <input id="kriptoIn" placeholder="Örn: yeni meme coin fikri" />
+    <button class="primary" onclick="kriptoNe()">Üret</button>
+    <div class="result" id="kriptoOut">Token fikri burada görünecek...</div>
   </div>
 
-  <!-- 🔥 Üstteki Ana Banner (Ana Sayfadakiyle Aynı) -->
-  <header class="main-header">
-      <button class="menu-btn" onclick="toggleSidebar()">☰</button>
-      <h1 class="logo">🧠 NE YAPAY!</h1>
-      <p class="tagline">GEL BİZ YAPAY!</p>
-  </header>
+  <div class="card">
+    <h2>Risk Notu</h2>
+    <p style="color:rgba(255,255,255,.8)">Buradaki içerikler fikir amaçlıdır, yatırım tavsiyesi değildir.</p>
+  </div>
+</div>
 
-  <main class="content">
+<footer style="color:rgba(255,255,255,.6);text-align:center;padding:28px 16px">© 2025 Neyapay.com.tr | Made with AI</footer>
 
-      <!-- 🔙 Her sayfada Anasayfa geri tuşu -->
-      <a href="/index.html" class="back-btn">← Anasayfaya Dön</a>
+<div id="darkToggle" onclick="toggleDark()">Ay</div>
 
-      <h2>💸 Kripto Alanı</h2>
-      <p>Yapay zeka ile komik / faydalı kripto token fikirleri üret!</p>
+<script>
+/* ===== CONFIG (aynı proxy ile çalışır) ===== */
+const proxyUrl = "https://neyapay-api.vercel.app/api/zap";
 
-      <!-- 🔥 TOKEN FİKİR KUTUSU -->
-      <div class="box">
-          <label>Token Fikir & Başlık</label>
-          <input id="tokenInput" placeholder="Token konusu gir..." />
+/* günlük limit */
+let dailyLimit = 500;
+let used = parseInt(localStorage.getItem('neyapay_used')||'0',10) || 0;
+const today = new Date().toDateString();
+if(localStorage.getItem('neyapay_day') !== today){
+  used = 0;
+  localStorage.setItem('neyapay_used','0');
+  localStorage.setItem('neyapay_day', today);
+}
+document.getElementById('limitInfo').innerText = `Zap: ${dailyLimit-used}/${dailyLimit}`;
 
-          <button onclick="generateKripto()">Üret</button>
+/* temel AI çağrısı */
+async function neAI(promptText){
+  if(used >= dailyLimit) return "Bugün limit doldu!";
+  try{
+    const res = await fetch(proxyUrl, {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({ prompt: promptText })
+    });
+    if(!res.ok){
+      // sunucu hata mesajı
+      const text = await res.text().catch(()=>null);
+      console.error('API hata', res.status, text);
+      return `Sunucu hatası — Vercel API yanıt vermiyor. (${res.status})`;
+    }
+    const d = await res.json().catch(()=>null);
+    used++;
+    localStorage.setItem('neyapay_used', used);
+    document.getElementById('limitInfo').innerText = `Zap: ${dailyLimit-used}/${dailyLimit}`;
+    return (d && (d.cevap || d.result)) || JSON.stringify(d) || "API'den beklenmeyen yanıt.";
+  }catch(e){
+    console.error(e);
+    return "Bağlantı hatası, tekrar dene!";
+  }
+}
 
-          <p id="tokenOutput">Token fikri burada görünecek...</p>
-      </div>
+/* yükleme göstergesi */
+function L(id){
+  const el = document.getElementById(id);
+  if(el) el.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;padding:12px"><div style="width:26px;height:26px;border-radius:50%;border:4px solid rgba(255,255,255,.12);border-top-color:var(--zap);animation:spin .9s linear infinite"></div></div>';
+}
 
-  </main>
+/* kolay spinner css ekle (inline) */
+const sp = document.createElement('style'); sp.innerHTML = '@keyframes spin{to{transform:rotate(360deg)}}'; document.head.appendChild(sp);
 
+/* kripto üretim fonksiyonu */
+async function kriptoNe(){
+  const konu = (document.getElementById('kriptoIn').value || '').trim();
+  if(!konu){
+    document.getElementById('kriptoOut').innerText = "Lütfen bir token konusu gir.";
+    return;
+  }
+  L('kriptoOut');
+  const prompt = `2025'te kripto piyasası için komik/ilginç token fikri ve kısa açıklama: "${konu}". 3 farklı yaratıcı isim + 1 cümle pazarlama başlığı her biri için.`;
+  const cevap = await neAI(prompt);
+  document.getElementById('kriptoOut').innerHTML = cevap.replace(/\n/g,'<br>');
+}
+
+/* tema/sidebar helpers */
+function toggleSidebar(){
+  const sb = document.getElementById('sidebar');
+  const open = sb.classList.toggle('open');
+  sb.setAttribute('aria-hidden', (!open).toString());
+  document.body.classList.toggle('sidebar-open', open);
+}
+function setTheme(t){
+  document.body.classList.remove('light','neon','hacker');
+  if(t && t !== 'dark') document.body.classList.add(t);
+  localStorage.setItem('neyapay_theme', t || 'dark');
+  document.getElementById('darkToggle').innerText = document.body.classList.contains('light') ? 'Güneş' : 'Ay';
+}
+function toggleDark(){
+  document.body.classList.toggle('light');
+  document.getElementById('darkToggle').innerText = document.body.classList.contains('light') ? 'Güneş' : 'Ay';
+}
+
+/* restore theme */
+(function restoreTheme(){
+  const saved = localStorage.getItem('neyapay_theme');
+  if(saved){
+    if(saved === 'light') document.body.classList.add('light');
+    else if(saved === 'neon') document.body.classList.add('neon');
+    else if(saved === 'hacker') document.body.classList.add('hacker');
+    document.getElementById('darkToggle').innerText = document.body.classList.contains('light') ? 'Güneş' : 'Ay';
+  }
+})();
+</script>
 </body>
 </html>
