@@ -1,39 +1,203 @@
-<!doctype html><html lang="tr"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Nick Generator — NEYAPAY</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo+2:wght@600;800&display=swap" rel="stylesheet">
-<style>
-:root{--zap:#00f7ff;--bg:#0d0020;--text:#e0e0ff}*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;padding-top:92px}
-header{position:fixed;top:0;width:100%;text-align:center;padding:18px;background:linear-gradient(0deg, rgba(13,0,32,.85), rgba(13,0,32,.6));z-index:999}
-.container{max-width:1100px;margin:0 auto;padding:120px 16px 80px}
-.tool{background:linear-gradient(180deg, rgba(26,0,57,.85), rgba(21,0,46,.9));padding:20px;border-radius:12px}
-.return{display:inline-block;margin-bottom:14px;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,.04);text-decoration:none;color:var(--text)}
-</style>
-</head>
-<body>
-<div id="burger" onclick="toggleSidebar()">☰</div>
-<div id="sidebar" aria-hidden="true"><h3 style="color:var(--zap)">NEYAPAY</h3><a class="module-link" href="/modules/nick.html">✨ Nick Generator</a><a class="module-link" href="/index.html">🏠 Anasayfa</a></div>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marka & Nick — NEYAPAY</title>
+    <meta name="description" content="Oyun, TikTok, YouTube, Twitch, marka, startup… 2025’in en havalı, akılda kalıcı isimleri burada üretilir!">
+    <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/325/zap_26a1.png">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo+2:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--zap:#00f7ff;--bg:#0d0020;--text:#e0e0ff;--glow:0 0 30px rgba(0,247,255,.6);}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Exo 2',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-top:92px;overflow-x:hidden}
+        body::before{content:'';position:fixed;inset:0;background:repeating-radial-gradient(circle at 20% 20%,rgba(0,247,255,.04)0,transparent 12px),repeating-radial-gradient(circle at 80% 80%,rgba(255,0,255,.04)0,transparent 12px);pointer-events:none;animation:stars 40s linear infinite}
+        @keyframes stars{0%,100%{opacity:.4}50%{opacity:.9}}
 
-<header><h1>Nick Generator</h1><div style="opacity:.9">Oyun/Twitch/TikTok için 10 nickname</div></header>
+        header{position:fixed;top:0;left:0;width:100%;text-align:center;padding:18px 10px;z-index:999;background:linear-gradient(0deg,rgba(13,0,32,.95),rgba(13,0,32,.8));border-bottom:2px solid rgba(0,247,255,.15);backdrop-filter:blur(12px)}
+        h1{font-family:'Orbitron',sans-serif;font-size:clamp(2.8rem,10vw,5rem);background:linear-gradient(90deg,#00f7ff,#ff00ff,#00ff88);-webkit-background-clip:text;color:transparent;text-shadow:0 0 20px rgba(0,247,255,.8);margin:0}
+        .tagline{font-size:1.1rem;opacity:.9;margin-top:6px;font-weight:500}
+
+        #burger{position:fixed;top:16px;left:16px;width:54px;height:54px;border-radius:50%;background:var(--zap);display:flex;flex-direction:column;justify-content:center;align-items:center;cursor:pointer;z-index:1002;box-shadow:var(--glow)}
+        #burger span{width:30px;height:4px;background:#fff;margin:4px 0;border-radius:4px;transition:.3s;box-shadow:0 0 12px #00f7ff}
+        #burger.active span:nth-child(1){transform:translateY(12px) rotate(45deg)}
+        #burger.active span:nth-child(2){opacity:0}
+        #burger.active span:nth-child(3){transform:translateY(-12px) rotate(-45deg)}
+
+        #sidebar{position:fixed;top:0;left:-300px;width:300px;height:100%;background:rgba(8,0,22,.98);backdrop-filter:blur(16px);border-right:2px solid rgba(0,247,255,.2);padding:100px 24px 30px;z-index:1001;transition:left .35s ease;overflow-y:auto}
+        #sidebar.open{left:0}
+        #sidebar h3{color:var(--zap);text-align:center;font-size:1.9rem;margin-bottom:32px;text-shadow:0 0 20px var(--zap)}
+        #sidebar a{display:block;padding:16px 20px;margin:10px 0;background:rgba(255,255,255,.06);border-radius:14px;color:var(--text);text-decoration:none;font-weight:600;transition:.3s;border:1px solid rgba(0,247,255,.1);font-size:1.05rem}
+        #sidebar a:hover{background:rgba(0,247,255,.25);transform:translateX(8px);border-color:var(--zap)}
+        #sidebar a.active{background:rgba(0,247,255,.2);border-color:var(--zap);font-weight:800}
+
+        #themeToggle{position:fixed;bottom:20px;right:20px;width:60px;height:60px;border-radius:50%;background:var(--zap);display:grid;place-items:center;color:#000;font-weight:900;box-shadow:var(--glow);cursor:pointer;z-index:999;font-size:1rem}
+        #themePanel{position:fixed;bottom:90px;right:18px;background:rgba(15,0,35,.98);backdrop-filter:blur(14px);border:1px solid rgba(0,247,255,.3);border-radius:18px;padding:18px;width:220px;box-shadow:0 12px 50px rgba(0,0,0,.9);transform:translateY(120%);opacity:0;transition:all .35s;z-index:998}
+        #themePanel.open{transform:translateY(0);opacity:1}
+
+        .container{max-width:1380px;margin:0 auto;padding:110px 20px 140px;position:relative;z-index:2}
+        .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:26px}
+        .tool{background:linear-gradient(135deg,rgba(26,0,57,.96),rgba(21,0,46,.99));border-radius:22px;padding:28px 24px 32px;box-shadow:0 16px 45px rgba(0,0,0,.75);border:1px solid rgba(0,247,255,.18);position:relative;overflow:hidden}
+        .tool::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(90deg,var(--zap),#ff00ff);opacity:.8}
+        .tool h2{color:var(--zap);font-size:1.75rem;margin-bottom:10px;text-align:center;text-shadow:0 0 16px var(--zap);font-weight:700}
+        .role{text-align:center;font-size:1.05rem;opacity:.88;margin-bottom:20px;color:#a0f7ff}
+
+        textarea{width:100%;min-height:110px;padding:16px 18px;border-radius:14px;border:none;background:rgba(255,255,255,.08);color:#fff;font-family:inherit;font-size:1.05rem;resize:vertical;margin:12px 0 0;border:1px solid rgba(0,247,255,.25);backdrop-filter:blur(6px)}
+        button{width:100%;padding:16px;border-radius:14px;margin-top:14px;font-weight:800;background:linear-gradient(45deg,#00f7ff,#ff00ff);color:#000;cursor:pointer;box-shadow:0 8px 30px rgba(0,247,255,.4);transition:.25s;font-size:1.15rem}
+        button:hover{transform:translateY(-2px);box-shadow:0 15px 40px rgba(0,247,255,.5)}
+
+        .result{margin-top:18px;background:rgba(0,0,0,.55);padding:20px;border-radius:14px;min-height:120px;border:1px solid rgba(0,247,255,.15);backdrop-filter:blur(8px);white-space:pre-wrap;line-height:1.7;font-size:1.05rem}
+
+        .loadingZap{display:flex;justify-content:center;align-items:center;padding:30px}
+        .loadingZap div{width:32px;height:32px;border:6px solid var(--zap);border-top-color:transparent;border-radius:50%;animation:spin .8s linear infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
+
+        body.neon{--zap:#39ff14;--bg:#001a0d;--text:#39ff14;background:radial-gradient(circle at 50% 50%,#001a0d,#000)}
+        body.light{--bg:#f8f9ff;--text:#1a0038;background:#f8f9ff}
+        body.light .tool{background:#ffffff;color:#333;border:1px solid #e0e0ff}
+
+        @media(max-width:480px){.tools{grid-template-columns:1fr;gap:20px;padding:0 12px}.tool{padding:24px 20px}textarea{min-height:100px}}
+    </style>
+</head>
+<body class="dark">
+
+<div id="burger" onclick="toggleSidebar()">
+    <span></span><span></span><span></span>
+</div>
+
+<div id="themeToggle" onclick="toggleThemePanel()">Tema</div>
+<div id="themePanel">
+    <div class="theme-btn" onclick="setTheme('dark')">Dark</div>
+    <div class="theme-btn" onclick="setTheme('neon')">Neon</div>
+    <div class="theme-btn" onclick="setTheme('light')">Light</div>
+    <div class="theme-btn" onclick="setTheme('hacker')">Hacker</div>
+</div>
+
+<header>
+    <h1>NE YAPAY!</h1>
+    <div class="tagline">MARKA & NICK — İSİMLER BURADA DOĞAR!</div>
+</header>
+
+<div id="sidebar">
+    <h3>NEYAPAY</h3>
+    <a href="/index.html">Ana Sayfa</a>
+    <a href="/modules/meslek.html">Mesleki Yardım M.</a>
+    <a href="/modules/oyun.html">Oyun Merkezi</a>
+    <a href="/modules/yapayzeka.html">Yapay Zeka Lab</a>
+    <a href="/modules/youtube.html">YouTube Merkezi</a>
+    <a href="/modules/tiktok.html">TikTok Merkezi</a>
+    <a href="/modules/kripto.html">Kripto Alanı</a>
+    <a href="/modules/prompt.html">Prompt Mühendisi</a>
+    <a href="/modules/nick.html" class="active">Marka & Nick</a>
+    <a href="/modules/ruya.html">Rüya Analizi</a>
+    <a href="/modules/meme.html">İçerik Stratejisi</a>
+    <a href="/modules/film.html">Senaryo Geliştirme</a>
+    <hr>
+    <a onclick="setTheme('dark');return false;">Dark</a>
+    <a onclick="setTheme('neon');return false;">Neon</a>
+    <a onclick="setTheme('light');return false;">Light</a>
+    <a onclick="setTheme('hacker');return false;">Hacker</a>
+</div>
 
 <div class="container">
-  <a class="return" href="/index.html">← Anasayfaya Dön</a>
+    <div class="tools">
 
-  <div class="tool">
-    <h2>Stil & Tür Seç</h2>
-    <input id="nickFor" placeholder="Platform (örn: valorant, tiktok)" style="width:100%;padding:10px;border-radius:8px;background:rgba(255,255,255,.04);color:#fff">
-    <select id="nickStyle" style="width:100%;padding:10px;border-radius:8px;margin-top:8px;background:rgba(255,255,255,.04);color:#fff">
-      <option>Havalı</option><option>Komik</option><option>Estetik</option>
-    </select>
-    <button style="margin-top:8px" onclick="genNick()">Nick Üret</button>
-    <div id="nickOut" class="result" style="margin-top:10px">Nickler burada</div>
-  </div>
+        <div class="tool">
+            <h2>Oyun Nick</h2>
+            <textarea id="oyunIn" placeholder="Oyun + tarz (Valorant pro, Minecraft cute, GTA agresif)"></textarea>
+            <button onclick="danis('oyun')">20 Nick Üret</button>
+            <div class="result" id="oyunOut">Nickler burada...</div>
+        </div>
+
+        <div class="tool">
+            <h2>TikTok & Instagram Kullanıcı Adı</h2>
+            <textarea id="sosyalIn" placeholder="Niche + vibe (beauty guru, fitness, komik skeç)"></textarea>
+            <button onclick="danis('sosyal')">15 Kullanıcı Adı</button>
+            <div class="result" id="sosyalOut">Kullanıcı adları...</div>
+        </div>
+
+        <div class="tool">
+            <h2>Marka İsmi</h2>
+            <textarea id="markaIn" placeholder="Sektör + hedef (tech startup, moda, yemek)"></textarea>
+            <button onclick="danis('marka')">10 Premium Marka İsmi + Slogan</button>
+            <div class="result" id="markaOut">Markalar burada...</div>
+        </div>
+
+        <div class="tool">
+            <h2>Estetik & Soft Nick</h2>
+            <textarea id="estetikIn" placeholder="Tema (moon, rose, cloud, vintage)"></textarea>
+            <button onclick="danis('estetik')">15 Estetik Nick</button>
+            <div class="result" id="estetikOut">Estetik nickler...</div>
+        </div>
+
+        <div class="tool">
+            <h2>Pro Gamer Nick</h2>
+            <textarea id="proIn" placeholder="Oyun + rol (CS2 AWPer, LoL mid, FPS sniper)"></textarea>
+            <button onclick="danis('pro')">15 Pro Nick + Tag</button>
+            <div class="result" id="proOut">Pro nickler...</div>
+        </div>
+
+        <div class="tool">
+            <h2>Komik & Troll Nick</h2>
+            <textarea id="komikIn" placeholder="Tarz (Türk usulü, İngilizce, emoji ile)"></textarea>
+            <button onclick="danis('komik')">20 Troll Nick</button>
+            <div class="result" id="komikOut">Komik nickler...</div>
+        </div>
+
+        <div class="tool">
+            <h2>Domain & Kullanılabilirlik</h2>
+            <textarea id="domainIn" placeholder="İsim veya anahtar kelime"></textarea>
+            <button onclick="danis('domain')">10 Domain Önerisi (.com, .io, .app)</button>
+            <div class="result" id="domainOut">Domainler burada...</div>
+        </div>
+
+        <div class="tool">
+            <h2>Logo Fikri</h2>
+            <textarea id="logoIn" placeholder="Marka/oyun adı"></textarea>
+            <button onclick="danis('logo')">Logo Konsept Açıklama (renk, şekil, font)</button>
+            <div class="result" id="logoOut">Logo fikri...</div>
+        </div>
+
+    </div>
 </div>
 
 <script>
-const proxyUrl="https://neyapay-api.vercel.app/api/zap";
-function toggleSidebar(){const s=document.getElementById('sidebar');s.classList.toggle('open');s.setAttribute('aria-hidden',(!s.classList.contains('open')).toString())}
-async function neAI(p){try{const r=await fetch(proxyUrl,{method:'POST',headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt:p})});const d=await r.json();return d.cevap||d.result||JSON.stringify(d)}catch(e){return"Bağlantı hatası."}}
-async function genNick(){const plat=document.getElementById('nickFor').value||'oyun';const style=document.getElementById('nickStyle').value;const out=document.getElementById('nickOut');out.innerHTML='Yükleniyor...';const prompt=`2025'te ${plat} için ${style} tarzında 10 kısa nickname üret. Sadece liste.`;const r=await neAI(prompt);out.innerHTML=r.replace(/\n/g,'<br>')}
+const proxyUrl = "https://neyapay-api.vercel.app/api/zap";
+
+async function neAI(prompt) {
+    try {
+        const r = await fetch(proxyUrl, {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt})});
+        const d = await r.json();
+        return d.cevap || "Bir hata oluştu.";
+    } catch { return "Bağlantı hatası. Tekrar dene."; }
+}
+
+function L(id){ document.getElementById(id).innerHTML = '<div class="loadingZap"><div></div></div>'; }
+
+async function danis(tip){
+    const input = document.getElementById(tip + 'In').value.trim() || 'genel';
+    const out = tip + 'Out';
+    L(out);
+
+    const promptlar = {
+        oyun: `2025 oyun trendlerine uygun 20 ultra havalı nickname üret: ${input}. Kısa, akılda kalıcı, global ve Türkçe karışık. Sadece numaralı liste.`,
+        sosyal: `TikTok/Instagram için 15 estetik ve dikkat çekici kullanıcı adı öner: ${input}. Alt çizgi, nokta, rakam kullanılabilir. Sadece liste.`,
+        marka: `10 premium marka ismi + her biri için kısa slogan üret: ${input}. Modern, güçlü, global kullanıma uygun.`,
+        estetik: `15 ultra estetik nick üret: ${input} temalı. Soft, pastel, moon, cloud tarzı. Sadece liste.`,
+        pro: `15 profesyonel gamer nick + tag öner: ${input}. Kısa, agresif, korkutucu. Örnek: ShadowX, Venom69.`,
+        komik: `20 komik ve troll nick üret: ${input}. Türkçe ve İngilizce karışık, emoji ile zenginleştirilebilir.`,
+        domain: `10 domain önerisi üret: ${input}. .com, .io, .app, .co öncelikli. Kullanılabilir gibi olsun. Sadece liste.`,
+        logo: `Logo tasarım konsepti yaz: ${input}. Renk paleti, şekil, font, minimal/mi detaylı mı? Detaylı açıklama.`
+    };
+
+    const cevap = await neAI(promptlar[tip]);
+    document.getElementById(out).innerHTML = cevap.replace(/\n/g,'<br>');
+}
+
+function toggleSidebar(){ document.getElementById('sidebar').classList.toggle('open'); document.getElementById('burger').classList.toggle('active'); }
+function toggleThemePanel(){ document.getElementById('themePanel').classList.toggle('open'); }
+function setTheme(t){ document.body.className=''; document.body.classList.add(t); localStorage.setItem('neyapay_theme',t); }
+(function(){ const s=localStorage.getItem('neyapay_theme')||'dark'; setTheme(s); })();
 </script>
-</body></html>
+</body>
+</html>
