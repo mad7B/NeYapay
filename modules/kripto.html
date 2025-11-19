@@ -1,196 +1,260 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kripto Analiz</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>NEYAPAY — Kripto Analiz</title>
+<meta name="description" content="Kısa, eğlenceli, AI destekli kripto fikirleri — bilgilendirme amaçlı" />
+<link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/325/zap_26a1.png">
 
-    <style>
-        body {
-            background: linear-gradient(135deg, #0b0015, #16002e);
-            color: #fff;
-            font-family: "Inter", sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo+2:wght@600;800&display=swap" rel="stylesheet">
 
-        .site-title {
-            text-align: center;
-            margin-top: 25px;
-        }
+<style>
+:root{
+  --zap:#00f7ff;
+  --pink:#ff00ff;
+  --bg:#0d0020;
+  --card1:#1a0039;
+  --card2:#15002e;
+  --text:#e0e0ff;
+  --glow:0 0 30px rgba(0,247,255,.7);
+}
+/* reset */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Exo 2',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding-top:92px;
+  transition:background .25s,color .25s;
+  overflow-x:hidden;
+}
 
-        .logo {
-            font-size: 34px;
-            font-weight: 800;
-            color: #00eaff;
-            text-shadow: 0 0 18px rgba(0, 255, 255, 0.6);
-        }
+/* header / logo (index ile uyumlu neon) */
+.header-wrap{
+  position:fixed;top:0;left:0;width:100%;z-index:1000;
+  background:linear-gradient(0deg, rgba(13,0,32,.85), rgba(13,0,32,.6));
+  border-bottom:2px solid rgba(0,247,255,.06);
+  padding:14px 16px;display:flex;align-items:center;gap:12px;
+}
+.logo-wrap{display:flex;align-items:center;gap:12px;margin:auto}
+.logo-emoji{font-size:28px;filter:drop-shadow(0 0 8px rgba(0,247,255,.35))}
+.logo-text{
+  font-family:'Orbitron',sans-serif;
+  font-size:1.6rem;
+  background:linear-gradient(90deg,#00f7ff,#ff00ff,#00ff88);
+  -webkit-background-clip:text;color:transparent;text-shadow:0 0 18px rgba(0,247,255,.25)
+}
 
-        .menu-button {
-            width: 48px;
-            height: 48px;
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            background: #00e5ff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999999;
-            cursor: pointer;
-        }
-        .menu-button span { font-size: 30px; color: #000;}
+/* hamburger */
+#burger{
+  position:fixed;top:18px;left:18px;width:46px;height:46px;border-radius:50%;
+  background:var(--zap);color:#000;display:grid;place-items:center;font-size:1.4rem;
+  z-index:1100;cursor:pointer;box-shadow:var(--glow);
+}
 
-        .sidebar {
-            width: 260px;
-            height: 100vh;
-            background: rgba(10, 10, 25, 0.96);
-            position: fixed;
-            top: 0;
-            left: -260px;
-            padding: 20px;
-            transition: 0.3s ease;
-            z-index: 999999;
-            backdrop-filter: blur(12px);
-        }
-        .sidebar.open { left: 0; }
-        .sidebar a {
-            display: block;
-            margin: 15px 0;
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-        }
+/* SIDEBAR (overlay) */
+#sidebar{
+  position:fixed;top:0;left:0;height:100%;width:260px;
+  transform:translateX(-100%);
+  background:linear-gradient(180deg, rgba(9,9,18,.98), rgba(6,6,12,.94));
+  backdrop-filter:blur(6px);
+  border-right:1px solid rgba(255,255,255,.04);
+  padding:28px 18px;z-index:1200;transition:transform .28s ease;
+}
+#sidebar.open{transform:translateX(0)}
+#sidebar h3{color:var(--zap);margin-bottom:12px;font-size:1.2rem}
+#sidebar a{display:block;color:var(--text);text-decoration:none;padding:10px 6px;border-radius:8px;margin:6px 0;font-weight:600}
+#sidebar a:hover{background:rgba(255,255,255,.03)}
 
-        .container { padding: 100px 25px; }
+/* overlay (kapatmak için) */
+#sbOverlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .25s;z-index:1150;
+}
+#sbOverlay.show{opacity:1;pointer-events:all}
 
-        a.back-button {
-            display: inline-block;
-            margin-bottom: 25px;
-            padding: 12px 18px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 12px;
-            color: white;
-            text-decoration: none;
-        }
+/* container (sayfa içeriği) */
+.container{max-width:1100px;margin:0 auto;padding:120px 18px 80px;position:relative;z-index:2}
 
-        .card {
-            background: rgba(255,255,255,0.06);
-            padding: 25px;
-            border-radius: 16px;
-            margin-top: 25px;
-        }
+/* section card */
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+  border:1px solid rgba(255,255,255,.04);
+  padding:22px;border-radius:14px;margin-bottom:22px;backdrop-filter:blur(6px)
+}
+h1{font-family:'Orbitron',sans-serif;font-size:clamp(1.8rem,3.4vw,2.6rem);margin-bottom:8px}
+.lead{opacity:.9;margin-bottom:12px}
 
-        input {
-            width: 100%;
-            padding: 16px;
-            border-radius: 10px;
-            border: none;
-            background: rgba(255,255,255,0.12);
-            color: white;
-        }
+/* form */
+.input{
+  width:100%;padding:14px;border-radius:12px;border:none;background:rgba(255,255,255,.04);color:var(--text);
+  margin-bottom:12px;font-size:1rem;
+}
+.btn{
+  display:inline-block;width:100%;padding:14px;border-radius:12px;border:none;background:linear-gradient(90deg,#00c6ff,#7d2bff);
+  color:#fff;font-weight:800;cursor:pointer;font-size:1rem;
+  box-shadow:0 8px 22px rgba(0,0,0,.45);
+}
 
-        button {
-            width: 100%;
-            padding: 16px;
-            margin-top: 15px;
-            border-radius: 12px;
-            border: none;
-            background: linear-gradient(90deg, #00c6ff, #7d2bff);
-            color: #fff;
-            cursor: pointer;
-            font-size: 18px;
-        }
+/* result */
+.result{
+  margin-top:14px;background:rgba(0,0,0,.35);padding:14px;border-radius:12px;border:1px solid rgba(0,247,255,.06);
+  min-height:76px;color:var(--text);white-space:pre-wrap;line-height:1.45;
+}
 
-        #result {
-            margin-top: 15px;
-            white-space: pre-line;
-        }
-    </style>
+/* back link */
+.back-link{display:inline-block;margin-bottom:18px;padding:10px 16px;background:rgba(255,255,255,0.04);border-radius:12px;color:var(--text);text-decoration:none}
+
+/* responsive tweaks */
+@media(min-width:900px){
+  #sidebar{width:300px}
+  .container{padding-left:32px;padding-right:32px}
+}
+</style>
 </head>
-
 <body>
 
-    <!-- MENU BUTTON -->
-    <div class="menu-button" onclick="toggleSidebar()">
-        <span>☰</span>
-    </div>
+<!-- header + burger -->
+<div id="burger" aria-label="menu" onclick="toggleSidebar()">☰</div>
 
-    <!-- SIDEBAR -->
-    <div class="sidebar" id="sidebar">
-        <h2>Menü</h2>
-        <a href="../index.html">Anasayfa</a>
-        <a href="kripto.html">Kripto Analiz</a>
-        <a href="plaka.html">Plaka Sorgu</a>
-        <a href="sohbet.html">Sohbet</a>
-    </div>
+<div class="header-wrap" role="banner" aria-hidden="false">
+  <div class="logo-wrap">
+    <div class="logo-emoji">🧠</div>
+    <div class="logo-text">NEYAPAY</div>
+  </div>
+</div>
 
-    <!-- HEADER -->
-    <div class="site-title">
-        <span class="logo">🧠 NEYAPAY</span>
-    </div>
+<!-- sidebar and overlay -->
+<div id="sidebar" aria-hidden="true">
+  <h3>Menü</h3>
+  <a href="../index.html">🏠 Anasayfa</a>
+  <a href="/modules/kripto.html">💹 Kripto Analiz</a>
+  <a href="/modules/plaka.html">🚗 Plaka Sorgu</a>
+  <a href="/modules/oyun.html">🎮 Oyun Merkezi</a>
+  <a href="/modules/yapayzeka.html">🤖 Yapay Zeka</a>
+  <hr style="margin:14px 0;border:0;border-top:1px solid rgba(255,255,255,.06)">
+  <a href="#" onclick="setTheme('dark');return false;">🌙 Dark</a>
+  <a href="#" onclick="setTheme('light');return false;">☀️ Light</a>
+  <a href="#" onclick="setTheme('neon');return false;">⚡ Neon</a>
+</div>
+<div id="sbOverlay" onclick="closeSidebar()"></div>
 
-    <!-- CONTENT -->
-    <div class="container">
+<!-- main content -->
+<div class="container" role="main">
+  <a class="back-link" href="../index.html">← Anasayfaya Dön</a>
 
-        <a href="../index.html" class="back-button">← Anasayfaya Dön</a>
+  <h1>Kripto Analiz</h1>
+  <p class="lead">Kısa, eğlenceli, yapay zeka destekli piyasa fikirleri (bilgilendirme amaçlı).</p>
 
-        <h1>Kripto Analiz</h1>
-        <p>Piyasa için eğlenceli, yapay zeka destekli token fikirleri üret.</p>
+  <div class="card">
+    <h2>Token Fikir & Başlık</h2>
+    <input id="tokenInput" class="input" placeholder="Örn: yeni meme coin fikri">
+    <button class="btn" id="generateBtn">Üret</button>
+    <div id="result" class="result">Sonuç burada görünecek...</div>
+  </div>
 
-        <div class="card">
-            <h2>Token Fikir & Başlık</h2>
-            <input id="tokenInput" placeholder="Örn: yeni meme coin fikri">
-            <button onclick="generateCrypto()">Üret</button>
-            <p id="result">Sonuç burada görünecek...</p>
-        </div>
+  <div class="card">
+    <h3>Risk Notu</h3>
+    <p>Buradaki içerikler fikir amaçlıdır, yatırım tavsiyesi değildir.</p>
+  </div>
+</div>
 
-        <div class="card">
-            <h2>Risk Notu</h2>
-            <p>Yatırım tavsiyesi değildir.</p>
-        </div>
-    </div>
+<script>
+/* ====== CONFIG (index ile aynı proxy) ====== */
+const proxyUrl = "https://neyapay-api.vercel.app/api/zap"; // index'teki ile aynıysa bırak
+const proxyFallback = "https://neyapay-api-alt.vercel.app/api/zap"; // fallback
 
-    <!-- JS -->
-    <script>
-        function toggleSidebar() {
-            document.getElementById("sidebar").classList.toggle("open");
-        }
+/* daily usage (same logic, client-side) */
+let dailyLimit = 500;
+let used = parseInt(localStorage.getItem('neyapay_used')||'0');
+const today = new Date().toDateString();
+if(localStorage.getItem('neyapay_day')!==today){
+  used = 0; localStorage.setItem('neyapay_used','0'); localStorage.setItem('neyapay_day',today);
+}
 
-        async function generateCrypto() {
-            const input = document.getElementById("tokenInput").value.trim();
-            const result = document.getElementById("result");
+/* CORE AI CALL (with fallback) */
+async function neAI(promptText){
+  if(used >= dailyLimit) return "Bugün limit doldu!";
+  try{
+    const r = await fetch(proxyUrl, {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({ prompt: promptText })
+    });
+    if(!r.ok) throw new Error('proxy error '+r.status);
+    const d = await r.json();
+    used++; localStorage.setItem('neyapay_used', used);
+    return d.cevap || d.result || JSON.stringify(d);
+  }catch(e){
+    // try fallback
+    try{
+      const r2 = await fetch(proxyFallback, {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({ prompt: promptText })
+      });
+      if(!r2.ok) throw new Error('fallback error '+r2.status);
+      const d2 = await r2.json();
+      used++; localStorage.setItem('neyapay_used', used);
+      return d2.cevap || d2.result || JSON.stringify(d2);
+    }catch(e2){
+      console.error('neAI error', e, e2);
+      // show friendly message so user knows it's server-side
+      return "Sunucu hatası — Vercel API yanıt vermiyor.";
+    }
+  }
+}
 
-            if (!input) {
-                result.innerText = "Lütfen bir fikir gir.";
-                return;
-            }
+/* UI helpers */
+function toggleSidebar(){
+  const sb = document.getElementById('sidebar');
+  const ov = document.getElementById('sbOverlay');
+  const open = !sb.classList.contains('open');
+  if(open){
+    sb.classList.add('open'); ov.classList.add('show'); sb.setAttribute('aria-hidden','false');
+  } else {
+    sb.classList.remove('open'); ov.classList.remove('show'); sb.setAttribute('aria-hidden','true');
+  }
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sbOverlay').classList.remove('show');
+  document.getElementById('sidebar').setAttribute('aria-hidden','true');
+}
 
-            result.innerText = "AI fikir üretiyor...";
+/* theme */
+function setTheme(t){
+  document.body.classList.remove('light','neon','hacker');
+  if(t && t!=='dark') document.body.classList.add(t);
+  localStorage.setItem('neyapay_theme', t || 'dark');
+}
+(function restoreTheme(){
+  const saved = localStorage.getItem('neyapay_theme');
+  if(saved){
+    if(saved==='light') document.body.classList.add('light');
+    else if(saved==='neon') document.body.classList.add('neon');
+    else if(saved==='hacker') document.body.classList.add('hacker');
+  }
+})();
 
-            try {
-                const response = await fetch("/api/gpt", {
-                    method: "POST",
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify({
-                        prompt: `Bana şu konuda yaratıcı bir kripto token fikri üret: ${input}
-                        Format:
-                        • Token İsmi
-                        • Açıklama
-                        • Slogan
-                        • Risk Notu`
-                    })
-                });
+/* generate handler (use same prompt style as index) */
+document.getElementById('generateBtn').addEventListener('click', async ()=>{
+  const q = (document.getElementById('tokenInput').value || '').trim();
+  const out = document.getElementById('result');
+  if(!q){ out.innerText = "Lütfen bir konu gir."; return; }
+  out.innerHTML = '<em>AI üretiliyor...</em>';
+  const prompt = `2025'te ${q} konusunda kripto/token fikri, kısa başlık ve 2 cümle açıklama yaz (bilgilendirici, eğlenceli).`;
+  const r = await neAI(prompt);
+  out.innerText = r;
+});
 
-                const data = await response.json();
-                result.innerText = data.result || "Bir hata oluştu.";
-            }
-            catch (err) {
-                result.innerText = "Sunucu hatası — Vercel API yanıt vermiyor.";
-            }
-        }
-    </script>
-
+/* keyboard: enter to submit */
+document.getElementById('tokenInput').addEventListener('keydown', (e)=>{
+  if(e.key === 'Enter'){ document.getElementById('generateBtn').click(); }
+});
+</script>
 </body>
 </html>
