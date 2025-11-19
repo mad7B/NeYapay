@@ -246,6 +246,14 @@ function toggleSidebar(){ document.getElementById('sidebar').classList.toggle('o
 function toggleThemePanel(){ document.getElementById('themePanel').classList.toggle('open'); }
 function setTheme(t){ document.body.className=''; document.body.classList.add(t); localStorage.setItem('neyapay_theme',t); }
 (function(){ const s=localStorage.getItem('neyapay_theme')||'dark'; setTheme(s); })();
+    document.querySelectorAll('#sidebar a').forEach(link => {
+    const linkPath = new URL(link.href).pathname.replace(/\/+$/, '') || '/index.html';
+    const currentPath = window.location.pathname.replace(/\/+$/, '') || '/index.html';
+    if (linkPath === currentPath || 
+        (currentPath === '/' && linkPath === '/index.html')) {
+        link.classList.add('active');
+    }
+});
 </script>
 </body>
 </html>
