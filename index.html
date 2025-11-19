@@ -162,7 +162,7 @@ body.light{
   background:linear-gradient(to bottom,#ffffff,#f0f0ff);color:var(--text)
 }
 
-/* ====== SIDEBAR ====== */
+/* ====== SIDEBAR (OFF-CANVAS, HAMBURGER) ====== */
 #sidebar{
   position:fixed;
   top:0;
@@ -174,7 +174,8 @@ body.light{
   border-right:1px solid rgba(255,255,255,.08);
   padding:20px;
   z-index:1000;
-  transition:left .35s ease;
+  transition:left .28s ease, transform .28s;
+  will-change:left,transform;
 }
 #sidebar.open{left:0}
 #sidebar h3{margin-bottom:18px;color:var(--zap);text-align:center}
@@ -187,7 +188,7 @@ body.light{
   border-radius:10px;
   color:var(--text);
   font-weight:600;
-  transition:.2s;
+  transition:.18s;
 }
 #sidebar a:hover{background:rgba(255,255,255,.12)}
 
@@ -251,6 +252,11 @@ body.hacker{
   0%{background-position:200%}
   100%{background-position:-200%}
 }
+
+/* small helper to shift page when sidebar open on wide screens */
+@media(min-width:900px){
+  body.sidebar-open .container{transform:translateX(240px);transition:transform .28s}
+}
 </style>
 </head>
 <body>
@@ -260,12 +266,22 @@ body.hacker{
 
 <div id="sidebar" aria-hidden="true">
   <h3>NEYAPAY</h3>
-  <!-- Bu linkleri istediğin gibi düzenle, farklı dosyalara yönlendirir -->
-  <a href="/index.html">🏠 Ana Sayfa</a>
-  <a href="/nick.html">🎮 Ne Nick?</a>
-  <a href="/ask.html">❤️ Ne Aşk?</a>
-  <a href="/meme.html">😂 Ne Meme?</a>
-  <a href="/iletisim.html">📩 İletişim</a>
+
+  <!-- 14 modül linki (her biri modules/*.html'e gider) -->
+  <a href="/modules/oyun.html">🎮 Oyun Merkezi</a>
+  <a href="/modules/yapayzeka.html">🤖 Yapay Zeka Lab</a>
+  <a href="/modules/youtube.html">🎥 YouTube Merkezi</a>
+  <a href="/modules/tiktok.html">🎵 TikTok Merkezi</a>
+  <a href="/modules/kripto.html">🤑 Kripto Alanı</a>
+  <a href="/modules/prompt.html">💡 Prompt Jeneratör</a>
+  <a href="/modules/nick.html">✨ Nick Generator</a>
+  <a href="/modules/ask.html">💕 Aşk Merkezi</a>
+  <a href="/modules/ruya.html">🌙 Rüya Yorum</a>
+  <a href="/modules/meme.html">😂 Meme Fabrikası</a>
+  <a href="/modules/film.html">🎬 Film Fikir</a>
+  <a href="/modules/tweet.html">🐦 Tweet Generator</a>
+  <a href="/modules/plaka.html">🚗 Plaka Analiz</a>
+  <a href="/modules/sans.html">🍀 Günün Şansı</a>
 
   <hr style="margin:14px 0;border:0;border-top:1px solid rgba(255,255,255,.2)">
 
@@ -643,19 +659,17 @@ document.getElementById('darkToggle').innerText = document.body.classList.contai
 function toggleSidebar(){
   const sb = document.getElementById('sidebar');
   sb.classList.toggle('open');
-  // aria
   const open = sb.classList.contains('open');
   sb.setAttribute('aria-hidden', (!open).toString());
+  // add class to body so we can shift content on wide screens
+  document.body.classList.toggle('sidebar-open', open);
 }
 
 /* Set theme and persist */
 function setTheme(t){
-  // remove previous theme classes
   document.body.classList.remove('light','neon','hacker');
   if(t && t !== 'dark') document.body.classList.add(t);
-  // store preference
   localStorage.setItem('neyapay_theme', t || 'dark');
-  // update darkToggle label
   document.getElementById('darkToggle').innerText = document.body.classList.contains('light') ? 'Güneş' : 'Ay';
 }
 
@@ -666,7 +680,6 @@ function setTheme(t){
     if(saved === 'light') document.body.classList.add('light');
     else if(saved === 'neon') document.body.classList.add('neon');
     else if(saved === 'hacker') document.body.classList.add('hacker');
-    // else dark = default
     document.getElementById('darkToggle').innerText = document.body.classList.contains('light') ? 'Güneş' : 'Ay';
   }
 })();
