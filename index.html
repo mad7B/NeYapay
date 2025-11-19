@@ -1,722 +1,279 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>NEYAPAY – Ne istiyorsun? AI söylesin!</title>
-<meta name="description" content="Türkiye’nin en komik AI eğlence merkezi!" />
-<link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/325/zap_26a1.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEYAPAY – Türkiye'nin En Güçlü AI Merkezi</title>
+    <meta name="description" content="Profesyonel yapay zeka araçları: prompt, isim, marka, içerik, strateji, analiz ve daha fazlası.">
+    <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/325/zap_26a1.png">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1554661709211540" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo+2:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --zap:#00f7ff;
+            --bg:#0d0020;
+            --text:#e0e0ff;
+            --card:#1a0038;
+            --glow:0 0 30px rgba(0,247,255,.6);
+        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html,body{height:100%;font-family:'Exo 2',sans-serif;background:var(--bg);color:var(--text)}
+        body{min-height:100vh;overflow-x:hidden;padding-top:92px;position:relative;transition:all .4s}
+        body::before{
+            content:'';position:fixed;inset:0;z-index:0;
+            background:repeating-radial-gradient(circle at 20% 20%,rgba(0,247,255,.04)0,transparent 12px),
+                       repeating-radial-gradient(circle at 80% 80%,rgba(255,0,255,.04)0,transparent 12px);
+            pointer-events:none;animation:stars 40s linear infinite;
+        }
+        @keyframes stars{0%,100%{opacity:.4}50%{opacity:.9}}
 
-<!-- ADSENSE (OTOMATİK REKLAM) -->
-<script async 
-  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1554661709211540"
-  crossorigin="anonymous"></script>
+        header{
+            position:fixed;top:0;left:0;width:100%;text-align:center;padding:18px 10px;z-index:999;
+            background:linear-gradient(0deg,rgba(13,0,32,.9),rgba(13,0,32,.7));
+            border-bottom:2px solid rgba(0,247,255,.1);backdrop-filter:blur(12px);
+        }
+        h1{
+            font-family:'Orbitron',sans-serif;font-size:clamp(2.8rem,10vw,5rem);
+            background:linear-gradient(90deg,#00f7ff,#ff00ff,#00ff88);
+            -webkit-background-clip:text;color:transparent;
+            text-shadow:0 0 20px rgba(0,247,255,.8);margin:0;line-height:1;
+        }
+        .tagline{font-size:1.1rem;opacity:.9;margin-top:6px;font-weight:500}
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo+2:wght@600;800&display=swap" rel="stylesheet">
-<style>
-:root{
-  --zap:#00f7ff;
-  --pink:#ff00ff;
-  --bg:#0d0020;
-  --card1:#1a0039;
-  --card2:#15002e;
-  --text:#e0e0ff;
-  --glow:0 0 30px rgba(0,247,255,.7);
-}
-/* base reset */
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%}
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:'Exo 2',sans-serif;
-  min-height:100vh;
-  overflow-x:hidden;
-  padding-top:92px;
-  position:relative;
-  transition:background .35s,color .35s;
-}
-body::before{
-  content:'';
-  position:fixed;
-  inset:0;
-  background:repeating-radial-gradient(circle at 20% 20%,rgba(0,247,255,.04)0,transparent 12px),
-             repeating-radial-gradient(circle at 80% 80%,rgba(255,0,255,.04)0,transparent 12px);
-  pointer-events:none;
-  animation:stars 40s linear infinite;
-  z-index:0;
-}
-@keyframes stars{0%,100%{opacity:.5}50%{opacity:.9}}
+        #zapCounter{
+            position:fixed;top:16px;right:16px;z-index:1000;
+            background:rgba(255,50,0,.25);padding:10px 20px;border-radius:50px;
+            border:2px solid rgba(255,80,0,.7);box-shadow:0 0 30px rgba(255,80,0,.6);
+            display:flex;align-items:center;gap:12px;backdrop-filter:blur(10px);
+            animation:firePulse 3s infinite;font-weight:900;color:#fff;font-size:1.1rem;
+        }
+        #zapCounter .fire{width:32px;height:38px;position:relative}
+        #zapCounter .fire span{position:absolute;bottom:0;background:#ff3300;border-radius:50%;box-shadow:0 0 18px #ff5500;animation:flame 1.5s infinite}
+        #zapCounter .fire span:nth-child(1){left:4px;width:10px;height:28px;background:#ff6600;animation-delay:0s}
+        #zapCounter .fire span:nth-child(2){left:12px;width:12px;height:32px;animation-delay:.2s}
+        #zapCounter .fire span:nth-child(3){left:20px;width:10px;height:24px;background:#ff8800;animation-delay:.4s}
+        @keyframes flame{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-18px) scale(1.4)}}
+        @keyframes firePulse{0%,100%{box-shadow:0 0 30px rgba(255,80,0,.6)}50%{box-shadow:0 0 50px rgba(255,80,0,1)}}
 
-header{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  text-align:center;
-  padding:18px 10px;
-  z-index:999;
-  background:linear-gradient(0deg, rgba(13,0,32,.85), rgba(13,0,32,.6));
-  border-bottom:2px solid rgba(0,247,255,.08);
-}
-h1{
-  font-family:'Orbitron',sans-serif;
-  font-size:clamp(2.6rem,9vw,4.5rem);
-  background:linear-gradient(90deg,#00f7ff,#ff00ff,#00ff88);
-  -webkit-background-clip:text;
-  color:transparent;
-  text-shadow:0 0 12px #00f7ff,0 0 18px #ff00ff;
-  animation:neon 1.4s ease-in-out infinite alternate;
-  margin:0;
-  line-height:1;
-}
-@keyframes neon{
-  from{text-shadow:0 0 10px #00f7ff,0 0 14px #ff00ff}
-  to{text-shadow:0 0 26px #00f7ff,0 0 34px #ff00ff}
-}
-.tagline{font-size:1rem;opacity:.9;margin-top:6px}
+        #burger{
+            position:fixed;top:16px;left:16px;width:54px;height:54px;border-radius:50%;
+            background:var(--zap);display:flex;flex-direction:column;justify-content:center;align-items:center;
+            cursor:pointer;z-index:1002;box-shadow:var(--glow);
+        }
+        #burger span{width:30px;height:4px;background:#fff;margin:4px 0;border-radius:4px;transition:.3s;box-shadow:0 0 12px #00f7ff}
+        #burger.active span:nth-child(1){transform:translateY(12px) rotate(45deg)}
+        #burger.active span:nth-child(2){opacity:0}
+        #burger.active span:nth-child(3){transform:translateY(-12px) rotate(-45deg)}
 
-/* container */
-.container{max-width:1320px;margin:0 auto;padding:120px 16px 100px;position:relative;z-index:2}
+        #sidebar{
+            position:fixed;top:0;left:-280px;width:280px;height:100%;background:rgba(10,0,25,.98);
+            backdrop-filter:blur(14px);border-right:2px solid rgba(0,247,255,.2);padding:100px 20px 20px;
+            z-index:1001;transition:left .35s ease;overflow-y:auto;
+        }
+        #sidebar.open{left:0}
+        #sidebar h3{color:var(--zap);text-align:center;font-size:1.8rem;margin-bottom:30px;text-shadow:0 0 20px var(--zap)}
+        #sidebar a{display:block;padding:16px 20px;margin:8px 0;background:rgba(255,255,255,.05);border-radius:14px;
+            color:var(--text);text-decoration:none;font-weight:600;transition:.3s;border:1px solid rgba(0,247,255,.1)}
+        #sidebar a:hover{background:rgba(0,247,255,.2);transform:translateX(8px);border-color:var(--zap)}
 
-/* tools grid */
-.tools{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:18px;
-}
+        #themeToggle{
+            position:fixed;bottom:20px;right:20px;width:60px;height:60px;border-radius:50%;
+            background:var(--zap);display:grid;place-items:center;color:#000;font-weight:900;
+            box-shadow:var(--glow);cursor:pointer;z-index:999;font-size:1rem;
+        }
+        #themePanel{
+            position:fixed;bottom:90px;right:18px;background:rgba(15,0,35,.98);backdrop-filter:blur(14px);
+            border:1px solid rgba(0,247,255,.3);border-radius:18px;padding:18px;width:220px;
+            box-shadow:0 12px 50px rgba(0,0,0,.9);transform:translateY(120%);opacity:0;visibility:hidden;
+            transition:all .35s;z-index:998;
+        }
+        #themePanel.open{transform:translateY(0);opacity:1;visibility:visible}
+        .theme-btn{display:block;width:100%;padding:14px;margin:8px 0;border-radius:12px;text-align:center;
+            background:rgba(255,255,255,.08);cursor:pointer;font-weight:600;transition:.3s}
+        .theme-btn:hover{background:rgba(0,247,255,.3)}
 
-/* each tool */
-.tool{
-  background:linear-gradient(180deg, rgba(26,0,57,.85), rgba(21,0,46,.9));
-  border-radius:18px;
-  padding:22px;
-  box-shadow:0 10px 30px rgba(0,0,0,.6);
-  border:1px solid rgba(255,255,255,.03);
-  transition:transform .28s, box-shadow .28s;
-  transform-style:preserve-3d;
-}
-.tool:hover{transform:translateY(-8px) rotateY(4deg); box-shadow:var(--glow),0 30px 60px rgba(0,0,0,.6)}
-.tool h2{
-  color:var(--zap);
-  font-size:1.45rem;
-  margin-bottom:12px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  justify-content:center;
-  text-shadow:var(--glow);
-}
+        .container{max-width:1380px;margin:0 auto;padding:120px 20px 120px;position:relative;z-index:2}
+        .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+        .tool{
+            background:linear-gradient(135deg,rgba(26,0,57,.95),rgba(21,0,46,.98));
+            border-radius:20px;padding:28px;box-shadow:0 15px 40px rgba(0,0,0,.7);
+            border:1px solid rgba(0,247,255,.15);transition:all .3s;position:relative;overflow:hidden
+        }
+        .tool::before{
+            content:'';position:absolute;top:0;left:0;width:100%;height:4px;
+            background:linear-gradient(90deg,var(--zap),#ff00ff);opacity:.7
+        }
+        .tool:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(0,247,255,.2)}
+        .tool h2{
+            color:var(--zap);font-size:1.6rem;margin-bottom:16px;text-align:center;
+            text-shadow:0 0 15px var(--zap);font-weight:700
+        }
+        input,select,textarea,button{
+            width:100%;padding:14px 16px;margin:10px 0;border-radius:14px;border:none;
+            font-size:1.05rem;outline:none;font-family:inherit
+        }
+        input,select,textarea{
+            background:rgba(255,255,255,.08);color:#fff;backdrop-filter:blur(8px);
+            border:1px solid rgba(0,247,255,.2)
+        }
+        textarea{min-height:100px;resize:vertical}
+        button{
+            background:linear-gradient(45deg,#00f7ff,#ff00ff);color:#000;font-weight:800;
+            cursor:pointer;box-shadow:0 8px 30px rgba(0,247,255,.3);transition:all .2s;
+            font-size:1.1rem
+        }
+        button:hover{transform:scale(1.04);box-shadow:0 12px 40px rgba(0,247,255,.4)}
+        .result{
+            margin-top:16px;background:rgba(0,0,0,.5);padding:18px;border-radius:14px;
+            min-height:100px;color:var(--text);border:1px solid rgba(0,247,255,.15);
+            backdrop-filter:blur(8px);white-space:pre-wrap;line-height:1.6;font-size:1.05rem
+        }
+        .share-btn{display:flex;gap:12px;margin-top:14px}
+        .share-btn button{flex:1;padding:12px;font-size:1rem;background:linear-gradient(45deg,#00ff88,#00f7ff);color:#000}
 
-/* inputs/buttons */
-input,select,textarea,button{
-  width:100%;
-  padding:12px 14px;
-  margin:8px 0;
-  border-radius:12px;
-  border:none;
-  font-size:1rem;
-  outline:none;
-}
-input,select,textarea{background:rgba(255,255,255,.05);color:#fff;backdrop-filter:blur(6px)}
-textarea{min-height:86px;resize:vertical}
-button{
-  background:linear-gradient(45deg,#00f7ff,#ff00ff);
-  color:#000;font-weight:800;cursor:pointer;box-shadow:0 8px 24px rgba(0,247,255,.08);
-  transition:transform .15s;
-}
-button:hover{transform:scale(1.03)}
+        .loadingZap{display:flex;justify-content:center;align-items:center;padding:20px}
+        .loadingZap div{width:28px;height:28px;border-radius:50%;border:5px solid var(--zap);
+            border-top-color:transparent;animation:spin 0.8s linear infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
 
-/* result box */
-.result{
-  margin-top:10px;
-  background:rgba(0,0,0,.45);
-  padding:14px;border-radius:12px;
-  min-height:84px;color:var(--text);
-  border:1px solid rgba(0,247,255,.12);backdrop-filter:blur(6px);
-  white-space:pre-wrap;line-height:1.45;font-size:1rem;
-}
+        body.light{--bg:#f8f9ff;--text:#1a0038;--card:#ffffff;background:#f8f9ff}
+        body.light .tool{background:#ffffff;border:1px solid #e0e0ff;color:#333}
+        body.hacker{--zap:#00ff00;--bg:#000;--text:#00ff00;font-family:'Courier New',monospace}
+        body.hacker .tool{background:#000;border:1px solid #00ff00}
 
-/* share row */
-.share-btn{display:flex;gap:10px;margin-top:12px}
-.share-btn button{flex:1;padding:10px;font-size:.95rem;background:linear-gradient(45deg,#00ff88,#00f7ff);color:#000}
-
-/* api limit */
-.api-limit{position:fixed;top:110px;right:14px;background:rgba(0,0,0,.7);padding:8px 14px;border-radius:26px;font-size:.95rem;z-index:999;border:1px solid var(--zap);backdrop-filter:blur(6px)}
-
-/* dark toggle */
-#darkToggle{position:fixed;bottom:18px;right:18px;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--zap);color:#000;font-weight:800;z-index:999;box-shadow:var(--glow);cursor:pointer}
-
-/* footer */
-footer{text-align:center;padding:28px 16px;color:rgba(255,255,255,.7)}
-
-/* responsive tweaks */
-@media(max-width:480px){
-  h1{font-size:2.6rem}
-  .container{padding-top:110px}
-}
-
-/* LIGHT THEME */
-body.light{
-  --bg:#f4f4ff;--card1:#e0e0ff;--text:#0d0020;--zap:#ff00ff;--glow:0 0 30px rgba(255,0,255,.7);
-  background:linear-gradient(to bottom,#ffffff,#f0f0ff);color:var(--text)
-}
-
-/* ====== SIDEBAR (OFF-CANVAS, HAMBURGER) ====== */
-#sidebar{
-  position:fixed;
-  top:0;
-  left:-260px;
-  width:240px;
-  height:100%;
-  background:rgba(0,0,0,.65);
-  backdrop-filter:blur(6px);
-  border-right:1px solid rgba(255,255,255,.08);
-  padding:20px;
-  z-index:1000;
-  transition:left .28s ease, transform .28s;
-  will-change:left,transform;
-}
-#sidebar.open{left:0}
-#sidebar h3{margin-bottom:18px;color:var(--zap);text-align:center}
-#sidebar a{
-  display:block;
-  padding:12px;
-  margin:8px 0;
-  background:rgba(255,255,255,.06);
-  text-decoration:none;
-  border-radius:10px;
-  color:var(--text);
-  font-weight:600;
-  transition:.18s;
-}
-#sidebar a:hover{background:rgba(255,255,255,.12)}
-
-/* Hamburger */
-#burger{
-  position:fixed;
-  top:18px;
-  left:18px;
-  width:46px;
-  height:46px;
-  border-radius:50%;
-  background:var(--zap);
-  color:#000;
-  display:grid;
-  place-items:center;
-  font-size:1.4rem;
-  z-index:1001;
-  cursor:pointer;
-  box-shadow:var(--glow);
-}
-
-/* THEMES */
-body.neon{
-  --bg:#050014;
-  --zap:#00f7ff;
-  --pink:#ff00ff;
-  --text:#e0e0ff;
-}
-body.hacker{
-  --bg:#000;
-  --zap:#00ff00;
-  --text:#00ff00;
-  font-family:monospace;
-}
-
-/* ====== Loading Animation ====== */
-.loadingZap{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:16px;
-}
-.loadingZap div{
-  width:26px;height:26px;
-  border-radius:50%;
-  border:4px solid var(--zap);
-  border-top-color:transparent;
-  animation:spin 0.8s linear infinite;
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-/* ====== Ad Skeleton ====== */
-.ad-skeleton{
-  height:90px;
-  border-radius:12px;
-  background:linear-gradient(90deg, rgba(255,255,255,.05), rgba(255,255,255,.15), rgba(255,255,255,.05));
-  background-size:200% 100%;
-  animation:skeleton 1.5s infinite;
-}
-@keyframes skeleton{
-  0%{background-position:200%}
-  100%{background-position:-200%}
-}
-
-/* small helper to shift page when sidebar open on wide screens */
-@media(min-width:900px){
-  body.sidebar-open .container{transform:translateX(240px);transition:transform .28s}
-}
-</style>
+        @media(max-width:480px){
+            #zapCounter{top:12px;right:12px;padding:8px 14px;gap:8px;font-size:1rem}
+            #zapCounter .fire{width:28px;height:32px}
+            .tools{grid-template-columns:1fr}
+        }
+    </style>
 </head>
 <body>
 
-<!-- SIDEBAR + BURGER -->
-<div id="burger" onclick="toggleSidebar()">☰</div>
+<div id="burger" onclick="toggleSidebar()">
+    <span></span><span></span><span></span>
+</div>
 
-<div id="sidebar" aria-hidden="true">
-  <h3>NEYAPAY</h3>
+<div id="zapCounter">
+    <div class="fire"><span></span><span></span><span></span></div>
+    <span id="limitInfo">Yükleniyor...</span>
+</div>
 
-  <!-- 14 modül linki (her biri modules/*.html'e gider) -->
-  <a href="/modules/oyun.html">🎮 Oyun Merkezi</a>
-  <a href="/modules/yapayzeka.html">🤖 Yapay Zeka Lab</a>
-  <a href="/modules/youtube.html">🎥 YouTube Merkezi</a>
-  <a href="/modules/tiktok.html">🎵 TikTok Merkezi</a>
-  <a href="/modules/kripto.html">🤑 Kripto Alanı</a>
-  <a href="/modules/prompt.html">💡 Prompt Jeneratör</a>
-  <a href="/modules/nick.html">✨ Nick Generator</a>
-  <a href="/modules/ask.html">💕 Aşk Merkezi</a>
-  <a href="/modules/ruya.html">🌙 Rüya Yorum</a>
-  <a href="/modules/meme.html">😂 Meme Fabrikası</a>
-  <a href="/modules/film.html">🎬 Film Fikir</a>
-  <a href="/modules/tweet.html">🐦 Tweet Generator</a>
-  <a href="/modules/plaka.html">🚗 Plaka Analiz</a>
-  <a href="/modules/sans.html">🍀 Günün Şansı</a>
-
-  <hr style="margin:14px 0;border:0;border-top:1px solid rgba(255,255,255,.2)">
-
-  <a href="#" onclick="setTheme('dark');return false;">🌙 Dark</a>
-  <a href="#" onclick="setTheme('light');return false;">☀️ Light</a>
-  <a href="#" onclick="setTheme('neon');return false;">⚡ Neon</a>
-  <a href="#" onclick="setTheme('hacker');return false;">💻 Hacker</a>
+<div id="themeToggle" onclick="toggleThemePanel()">Tema</div>
+<div id="themePanel">
+    <div class="theme-btn" onclick="setTheme('dark')">Dark</div>
+    <div class="theme-btn" onclick="setTheme('light')">Light</div>
+    <div class="theme-btn" onclick="setTheme('neon')">Neon</div>
+    <div class="theme-btn" onclick="setTheme('hacker')">Hacker</div>
 </div>
 
 <header>
-  <h1>NE YAPAY!</h1>
-  <div class="tagline">GEL BİZ YAPAY!</div>
+    <h1>NE YAPAY!</h1>
+    <div class="tagline">GEL BİZ YAPAY!</div>
 </header>
 
-<div class="api-limit" id="limitInfo">Zap: ∞ / ∞</div>
+<div id="sidebar">
+    <h3>NEYAPAY</h3>
+    <a href="/index.html">Ana Sayfa</a>
+    <a href="/modules/oyun.html">Oyun Merkezi</a>
+    <a href="/modules/yapayzeka.html">Yapay Zeka Lab</a>
+    <a href="/modules/youtube.html">YouTube Merkezi</a>
+    <a href="/modules/tiktok.html">TikTok Merkezi</a>
+    <a href="/modules/kripto.html">Kripto Alanı</a>
+    <a href="/modules/prompt.html">Prompt Mühendisi</a>
+    <a href="/modules/nick.html">Marka & Nick</a>
+    <a href="/modules/ask.html">İlişki Analizi</a>
+    <a href="/modules/ruya.html">Rüya Analizi</a>
+    <a href="/modules/meme.html">İçerik Stratejisi</a>
+    <a href="/modules/film.html">Senaryo Geliştirme</a>
+    <a href="/modules/tweet.html">Sosyal Medya Metni</a>
+    <a href="/modules/plaka.html">Plaka Analizi</a>
+    <a href="/modules/sans.html">Karar Destek</a>
+    <hr>
+    <a onclick="setTheme('dark');return false;">Dark</a>
+    <a onclick="setTheme('light');return false;">Light</a>
+    <a onclick="setTheme('neon');return false;">Neon</a>
+    <a onclick="setTheme('hacker');return false;">Hacker</a>
+</div>
 
-<!-- ÜST REKLAM SKELETON -->
-<div style="max-width:1100px;margin:84px auto 6px auto;text-align:center;">
-  <div class="ad-skeleton" id="adSk1"></div>
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-1554661709211540"
-       data-ad-slot="1234567890"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+<div style="max-width:1200px;margin:80px auto 10px;text-align:center;">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1554661709211540" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
 </div>
 
 <div class="container">
-  <div class="tools">
+    <div class="tools">
 
-    <!-- Ne Prompt -->
-    <div class="tool">
-      <h2>💡 Ne Prompt?</h2>
-      <input id="promptIn" placeholder="Konu gir, örn: oyun nickname, TikTok kanal, komik meme...">
-      <button onclick="promptNe()">AI Ne Yazmalı?</button>
-      <div class="result" id="promptOut">Prompt önerisi burada görünecek...</div>
-      <div class="share-btn" style="margin-top:8px">
-        <button onclick="shareText('promptOut','X')">X'te Paylaş</button>
-        <button onclick="shareText('promptOut','WA')">WhatsApp</button>
-      </div>
+        <div class="tool"><h2>Profesyonel Prompt Üret</h2><input id="promptIn" placeholder="Konu / Hedef / Platform belirt"><button onclick="promptNe()">Prompt Üret</button><div class="result" id="promptOut">Sonuç burada görünecek...</div><div class="share-btn"><button onclick="shareText('promptOut','X')">X'te Paylaş</button><button onclick="shareText('promptOut','WA')">WhatsApp</button></div></div>
+
+        <div class="tool"><h2>Marka & Nick Üret</h2><input id="nickIn" placeholder="Sektör, tarz, hedef kitle"><button onclick="neNick()">İsim Üret</button><div class="result" id="nickOut">Sonuç burada...</div><div class="share-btn"><button onclick="shareText('nickOut','X')">X'te Paylaş</button><button onclick="shareText('nickOut','WA')">WhatsApp</button></div></div>
+
+        <div class="tool"><h2>İlişki & Uyum Analizi</h2><input id="ad1" placeholder="İsim 1"><input id="ad2" placeholder="İsim 2"><button onclick="askNe()">Analiz Et</button><div class="result" id="askOut">Sonuç burada...</div><div class="share-btn"><button onclick="shareText('askOut','X')">X'te Paylaş</button><button onclick="shareText('askOut','WA')">WhatsApp</button></div></div>
+
+        <div class="tool"><h2>Rüya Analizi</h2><textarea id="ruyaIn" placeholder="Rüyanızı detaylı anlatın"></textarea><button onclick="ruyaNe()">Analiz Et</button><div class="result" id="ruyaOut">Yorum burada...</div><div class="share-btn"><button onclick="shareText('ruyaOut','X')">X'te Paylaş</button><button onclick="shareText('ruyaOut','WA')">WhatsApp</button></div></div>
+
+        <div class="tool"><h2>İçerik Stratejisi</h2><input id="memeIn" placeholder="Platform, hedef kitle, amaç"><button onclick="memeNe()">Strateji Oluştur</button><div class="result" id="memeOut">Plan burada...</div><div class="share-btn"><button onclick="shareText('memeOut','X')">X'te Paylaş</button><button onclick="shareText('memeOut','WA')">WhatsApp</button></div></div>
+
+        <div class="tool"><h2>Sosyal Medya Metni</h2><input id="tweetIn" placeholder="Konu, platform, hedef"><button onclick="tweetNe()">Metin Üret</button><div class="result" id="tweetOut">Metin burada...</div><div class="share-btn"><button onclick="shareText('tweetOut','X')">X'te Paylaş</button><button onclick="shareText('tweetOut','WA')">WhatsApp</button></div></div>
+
+        <div class="tool"><h2>Senaryo & Hikaye</h2><input id="filmIn" placeholder="Tür, tema, süre"><button onclick="filmNe()">Senaryo Yaz</button><div class="result" id="filmOut">Hikaye burada...</div><div class="share-btn"><button onclick="shareText('filmOut','X')">X'te Paylaş</button><button onclick="shareText('filmOut','WA')">WhatsApp</button></div></div>
+
+        <div class="tool"><h2>Karar Destek Sistemi</h2><button onclick="kararNe()">Tavsiye Al</button><div class="result" id="kararOut">Karar burada...</div><div class="share-btn"><button onclick="shareText('kararOut','X')">X'te Paylaş</button><button onclick="shareText('kararOut','WA')">WhatsApp</button></div></div>
+
     </div>
-
-    <!-- Ne Nick -->
-    <div class="tool">
-      <h2>🎮 Ne Nick?</h2>
-      <input id="nickIn" placeholder="Oyun, TikTok, rap, estetik...">
-      <button onclick="neNick()">NE YAPAY!</button>
-      <div class="result" id="nickOut">Sonucu gör!</div>
-      <div class="share-btn">
-        <button onclick="shareText('nickOut','X')">X'te Paylaş</button>
-        <button onclick="shareText('nickOut','WA')">WhatsApp</button>
-      </div>
-    </div>
-
-    <!-- Ne Aşk -->
-    <div class="tool">
-      <h2>❤️ Ne Aşk?</h2>
-      <input id="ad1" placeholder="Sen">
-      <input id="ad2" placeholder="O">
-      <button onclick="askNe()">NE YAPAY!</button>
-      <div class="result" id="askOut">❤️</div>
-      <div class="share-btn">
-        <button onclick="shareText('askOut','X')">X'te Paylaş</button>
-        <button onclick="shareText('askOut','WA')">WhatsApp</button>
-      </div>
-    </div>
-
-    <!-- Ne Ölüm -->
-    <div class="tool">
-      <h2>⚰️ Ne Ölüm?</h2>
-      <input id="olumAd" placeholder="Adın">
-      <button onclick="olumNe()">NE YAPAY!</button>
-      <div class="result" id="olumOut">Kaderin yazılıyor...</div>
-      <div class="share-btn">
-        <button onclick="shareText('olumOut','X')">X'te Paylaş</button>
-        <button onclick="shareText('olumOut','WA')">WhatsApp</button>
-      </div>
-    </div>
-
-    <!-- Ne Bebek -->
-    <div class="tool">
-      <h2>👶 Ne Bebek?</h2>
-      <select id="cins">
-        <option>Kız</option><option>Erkek</option><option>Genderless</option>
-      </select>
-      <button onclick="bebekNe()">NE YAPAY!</button>
-      <div class="result" id="bebekOut">İsimler geliyor...</div>
-      <div class="share-btn">
-        <button onclick="shareText('bebekOut','X')">X'te Paylaş</button>
-        <button onclick="shareText('bebekOut','WA')">WhatsApp</button>
-      </div>
-    </div>
-
-    <!-- Ne Rüya -->
-    <div class="tool">
-      <h2>🌙 Ne Rüya?</h2>
-      <input id="ruyaIn" placeholder="Rüyanda ne gördün?">
-      <button onclick="ruyaNe()">NE YAPAY!</button>
-      <div class="result" id="ruyaOut">Yorumlanıyor...</div>
-      <div class="share-btn">
-        <button onclick="shareText('ruyaOut','X')">X'te Paylaş</button>
-        <button onclick="shareText('ruyaOut','WA')">WhatsApp</button>
-      </div>
-    </div>
-
-    <!-- Ne Plaka -->
-    <div class="tool">
-      <h2>🚗 Ne Plaka?</h2>
-      <input id="plakaIn" placeholder="34 ABC 123">
-      <button onclick="plakaNe()">NE YAPAY!</button>
-      <div class="result" id="plakaOut">Falına bakılıyor...</div>
-      <div class="share-btn">
-        <button onclick="shareText('plakaOut','X')">X'te Paylaş</button>
-        <button onclick="shareText('plakaOut','WA')">WhatsApp</button>
-      </div>
-    </div>
-
-    <!-- Ne Fikir -->
-    <div class="tool">
-      <h2>💡 Ne Fikir?</h2>
-      <input id="fikirIn" placeholder="TikTok, iş, viral...">
-      <button onclick="fikirNe()">NE YAPAY!</button>
-      <div class="result" id="fikirOut">Fikir geliyor...</div>
-      <div class="share-btn">
-        <button onclick="shareText('fikirOut','X')">X'te Paylaş</button>
-        <button onclick="shareText('fikirOut','WA')">WhatsApp</button>
-      </div>
-    </div>
-
-    <!-- Günün Şansı -->
-    <div class="tool">
-      <h2>🍀 Günün Şansı?</h2>
-      <button onclick="sansNe()">NE YAPAY!</button>
-      <div class="result" id="sansOut">Şansın açılıyor...</div>
-      <div class="share-btn">
-        <button onclick="shareText('sansOut','X')">X'te Paylaş</button>
-        <button onclick="shareText('sansOut','WA')">WhatsApp</button>
-      </div>
-    </div>
-
-    <!-- Ne Karar -->
-    <div class="tool">
-      <h2>❓ Ne Karar?</h2>
-      <button onclick="kararNe()">EVET Mİ HAYIR MI?</button>
-      <div class="result" id="kararOut">Kaderin belirleniyor...</div>
-      <div class="share-btn">
-        <button onclick="shareText('kararOut','X')">X'te Paylaş</button>
-        <button onclick="shareText('kararOut','WA')">WhatsApp</button>
-      </div>
-    </div>
-
-    <!-- Meme -->
-    <div class="tool">
-      <h2>😂 Ne Meme?</h2>
-      <input id="memeIn" placeholder="Konu gir...">
-      <button onclick="memeNe()">NE YAPAY!</button>
-      <div class="result" id="memeOut">Meme önerisi buraya...</div>
-      <div class="share-btn">
-        <button onclick="shareText('memeOut','X')">X'te Paylaş</button>
-        <button onclick="shareText('memeOut','WA')">WhatsApp</button>
-      </div>
-    </div>
-
-    <!-- Tweet -->
-    <div class="tool">
-      <h2>🐦 Ne Tweet?</h2>
-      <input id="tweetIn" placeholder="Konu gir...">
-      <button onclick="tweetNe()">NE YAPAY!</button>
-      <div class="result" id="tweetOut">Tweet önerisi buraya...</div>
-      <div class="share-btn">
-        <button onclick="shareText('tweetOut','X')">X'te Paylaş</button>
-        <button onclick="shareText('tweetOut','WA')">WhatsApp</button>
-      </div>
-    </div>
-
-    <!-- Film -->
-    <div class="tool">
-      <h2>🎬 Ne Film?</h2>
-      <input id="filmIn" placeholder="Konu gir...">
-      <button onclick="filmNe()">NE YAPAY!</button>
-      <div class="result" id="filmOut">Film fikri buraya...</div>
-      <div class="share-btn">
-        <button onclick="shareText('filmOut','X')">X'te Paylaş</button>
-        <button onclick="shareText('filmOut','WA')">WhatsApp</button>
-      </div>
-    </div>
-
-    <!-- Avatar -->
-    <div class="tool">
-      <h2>🖼️ Ne Avatar?</h2>
-      <input id="avatarIn" placeholder="İsim gir...">
-      <button onclick="avatarNe()">NE YAPAY!</button>
-      <div class="result" id="avatarOut">Avatar önerisi buraya...</div>
-      <div class="share-btn">
-        <button onclick="shareText('avatarOut','X')">X'te Paylaş</button>
-        <button onclick="shareText('avatarOut','WA')">WhatsApp</button>
-      </div>
-    </div>
-
-  </div>
 </div>
 
-<!-- ALT REKLAM SKELETON -->
-<div style="max-width:1100px;margin:18px auto;text-align:center;">
-  <div class="ad-skeleton" id="adSk2"></div>
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-1554661709211540"
-       data-ad-slot="1234567899"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+<div style="max-width:1200px;margin:30px auto;text-align:center;">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1554661709211540" data-ad-slot="9876543210" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
 </div>
 
-<footer>© 2025 Neyapay.com.tr | Made with AI</footer>
-<div id="darkToggle" onclick="toggleDark()">Ay</div>
+<footer style="text-align:center;padding:30px;color:#888;font-size:.9rem">© 2025 Neyapay.com.tr – Tüm hakları saklıdır.</footer>
 
 <script>
-/* ====== CONFIG ====== */
 const proxyUrl = "https://neyapay-api.vercel.app/api/zap";
 
-/* Daily limit tracking (client-side) */
-let dailyLimit = 500;
-let used = parseInt(localStorage.getItem('neyapay_used')||'0');
-const today = new Date().toDateString();
-if(localStorage.getItem('neyapay_day')!==today){
-  used = 0;
-  localStorage.setItem('neyapay_used','0');
-  localStorage.setItem('neyapay_day',today);
+async function updateZapCounter() {
+    try {
+        const r = await fetch("https://neyapay-api.vercel.app/api/stats");
+        if (r.ok) {
+            const d = await r.json();
+            document.getElementById('limitInfo').innerText = `${(d.limit||500)-(d.used||0)}/${d.limit||500}`;
+        }
+    } catch(e) { document.getElementById('limitInfo').innerText = "Offline"; }
 }
-document.getElementById('limitInfo').innerText = `Zap: ${dailyLimit-used}/${dailyLimit}`;
+updateZapCounter(); setInterval(updateZapCounter, 30000);
 
-/* Core AI call */
-async function neAI(promptText){
-  if(used >= dailyLimit) return "Bugün limit doldu!";
-  try{
-    const r = await fetch(proxyUrl, {
-      method: "POST",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify({ prompt: promptText })
-    });
-    const d = await r.json();
-    used++;
-    localStorage.setItem('neyapay_used', used);
-    document.getElementById('limitInfo').innerText = `Zap: ${dailyLimit-used}/${dailyLimit}`;
-    return d.cevap || d.result || JSON.stringify(d);
-  }catch(e){
-    console.error(e);
-    return "Bağlantı hatası, tekrar dene!";
-  }
+async function neAI(p) {
+    try {
+        const r = await fetch(proxyUrl, {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt:p})});
+        const d = await r.json(); updateZapCounter();
+        return d.cevap || "Sonuç üretilemedi.";
+    } catch(e) { return "Bağlantı hatası."; }
 }
 
-/* small helper to show loading (güncellendi: dönen zap) */
-function L(id){
-  const el = document.getElementById(id);
-  if(el) el.innerHTML = '<div class="loadingZap"><div></div></div>';
+function L(id){ document.getElementById(id).innerHTML = '<div class="loadingZap"><div></div></div>'; }
+
+function shareText(id,p){ 
+    const t = (document.getElementById(id)?.innerText||'').trim() || "NEYAPAY"; 
+    const u = "https://neyapay.com.tr";
+    p==='X' ? open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(t+"\n\nNEYAPAY → "+u)}`) 
+            : open(`https://wa.me/?text=${encodeURIComponent(t+"\n\nNEYAPAY → "+u)}`);
 }
 
-/* SHARE helper */
-function shareText(id, platform){
-  const t = (document.getElementById(id)?.innerText || '').trim() || "NEYAPAY bir şey üretemedi!";
-  const u = 'https://neyapay.com.tr';
-  if(platform === 'X') open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(t + "\n\nNEYAPAY → " + u)}`);
-  else open(`https://wa.me/?text=${encodeURIComponent(t + "\n\nNEYAPAY → " + u)}`);
-}
+async function promptNe(){ const k=document.getElementById('promptIn').value||'genel'; L('promptOut'); const r=await neAI(`En etkili ve detaylı prompt yapısını oluştur: "${k}". Türkçe, profesyonel, adım adım, örnekli.`); document.getElementById('promptOut').innerHTML=r.replace(/\n/g,'<br>'); }
+async function neNick(){ const k=document.getElementById('nickIn').value||'marka'; L('nickOut'); const r=await neAI(`10 güçlü, akılda kalıcı, modern marka/nick ismi öner. Alan: ${k}. Türkçe ve global kullanıma uygun olsun.`); document.getElementById('nickOut').innerHTML=r.replace(/\n/g,'<br>'); }
+async function askNe(){ const a=document.getElementById('ad1').value||'A', b=document.getElementById('ad2').value||'B'; L('askOut'); const r=await neAI(`İki kişi arasındaki uyum analizi yap: ${a} ve ${b}. Psikolojik, duygusal, iletişim, uzun vadeli potansiyel. Profesyonel ve derinlemesine.`); document.getElementById('askOut').innerHTML=`<strong>${a} ↔ ${b}</strong><br><br>${r.replace(/\n/g,'<br>')}`; }
+async function ruyaNe(){ const t=document.getElementById('ruyaIn').value; if(!t)return; L('ruyaOut'); const r=await neAI(`Rüya analizi yap: "${t}". Psikolojik, sembolik, bilinçaltı mesajları. Derin ve gerçekçi yorum.`); document.getElementById('ruyaOut').innerHTML=r.replace(/\n/g,'<br>'); }
+async function memeNe(){ const k=document.getElementById('memeIn').value||'genel'; L('memeOut'); const r=await neAI(`30 günlük içerik stratejisi oluştur: ${k}. Viral potansiyel, trendler, posting takvimi, format önerileri.`); document.getElementById('memeOut').innerHTML=r.replace(/\n/g,'<br>'); }
+async function tweetNe(){ const k=document.getElementById('tweetIn').value||'genel'; L('tweetOut'); const r=await neAI(`Yüksek etkileşimli sosyal medya metni yaz: Konu "${k}". Türkçe, dikkat çekici, call-to-action güçlü.`); document.getElementById('tweetOut').innerHTML=r.replace(/\n/g,'<br>'); }
+async function filmNe(){ const k=document.getElementById('filmIn').value||'kısa film'; L('filmOut'); const r=await neAI(`Tam senaryo taslağı yaz: Tür ${k}. Giriş, gelişme, sonuç. Karakterler, diyaloglar, twist.`); document.getElementById('filmOut').innerHTML=r.replace(/\n/g,'<br>'); }
+function kararNe(){ const o=["Devam et","Dur ve yeniden değerlendir","Küçük adımlarla başla","Şimdi tam zamanı","Risk almaya değer"]; const s=o[Math.floor(Math.random()*o.length)]; document.getElementById('kararOut').innerHTML=`<strong>${s}</strong>`; }
 
-/* ====== TOOLS ====== */
-async function promptNe(){
-  const konu = document.getElementById('promptIn').value || 'nickname';
-  L('promptOut');
-  const r = await neAI(`2025'te ${konu} için kullanıcıya en iyi AI prompt önerilerini sırala, komik ve eğlenceli olsun`);
-  document.getElementById('promptOut').innerHTML = r.replace(/\n/g,'<br>');
-}
-
-async function neNick(){
-  const isim = document.getElementById('nickIn').value || 'oyuncu';
-  L('nickOut');
-  const r = await neAI(`2025'te ${isim} için 5 ultra havalı nickname, sadece liste`);
-  document.getElementById('nickOut').innerHTML = r.replace(/\n/g,'<br>');
-}
-
-async function askNe(){
-  const a = document.getElementById('ad1').value || 'Sen';
-  const b = document.getElementById('ad2').value || 'Sevdiğin';
-  const p = Math.floor(Math.random()*35)+65;
-  L('askOut');
-  const y = await neAI(`${a} ile ${b} arasında %${p} aşk var, 2050 cyberpunk tarzı komik yorum yaz`);
-  document.getElementById('askOut').innerHTML = `${a} ${b}<br><strong>%${p} UYUM</strong><br>${y.replace(/\n/g,'<br>')}`;
-}
-
-async function olumNe(){
-  const a = document.getElementById('olumAd').value || 'Sen';
-  L('olumOut');
-  const r = await neAI(`${a} ne zaman ölecek? 3000'li yıllarda, çok komik olsun`);
-  document.getElementById('olumOut').innerHTML = r.replace(/\n/g,'<br>');
-}
-
-async function bebekNe(){
-  const c = document.getElementById('cins').value;
-  L('bebekOut');
-  const r = await neAI(`${c} bebek için 2025-2030 trend 3 isim + anlamı`);
-  document.getElementById('bebekOut').innerHTML = r.replace(/\n/g,'<br>');
-}
-
-async function ruyaNe(){
-  const t = document.getElementById('ruyaIn').value;
-  if(!t) return;
-  L('ruyaOut');
-  const r = await neAI(`"${t}" rüyasının 2025 yorumu, komik olsun`);
-  document.getElementById('ruyaOut').innerHTML = r.replace(/\n/g,'<br>');
-}
-
-async function plakaNe(){
-  const p = document.getElementById('plakaIn').value;
-  if(!p) return;
-  L('plakaOut');
-  const r = await neAI(`${p} plakalı araba sahibine 2050 falı, komik olsun`);
-  document.getElementById('plakaOut').innerHTML = r.replace(/\n/g,'<br>');
-}
-
-async function fikirNe(){
-  const c = document.getElementById('fikirIn').value || 'viral';
-  L('fikirOut');
-  const r = await neAI(`2026'da ${c} için patlayacak çılgın fikir`);
-  document.getElementById('fikirOut').innerHTML = r.replace(/\n/g,'<br>');
-}
-
-function sansNe(){
-  const n = Array.from({length:6},()=>Math.floor(Math.random()*99)+1);
-  document.getElementById('sansOut').innerHTML = `<strong>${n.join(' ')}</strong><br>Bugün şanslı günün!`;
-}
-
-function kararNe(){
-  const d = ["KESİNLİKLE YAP!","ASLA YAPMA!","YAP GİTSİN!","BUGÜN ŞANSLISIN","DÜŞÜN BİRAZ"];
-  document.getElementById('kararOut').innerHTML = `<strong>${d[Math.floor(Math.random()*d.length)]}</strong>`;
-}
-
-/* Mini araçlar */
-async function memeNe(){
-  const t = document.getElementById('memeIn').value || 'komik';
-  L('memeOut');
-  const r = await neAI(`2025'te ${t} konusu için komik meme fikri`);
-  document.getElementById('memeOut').innerHTML = r.replace(/\n/g,'<br>');
-}
-async function tweetNe(){
-  const t = document.getElementById('tweetIn').value || 'viral';
-  L('tweetOut');
-  const r = await neAI(`2025'te ${t} konusu için 280 karakterlik komik tweet`);
-  document.getElementById('tweetOut').innerHTML = r.replace(/\n/g,'<br>');
-}
-async function filmNe(){
-  const t = document.getElementById('filmIn').value || 'hikaye';
-  L('filmOut');
-  const r = await neAI(`2025'te ${t} konusu için kısa film fikri`);
-  document.getElementById('filmOut').innerHTML = r.replace(/\n/g,'<br>');
-}
-async function avatarNe(){
-  const t = document.getElementById('avatarIn').value || 'Kullanıcı';
-  L('avatarOut');
-  const r = await neAI(`2025 neon avatar ${t} ismi için oluştur`);
-  document.getElementById('avatarOut').innerHTML = r.replace(/\n/g,'<br>');
-}
-
-/* Toggle dark/light */
-function toggleDark(){
-  document.body.classList.toggle('light');
-  document.getElementById('darkToggle').innerText = document.body.classList.contains('light') ? 'Güneş' : 'Ay';
-}
-
-/* Init: set darkToggle text correctly */
-document.getElementById('darkToggle').innerText = document.body.classList.contains('light') ? 'Güneş' : 'Ay';
-
-/* ===== SIDEBAR & THEME HELPERS ===== */
-function toggleSidebar(){
-  const sb = document.getElementById('sidebar');
-  sb.classList.toggle('open');
-  const open = sb.classList.contains('open');
-  sb.setAttribute('aria-hidden', (!open).toString());
-  // add class to body so we can shift content on wide screens
-  document.body.classList.toggle('sidebar-open', open);
-}
-
-/* Set theme and persist */
-function setTheme(t){
-  document.body.classList.remove('light','neon','hacker');
-  if(t && t !== 'dark') document.body.classList.add(t);
-  localStorage.setItem('neyapay_theme', t || 'dark');
-  document.getElementById('darkToggle').innerText = document.body.classList.contains('light') ? 'Güneş' : 'Ay';
-}
-
-/* Restore theme on load */
-(function restoreTheme(){
-  const saved = localStorage.getItem('neyapay_theme');
-  if(saved){
-    if(saved === 'light') document.body.classList.add('light');
-    else if(saved === 'neon') document.body.classList.add('neon');
-    else if(saved === 'hacker') document.body.classList.add('hacker');
-    document.getElementById('darkToggle').innerText = document.body.classList.contains('light') ? 'Güneş' : 'Ay';
-  }
-})();
-
-/* Remove ad skeletons after a timeout (when ads presumably loaded) */
-setTimeout(()=>{
-  const a1 = document.getElementById('adSk1');
-  const a2 = document.getElementById('adSk2');
-  if(a1) a1.style.display = 'none';
-  if(a2) a2.style.display = 'none';
-}, 2000);
-
-/* Optional: fallback if proxy fails (simple second URL) */
-const proxyFallback = "https://neyapay-api-alt.vercel.app/api/zap"; // düzenle istersen
-async function neAI_withFallback(promptText){
-  try{
-    return await neAI(promptText);
-  }catch(e){
-    // try fallback
-    try{
-      const r = await fetch(proxyFallback, {
-        method: "POST",
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify({ prompt: promptText })
-      });
-      const d = await r.json();
-      used++;
-      localStorage.setItem('neyapay_used', used);
-      document.getElementById('limitInfo').innerText = `Zap: ${dailyLimit-used}/${dailyLimit}`;
-      return d.cevap || d.result || JSON.stringify(d);
-    }catch(e2){
-      return "Bağlantı hatası, tekrar dene!";
-    }
-  }
-}
-/* Note: mevcut fonksiyonlar doğrudan neAI() kullanıyor; istersen hepsini otomatik fallback'e çevireyim. */
-
+function toggleSidebar(){ document.getElementById('sidebar').classList.toggle('open'); document.getElementById('burger').classList.toggle('active'); }
+function toggleThemePanel(){ document.getElementById('themePanel').classList.toggle('open'); }
+function setTheme(t){ document.body.className=''; if(t!=='dark')document.body.classList.add(t); localStorage.setItem('neyapay_theme',t||'dark'); }
+(function(){ const s=localStorage.getItem('neyapay_theme')||'dark'; setTheme(s); })();
 </script>
 </body>
 </html>
