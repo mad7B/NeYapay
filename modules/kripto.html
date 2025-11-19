@@ -12,28 +12,35 @@
             font-family: "Inter", sans-serif;
             margin: 0;
             padding: 0;
-            transition: 0.2s;
+            overflow-x: hidden;
         }
 
+        /* Sidebar açıkken scroll kilidi */
         body.sidebar-open {
             overflow: hidden !important;
         }
 
-        /* Top Title */
-        .site-title {
-            text-align: center;
-            margin-top: 25px;
-            margin-bottom: -10px;
+        /* MENU BUTTON */
+        .menu-button {
+            width: 48px;
+            height: 48px;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #00e5ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            cursor: pointer;
+        }
+        .menu-button span {
+            font-size: 30px;
+            color: #000;
         }
 
-        .logo {
-            font-size: 34px;
-            font-weight: 800;
-            color: #00eaff;
-            text-shadow: 0 0 18px rgba(0, 255, 255, 0.6);
-        }
-
-        /* Sidebar */
+        /* SIDEBAR (BOŞLUK KAPATILDI) */
         .sidebar {
             width: 260px;
             height: 100vh;
@@ -43,52 +50,56 @@
             left: -260px;
             padding: 20px;
             transition: 0.3s ease;
-            z-index: 999999;
+            z-index: 9999;
             backdrop-filter: blur(12px);
         }
         .sidebar.open {
             left: 0;
         }
+
         .sidebar a {
             display: block;
-            margin: 15px 0;
-            color: #fff;
-            text-decoration: none;
+            margin: 18px 0;
+            color: white;
             font-size: 18px;
+            text-decoration: none;
         }
 
-        /* Menü Icon */
-        .menu-button {
-            width: 48px;
-            height: 48px;
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            background: #00e5ff;
-            border-radius: 50%;
+        /* HEADER - anasayfa ile aynı */
+        .header {
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 9999999;
-            cursor: pointer;
-        }
-        .menu-button span {
-            font-size: 30px;
-            color: #000;
+            gap: 12px;
+            padding-top: 90px;
+            text-align: center;
         }
 
+        .header img {
+            width: 38px;
+        }
+
+        .header-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #00eaff;
+            text-shadow: 0 0 12px rgba(0, 255, 255, 0.65);
+        }
+
+        /* CONTENT */
         .container {
-            padding: 100px 25px;
+            padding: 20px 25px 70px;
         }
 
         a.back-button {
             display: inline-block;
+            margin-top: 10px;
             margin-bottom: 25px;
             padding: 12px 18px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.10);
             border-radius: 12px;
-            text-decoration: none;
             color: white;
+            text-decoration: none;
         }
 
         .card {
@@ -114,7 +125,7 @@
             border-radius: 12px;
             border: none;
             background: linear-gradient(90deg, #00c6ff, #7d2bff);
-            color: #fff;
+            color: white;
             cursor: pointer;
             font-size: 18px;
         }
@@ -130,16 +141,18 @@
 
     <!-- SIDEBAR -->
     <div class="sidebar" id="sidebar">
-        <h2>Menü</h2>
+        <h2 style="color:white; margin-top: 10px;">Menü</h2>
+
         <a href="../index.html">Anasayfa</a>
         <a href="kripto.html">Kripto Analiz</a>
         <a href="plaka.html">Plaka Sorgu</a>
         <a href="sohbet.html">Sohbet</a>
     </div>
 
-    <!-- HEADER -->
-    <div class="site-title">
-        <span class="logo">🧠 NEYAPAY</span>
+    <!-- HEADER (Anasayfadakiyle aynı) -->
+    <div class="header">
+        <img src="../assets/brain.png">
+        <span class="header-title">NEYAPAY</span>
     </div>
 
     <!-- CONTENT -->
@@ -170,12 +183,18 @@
             document.body.classList.toggle("sidebar-open");
         }
 
+        // Sidebar linkine tıklayınca otomatik kapanması (boşluk hatasını da çözer)
+        document.querySelectorAll(".sidebar a").forEach(link => {
+            link.addEventListener("click", () => {
+                document.getElementById("sidebar").classList.remove("open");
+                document.body.classList.remove("sidebar-open");
+            });
+        });
+
         function generateCrypto() {
-            const input = document.getElementById("tokenInput").value;
+            const input = document.getElementById("tokenInput").value.trim();
             document.getElementById("result").innerText =
-                input.trim() === "" 
-                ? "Lütfen bir fikir gir."
-                : "AI fikir üretiliyor...";
+                input === "" ? "Lütfen bir fikir gir." : "AI fikir üretiliyor...";
         }
     </script>
 
