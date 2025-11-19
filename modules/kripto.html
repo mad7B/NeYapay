@@ -12,84 +12,77 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{
   background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;
-  min-height:100vh;padding-top:88px;position:relative;overflow-x:hidden;
+  min-height:100vh;padding-top:78px;position:relative;overflow-x:hidden;
+  background-image:radial-gradient(circle at 10% 20%,rgba(0,247,255,.06) 0%,transparent 20%),
+                   radial-gradient(circle at 90% 80%,rgba(255,0,255,.06) 0%,transparent 20%);
 }
 body::before{
-  content:'';position:fixed;inset:0;
-  background:repeating-radial-gradient(circle at 20% 20%,rgba(0,247,255,.04)0,transparent 12px),
-             repeating-radial-gradient(circle at 80% 80%,rgba(255,0,255,.04)0,transparent 12px);
-  pointer-events:none;animation:stars 40s linear infinite;
+  content:'';position:fixed;inset:0;pointer-events:none;
+  background:repeating-conic-gradient(from 45deg at 50% 50%,rgba(0,247,255,.03) 0deg,rgba(255,0,255,.03) 90deg,transparent 180deg);
+  animation:stars 60s linear infinite;
 }
-@keyframes stars{0%,100%{opacity:.5}50%{opacity:.9}}
+@keyframes stars{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
 
-/* HEADER */
+/* YENİ TEMİZ HEADER — ANASAYFA GİBİ */
 header{
   position:fixed;top:0;left:0;right:0;z-index:999;
   background:rgba(10,0,30,.96);backdrop-filter:blur(16px);
-  border-bottom:2px solid rgba(0,247,255,.15);padding:16px 20px;
+  border-bottom:2px solid rgba(0,247,255,.15);padding:14px 20px;
+  display:flex;align-items:center;justify-content:center;
 }
-.header-content{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
-.header-left{display:flex;align-items:center;gap:14px;}
-h1{
-  font-family:'Orbitron',sans-serif;font-size:clamp(2.1rem,7vw,3rem);
+header h1{
+  font-family:'Orbitron',sans-serif;
+  font-size:clamp(2.4rem,8vw,3.4rem);
   background:linear-gradient(90deg,#00f7ff,#ff00ff,#39ff14);
   -webkit-background-clip:text;color:transparent;
-  text-shadow:0 0 20px rgba(0,247,255,.7);margin:0;white-space:nowrap;
+  text-shadow:0 0 30px rgba(0,247,255,.8);
+  margin:0;letter-spacing:2px;
 }
-.tagline{font-size:.95rem;font-weight:600;color:#00f7ff;text-shadow:0 0 10px rgba(0,247,255,.6);}
 
-/* ATEŞLİ ZAP COUNTER */
-.zap-counter{
-  display:flex;align-items:center;gap:14px;
-  background:linear-gradient(135deg,rgba(255,50,0,.2),rgba(255,100,0,.1));
-  padding:12px 22px;border-radius:50px;
-  border:2px solid rgba(255,80,0,.7);
-  box-shadow:0 0 30px rgba(255,80,0,.6),inset 0 0 20px rgba(255,100,0,.2);
-  animation:firePulse 3s infinite;
+/* KÜÇÜK ATEŞLİ SAYAÇ — SAĞ ÜST KÖŞE */
+#zapCounter{
+  position:fixed;top:16px;right:16px;z-index:1000;
+  background:rgba(255,50,0,.2);padding:10px 16px;border-radius:50px;
+  border:2px solid rgba(255,80,0,.7);box-shadow:0 0 25px rgba(255,80,0,.6);
+  display:flex;align-items:center;gap:10px;backdrop-filter:blur(10px);
+  animation:firePulse 3s infinite;font-weight:900;color:#fff;
 }
-.fire-icon{width:38px;height:44px;position:relative;}
-.fire-icon span{position:absolute;bottom:0;width:10px;height:10px;background:#ff3300;border-radius:50%;animation:fire 1.5s infinite ease-in-out;box-shadow:0 0 18px #ff5500;}
-.fire-icon span:nth-child(1){left:4px;animation-delay:0s;height:34px;width:12px;background:#ff6600;}
-.fire-icon span:nth-child(2){left:14px;animation-delay:.2s;height:40px;width:14px;background:#ff3300;}
-.fire-icon span:nth-child(3){left:24px;animation-delay:.4s;height:30px;width:11px;background:#ff8800;}
-.zap-count{font-weight:900;font-size:1.25rem;color:#fff;text-shadow:0 0 15px #ff3300;background:rgba(0,0,0,.6);padding:10px 18px;border-radius:30px;border:1px solid rgba(255,80,0,.8);min-width:100px;text-align:center;}
-@keyframes fire{0%,100%{transform:translateY(0) scale(1);opacity:.8}50%{transform:translateY(-20px) scale(1.4);opacity:1}}
-@keyframes firePulse{0%,100%{box-shadow:0 0 30px rgba(255,80,0,.6)}50%{box-shadow:0 0 45px rgba(255,80,0,1)}}
+#zapCounter .fire{
+  width:28px;height:32px;position:relative;
+}
+#zapCounter .fire span{
+  position:absolute;bottom:0;width:8px;height:8px;background:#ff3300;
+  border-radius:50%;animation:flame 1.4s infinite;box-shadow:0 0 14px #ff5500;
+}
+#zapCounter .fire span:nth-child(1){left:2px;height:24px;width:9px;background:#ff6600;animation-delay:0s;}
+#zapCounter .fire span:nth-child(2){left:10px;height:28px;width:10px;animation-delay:.2s;}
+#zapCounter .fire span:nth-child(3){left:18px;height:20px;width:8px;background:#ff8800;animation-delay:.4s;}
+#zapCounter span{font-size:1rem;text-shadow:0 0 10px #ff3300;}
+@keyframes flame{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-14px) scale(1.3)}}
+@keyframes firePulse{0%,100%{box-shadow:0 0 25px rgba(255,80,0,.6)}50%{box-shadow:0 0 40px rgba(255,80,0,1)}}
 
-/* 3 ÇİZGİLİ HAMBURGER */
+/* HAMBURGER MENÜ */
 #burger{
-  position:fixed;top:18px;left:18px;width:52px;height:52px;border-radius:50%;
+  position:fixed;top:16px;left:16px;width:52px;height:52px;border-radius:50%;
   background:var(--zap);display:flex;flex-direction:column;justify-content:center;align-items:center;
-  cursor:pointer;z-index:1002;box-shadow:var(--glow);transition:.3s;
+  cursor:pointer;z-index:1002;box-shadow:var(--glow);
 }
 #burger span{
-  display:block;width:28px;height:4px;background:#fff;margin:4px 0;border-radius:4px;
+  width:28px;height:4px;background:#fff;margin:4px 0;border-radius:4px;
   transition:.3s;box-shadow:0 0 10px #00f7ff;
 }
 #burger.active span:nth-child(1){transform:translateY(12px) rotate(45deg);}
 #burger.active span:nth-child(2){opacity:0;}
 #burger.active span:nth-child(3){transform:translateY(-12px) rotate(-45deg);}
 
-/* SIDEBAR */
-#sidebar{
-  position:fixed;top:0;left:-300px;width:280px;height:100%;background:rgba(10,0,25,.96);
-  backdrop-filter:blur(12px);border-right:2px solid rgba(0,247,255,.2);padding:92px 20px 20px;z-index:1001;
-  transition:left .35s ease;overflow-y:auto;
-}
+/* SIDEBAR, THEME, CARD vs. aynı kaldı */
+#sidebar{position:fixed;top:0;left:-300px;width:280px;height:100%;background:rgba(10,0,25,.96);backdrop-filter:blur(12px);border-right:2px solid rgba(0,247,255,.2);padding:92px 20px 20px;z-index:1001;transition:left .35s ease;overflow-y:auto;}
 #sidebar.open{left:0}
 #sidebar h3{color:var(--zap);text-align:center;font-size:1.6rem;margin-bottom:24px;text-shadow:0 0 15px var(--zap);}
 .sidebar-item{display:flex;align-items:center;gap:16px;padding:16px 18px;margin:6px 0;background:rgba(255,255,255,.04);border-radius:14px;color:var(--text);text-decoration:none;font-weight:600;transition:.3s;border-left:4px solid transparent;}
 .sidebar-item:hover{background:rgba(0,247,255,.12);transform:translateX(8px);border-left-color:var(--zap);}
 .sidebar-item.active{background:rgba(0,247,255,.18);border-left-color:var(--zap);font-weight:800;}
 
-/* THEME PANEL */
-#themePanel{position:fixed;bottom:80px;right:16px;background:rgba(15,0,35,.96);backdrop-filter:blur(12px);border:1px solid rgba(0,247,255  ,.3);border-radius:16px;padding:16px;z-index:998;width:200px;box-shadow:0 10px 40px rgba(0,0,0,.8);transform:translateY(120%);opacity:0;visibility:hidden;transition:all .35s;}
-#themePanel.open{transform:translateY(0);opacity:1;visibility:visible;}
-.theme-btn{display:block;width:100%;padding:12px;margin:6px 0;border-radius:10px;text-align:center;font-weight:600;background:rgba(255,255,255,.06);cursor:pointer;}
-.theme-btn:hover{background:rgba(0,247,255,.25);}
-#themeToggle{position:fixed;bottom:18px;right:18px;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--zap);color:#000;font-weight:800;z-index:999;box-shadow:var(--glow);cursor:pointer;}
-
-/* İÇERİK */
 .container{max-width:1100px;margin:0 auto;padding:24px 18px;position:relative;z-index:2;}
 .card{background:linear-gradient(180deg,rgba(26,0,57,.92),rgba(21,0,46,.98));border-radius:20px;padding:26px;margin:20px 0;border:1px solid rgba(0,247,255,.1);box-shadow:0 12px 40px rgba(0,0,0,.7);}
 .input{width:100%;padding:16px;border-radius:14px;border:none;background:rgba(255,255,255,.06);color:#fff;margin-top:12px;font-size:1rem;}
@@ -97,33 +90,41 @@ h1{
 .btn:hover{transform:scale(1.02);box-shadow:var(--glow);}
 .result{margin-top:14px;background:rgba(0,0,0,.5);padding:18px;border-radius:14px;color:var(--text);min-height:80px;border:1px solid rgba(0,247,255,.15);font-size:1.1rem;line-height:1.6;}
 
-/* TEMALAR */
-body.light{--bg:#f8f8ff;--text:#1a1a1a;background:#f8f8ff;}
-body.light .card{background:#fff;border-color:#ddd;}
-body.neon{--zap:#39ff14;--glow:0 0 35px rgba(57,255,20,.8);}
-body.hacker{--zap:#00ff00;--bg:#000;--text:#00ff00;font-family:'Courier New',monospace;}
-body.hacker .card{background:#000;border-color:#00ff00;}
+#themeToggle{position:fixed;bottom:18px;right:18px;width:56px;height:56px;border-radius:50%;background:var(--zap);display:grid;place-items:center;color:#000;font-weight:800;box-shadow:var(--glow);cursor:pointer;z-index:999;}
+#themePanel{position:fixed;bottom:80px;right:16px;background:rgba(15,0,35,.96);backdrop-filter:blur(12px);border:1px solid rgba(0,247,255,.3);border-radius:16px;padding:16px;width:200px;box-shadow:0 10px 40px rgba(0,0,0,.8);transform:translateY(120%);opacity:0;transition:all .35s;z-index:998;}
+#themePanel.open{transform:translateY(0);opacity:1;}
+.theme-btn{display:block;width:100%;padding:12px;margin:6px 0;border-radius:10px;text-align:center;background:rgba(255,255,255,.06);cursor:pointer;}
+.theme-btn:hover{background:rgba(0,247,255,.25);}
 
-/* MOBİL */
 @media(max-width:480px){
-  h1{font-size:2.1rem;}
-  .tagline{font-size:0.8rem;}
-  .zap-counter{padding:10px 16px;gap:10px;}
-  .fire-icon{width:32px;height:38px;}
-  .zap-count{font-size:1.1rem;padding:8px 14px;min-width:88px;}
+  header{padding:12px 16px;}
+  #zapCounter{top:12px;right:12px;padding:8px 12px;gap:8px;}
+  #zapCounter .fire{width:24px;height:28px;}
+  #zapCounter span{font-size:0.9rem;}
 }
 @keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 
-<!-- 3 ÇİZGİLİ HAMBURGER -->
+<!-- HAMBURGER -->
 <div id="burger" onclick="toggleSidebar()">
   <span></span><span></span><span></span>
 </div>
 
+<!-- KÜÇÜK ATEŞLİ SAYAÇ -->
+<div id="zapCounter">
+  <div class="fire"><span></span><span></span><span></span></div>
+  <span id="limitInfo">405/500</span>
+</div>
+
+<!-- TEMİZ HEADER -->
+<header>
+  <h1>YAPAY!</h1>
+</header>
+
 <!-- SIDEBAR -->
-<div id="sidebar" aria-hidden="true">
+<div id="sidebar">
   <h3>NEYAPAY</h3>
   <a href="/index.html" class="sidebar-item">Ana Sayfa</a>
   <a href="/modules/kripto.html" class="sidebar-item active">Kripto Analiz</a>
@@ -134,28 +135,13 @@ body.hacker .card{background:#000;border-color:#00ff00;}
   <a href="/modules/film.html" class="sidebar-item">Film Fikir</a>
 </div>
 
-<!-- THEME PANEL -->
+<div id="themeToggle" onclick="toggleThemePanel()">Tema</div>
 <div id="themePanel">
   <div class="theme-btn" onclick="setTheme('dark')">Dark</div>
   <div class="theme-btn" onclick="setTheme('light')">Light</div>
   <div class="theme-btn" onclick="setTheme('neon')">Neon</div>
   <div class="theme-btn" onclick="setTheme('hacker')">Hacker</div>
 </div>
-<div id="themeToggle" onclick="toggleThemePanel()">Tema</div>
-
-<!-- HEADER -->
-<header>
-  <div class="header-content">
-    <div class="header-left">
-      <h1>NE YAPAY!</h1>
-      <div class="tagline">GEL BİZ YAPAY!</div>
-    </div>
-    <div class="zap-counter">
-      <div class="fire-icon"><span></span><span></span><span></span></div>
-      <div class="zap-count" id="limitInfo">405/500</div>
-    </div>
-  </div>
-</header>
 
 <div class="container">
   <div class="card">
@@ -172,7 +158,6 @@ body.hacker .card{background:#000;border-color:#00ff00;}
 
 <script>
 const proxyUrl = "https://neyapay-api.vercel.app/api/zap";
-
 let dailyLimit = 500;
 let used = parseInt(localStorage.getItem('neyapay_used')||'0');
 const today = new Date().toDateString();
@@ -190,8 +175,8 @@ async function neAI(promptText){
     used++;
     localStorage.setItem('neyapay_used', used);
     document.getElementById('limitInfo').innerText = `${dailyLimit-used}/${dailyLimit}`;
-    return d.cevap || "Yapay zeka biraz yoruldu...";
-  }catch{ return "Bağlantı hatası, tekrar dene!"; }
+    return d.cevap || "Bir hata oldu, tekrar dene!";
+  }catch{ return "Bağlantı hatası!"; }
 }
 
 function L(id){
@@ -202,11 +187,10 @@ async function generate(){
   const topic = document.getElementById('tokenInput').value.trim();
   if(!topic){ document.getElementById('tokenResult').innerText = 'Bi şeyler yaz!'; return; }
   L('tokenResult');
-  const res = await neAI(`Komik ve kısa: "${topic}" için 3 tane çılgın meme coin fikri üret. Başlık + 2 cümle.`);
+  const res = await neAI(`Çok komik ve kısa: "${topic}" için 3 tane deli meme coin fikri üret. Başlık + 2 cümle.`);
   document.getElementById('tokenResult').innerText = res;
 }
 
-/* MENÜ VE TEMA */
 function toggleSidebar(){
   document.getElementById('sidebar').classList.toggle('open');
   document.getElementById('burger').classList.toggle('active');
