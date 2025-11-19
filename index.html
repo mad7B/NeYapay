@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEYAPAY – Türkiye'nin En Güçlü AI Merkezi</title>
-    <meta name="description" content="Profesyonel yapay zeka araçları: prompt, isim, marka, içerik, strateji, analiz ve daha fazlası.">
+    <meta name="description" content="Profesyonel yapay zeka araçları: prompt, isim, meslek, içerik, strateji, analiz.">
     <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/325/zap_26a1.png">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1554661709211540" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo+2:wght@500;600;700&display=swap" rel="stylesheet">
@@ -29,8 +29,8 @@
 
         header{
             position:fixed;top:0;left:0;width:100%;text-align:center;padding:18px 10px;z-index:999;
-            background:linear-gradient(0deg,rgba(13,0,32,.9),rgba(13,0,32,.7));
-            border-bottom:2px solid rgba(0,247,255,.1);backdrop-filter:blur(12px);
+            background:linear-gradient(0deg,rgba(13,0,32,.95),rgba(13,0,32,.8));
+            border-bottom:2px solid rgba(0,247,255,.15);backdrop-filter:blur(12px);
         }
         h1{
             font-family:'Orbitron',sans-serif;font-size:clamp(2.8rem,10vw,5rem);
@@ -39,21 +39,6 @@
             text-shadow:0 0 20px rgba(0,247,255,.8);margin:0;line-height:1;
         }
         .tagline{font-size:1.1rem;opacity:.9;margin-top:6px;font-weight:500}
-
-        #zapCounter{
-            position:fixed;top:16px;right:16px;z-index:1000;
-            background:rgba(255,50,0,.25);padding:10px 20px;border-radius:50px;
-            border:2px solid rgba(255,80,0,.7);box-shadow:0 0 30px rgba(255,80,0,.6);
-            display:flex;align-items:center;gap:12px;backdrop-filter:blur(10px);
-            animation:firePulse 3s infinite;font-weight:900;color:#fff;font-size:1.1rem;
-        }
-        #zapCounter .fire{width:32px;height:38px;position:relative}
-        #zapCounter .fire span{position:absolute;bottom:0;background:#ff3300;border-radius:50%;box-shadow:0 0 18px #ff5500;animation:flame 1.5s infinite}
-        #zapCounter .fire span:nth-child(1){left:4px;width:10px;height:28px;background:#ff6600;animation-delay:0s}
-        #zapCounter .fire span:nth-child(2){left:12px;width:12px;height:32px;animation-delay:.2s}
-        #zapCounter .fire span:nth-child(3){left:20px;width:10px;height:24px;background:#ff8800;animation-delay:.4s}
-        @keyframes flame{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-18px) scale(1.4)}}
-        @keyframes firePulse{0%,100%{box-shadow:0 0 30px rgba(255,80,0,.6)}50%{box-shadow:0 0 50px rgba(255,80,0,1)}}
 
         #burger{
             position:fixed;top:16px;left:16px;width:54px;height:54px;border-radius:50%;
@@ -66,15 +51,15 @@
         #burger.active span:nth-child(3){transform:translateY(-12px) rotate(-45deg)}
 
         #sidebar{
-            position:fixed;top:0;left:-280px;width:280px;height:100%;background:rgba(10,0,25,.98);
-            backdrop-filter:blur(14px);border-right:2px solid rgba(0,247,255,.2);padding:100px 20px 20px;
+            position:fixed;top:0;left:-300px;width:300px;height:100%;background:rgba(8,0,22,.98);
+            backdrop-filter:blur(16px);border-right:2px solid rgba(0,247,255,.2);padding:100px 24px 30px;
             z-index:1001;transition:left .35s ease;overflow-y:auto;
         }
         #sidebar.open{left:0}
-        #sidebar h3{color:var(--zap);text-align:center;font-size:1.8rem;margin-bottom:30px;text-shadow:0 0 20px var(--zap)}
-        #sidebar a{display:block;padding:16px 20px;margin:8px 0;background:rgba(255,255,255,.05);border-radius:14px;
-            color:var(--text);text-decoration:none;font-weight:600;transition:.3s;border:1px solid rgba(0,247,255,.1)}
-        #sidebar a:hover{background:rgba(0,247,255,.2);transform:translateX(8px);border-color:var(--zap)}
+        #sidebar h3{color:var(--zap);text-align:center;font-size:1.9rem;margin-bottom:32px;text-shadow:0 0 20px var(--zap)}
+        #sidebar a{display:block;padding:16px 20px;margin:10px 0;background:rgba(255,255,255,.06);border-radius:14px;
+            color:var(--text);text-decoration:none;font-weight:600;transition:.3s;border:1px solid rgba(0,247,255,.1);font-size:1.05rem}
+        #sidebar a:hover{background:rgba(0,247,255,.25);transform:translateX(8px);border-color:var(--zap)}
 
         #themeToggle{
             position:fixed;bottom:20px;right:20px;width:60px;height:60px;border-radius:50%;
@@ -93,77 +78,78 @@
         .theme-btn:hover{background:rgba(0,247,255,.3)}
 
         .container{max-width:1380px;margin:0 auto;padding:120px 20px 120px;position:relative;z-index:2}
-        .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+        .tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:28px}
         .tool{
-            background:linear-gradient(135deg,rgba(26,0,57,.95),rgba(21,0,46,.98));
-            border-radius:20px;padding:28px;box-shadow:0 15px 40px rgba(0,0,0,.7);
-            border:1px solid rgba(0,247,255,.15);transition:all .3s;position:relative;overflow:hidden
+            background:linear-gradient(135deg,rgba(26,0,57,.96),rgba(21,0,46,.99));
+            border-radius:22px;padding:30px;box-shadow:0 16px 45px rgba(0,0,0,.75);
+            border:1px solid rgba(0,247,255,.18);transition:all .3s;position:relative;overflow:hidden
         }
         .tool::before{
-            content:'';position:absolute;top:0;left:0;width:100%;height:4px;
-            background:linear-gradient(90deg,var(--zap),#ff00ff);opacity:.7
+            content:'';position:absolute;top:0;left:0;width:100%;height:5px;
+            background:linear-gradient(90deg,var(--zap),#ff00ff);opacity:.8
         }
-        .tool:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(0,247,255,.2)}
+        .tool:hover{transform:translateY(-12px);box-shadow:0 25px 60px rgba(0,247,255,.25)}
         .tool h2{
-            color:var(--zap);font-size:1.6rem;margin-bottom:16px;text-align:center;
-            text-shadow:0 0 15px var(--zap);font-weight:700
+            color:var(--zap);font-size:1.7rem;margin-bottom:18px;text-align:center;
+            text-shadow:0 0 16px var(--zap);font-weight:700
         }
-        input,select,textarea,button{
-            width:100%;padding:14px 16px;margin:10px 0;border-radius:14px;border:none;
+        input,textarea,button{
+            width:100%;padding:15px 18px;margin:10px 0;border-radius:14px;border:none;
             font-size:1.05rem;outline:none;font-family:inherit
         }
-        input,select,textarea{
+        input,textarea{
             background:rgba(255,255,255,.08);color:#fff;backdrop-filter:blur(8px);
             border:1px solid rgba(0,247,255,.2)
         }
-        textarea{min-height:100px;resize:vertical}
+        textarea{min-height:110px;resize:vertical}
         button{
             background:linear-gradient(45deg,#00f7ff,#ff00ff);color:#000;font-weight:800;
-            cursor:pointer;box-shadow:0 8px 30px rgba(0,247,255,.3);transition:all .2s;
-            font-size:1.1rem
+            cursor:pointer;box-shadow:0 10px 35px rgba(0,247,255,.3);transition:all .2s;
+            font-size:1.15rem
         }
-        button:hover{transform:scale(1.04);box-shadow:0 12px 40px rgba(0,247,255,.4)}
+        button:hover{transform:scale(1.04);box-shadow:0 15px 45px rgba(0,247,255,.4)}
         .result{
-            margin-top:16px;background:rgba(0,0,0,.5);padding:18px;border-radius:14px;
-            min-height:100px;color:var(--text);border:1px solid rgba(0,247,255,.15);
-            backdrop-filter:blur(8px);white-space:pre-wrap;line-height:1.6;font-size:1.05rem
+            margin-top:18px;background:rgba(0,0,0,.55);padding:20px;border-radius:14px;
+            min-height:110px;color:var(--text);border:1px solid rgba(0,247,255,.15);
+            backdrop-filter:blur(8px);white-space:pre-wrap;line-height:1.65;font-size:1.05rem
         }
-        .share-btn{display:flex;gap:12px;margin-top:14px}
-        .share-btn button{flex:1;padding:12px;font-size:1rem;background:linear-gradient(45deg,#00ff88,#00f7ff);color:#000}
+        .share-btn{display:flex;gap:14px;margin-top:16px}
+        .share-btn button{flex:1;padding:13px;font-size:1rem;background:linear-gradient(45deg,#00ff88,#00f7ff);color:#000}
 
-        .loadingZap{display:flex;justify-content:center;align-items:center;padding:20px}
-        .loadingZap div{width:28px;height:28px;border-radius:50%;border:5px solid var(--zap);
+        .loadingZap{display:flex;justify-content:center;align-items:center;padding:24px}
+        .loadingZap div{width:30px;height:30px;border-radius:50%;border:5px solid var(--zap);
             border-top-color:transparent;animation:spin 0.8s linear infinite}
         @keyframes spin{to{transform:rotate(360deg)}}
 
-        body.light{--bg:#f8f9ff;--text:#1a0038;--card:#ffffff;background:#f8f9ff}
+        /* TEMALAR */
+        body.dark{--zap:#00f7ff;--bg:#0d0020;--text:#e0e0ff}
+        body.neon{
+            --zap:#39ff14;--bg:#001a0d;--text:#39ff14;
+            background:radial-gradient(circle at 50% 50%, #001a0d, #000000);
+        }
+        body.neon .tool{background:rgba(0,40,0,.95);border-color:#39ff14}
+        body.neon button{background:linear-gradient(45deg,#39ff14,#00ff88)}
+        body.light{--bg:#f8f9ff;--text:#1a0038;background:#f8f9ff}
         body.light .tool{background:#ffffff;border:1px solid #e0e0ff;color:#333}
         body.hacker{--zap:#00ff00;--bg:#000;--text:#00ff00;font-family:'Courier New',monospace}
-        body.hacker .tool{background:#000;border:1px solid #00ff00}
+        body.hacker .tool{background:#000;border:2px solid #00ff00}
 
         @media(max-width:480px){
-            #zapCounter{top:12px;right:12px;padding:8px 14px;gap:8px;font-size:1rem}
-            #zapCounter .fire{width:28px;height:32px}
-            .tools{grid-template-columns:1fr}
+            .tools{grid-template-columns:1fr;padding:0 16px}
         }
     </style>
 </head>
-<body>
+<body class="dark">
 
 <div id="burger" onclick="toggleSidebar()">
     <span></span><span></span><span></span>
 </div>
 
-<div id="zapCounter">
-    <div class="fire"><span></span><span></span><span></span></div>
-    <span id="limitInfo">Yükleniyor...</span>
-</div>
-
 <div id="themeToggle" onclick="toggleThemePanel()">Tema</div>
 <div id="themePanel">
     <div class="theme-btn" onclick="setTheme('dark')">Dark</div>
-    <div class="theme-btn" onclick="setTheme('light')">Light</div>
     <div class="theme-btn" onclick="setTheme('neon')">Neon</div>
+    <div class="theme-btn" onclick="setTheme('light')">Light</div>
     <div class="theme-btn" onclick="setTheme('hacker')">Hacker</div>
 </div>
 
@@ -174,7 +160,6 @@
 
 <div id="sidebar">
     <h3>NEYAPAY</h3>
-    <a href="/index.html">Ana Sayfa</a>
     <a href="/modules/oyun.html">Oyun Merkezi</a>
     <a href="/modules/yapayzeka.html">Yapay Zeka Lab</a>
     <a href="/modules/youtube.html">YouTube Merkezi</a>
@@ -187,12 +172,11 @@
     <a href="/modules/meme.html">İçerik Stratejisi</a>
     <a href="/modules/film.html">Senaryo Geliştirme</a>
     <a href="/modules/tweet.html">Sosyal Medya Metni</a>
-    <a href="/modules/plaka.html">Plaka Analizi</a>
-    <a href="/modules/sans.html">Karar Destek</a>
+    <a href="/modules/meslek.html">Meslek Önerisi</a>
     <hr>
     <a onclick="setTheme('dark');return false;">Dark</a>
-    <a onclick="setTheme('light');return false;">Light</a>
     <a onclick="setTheme('neon');return false;">Neon</a>
+    <a onclick="setTheme('light');return false;">Light</a>
     <a onclick="setTheme('hacker');return false;">Hacker</a>
 </div>
 
@@ -204,50 +188,39 @@
 <div class="container">
     <div class="tools">
 
-        <div class="tool"><h2>Profesyonel Prompt Üret</h2><input id="promptIn" placeholder="Konu / Hedef / Platform belirt"><button onclick="promptNe()">Prompt Üret</button><div class="result" id="promptOut">Sonuç burada görünecek...</div><div class="share-btn"><button onclick="shareText('promptOut','X')">X'te Paylaş</button><button onclick="shareText('promptOut','WA')">WhatsApp</button></div></div>
+        <div class="tool"><h2>Profesyonel Prompt Üret</h2><input id="promptIn" placeholder="Ne için prompt istiyorsun?"><button onclick="promptNe()">Üret</button><div class="result" id="promptOut">Sonuç burada görünecek...</div><div class="share-btn"><button onclick="shareText('promptOut','X')">X</button><button onclick="shareText('promptOut','WA')">WA</button></div></div>
 
-        <div class="tool"><h2>Marka & Nick Üret</h2><input id="nickIn" placeholder="Sektör, tarz, hedef kitle"><button onclick="neNick()">İsim Üret</button><div class="result" id="nickOut">Sonuç burada...</div><div class="share-btn"><button onclick="shareText('nickOut','X')">X'te Paylaş</button><button onclick="shareText('nickOut','WA')">WhatsApp</button></div></div>
+        <div class="tool"><h2>Marka & Nick Önerisi</h2><input id="nickIn" placeholder="Sektör, tarz, hedef kitle"><button onclick="neNick()">Öner</button><div class="result" id="nickOut">İsimler burada...</div><div class="share-btn"><button onclick="shareText('nickOut','X')">X</button><button onclick="shareText('nickOut','WA')">WA</button></div></div>
 
-        <div class="tool"><h2>İlişki & Uyum Analizi</h2><input id="ad1" placeholder="İsim 1"><input id="ad2" placeholder="İsim 2"><button onclick="askNe()">Analiz Et</button><div class="result" id="askOut">Sonuç burada...</div><div class="share-btn"><button onclick="shareText('askOut','X')">X'te Paylaş</button><button onclick="shareText('askOut','WA')">WhatsApp</button></div></div>
+        <div class="tool"><h2>İlişki & Uyum Analizi</h2><input id="ad1" placeholder="İsim 1"><input id="ad2" placeholder="İsim 2"><button onclick="askNe()">Analiz Et</button><div class="result" id="askOut">Sonuç burada...</div><div class="share-btn"><button onclick="shareText('askOut','X')">X</button><button onclick="shareText('askOut','WA')">WA</button></div></div>
 
-        <div class="tool"><h2>Rüya Analizi</h2><textarea id="ruyaIn" placeholder="Rüyanızı detaylı anlatın"></textarea><button onclick="ruyaNe()">Analiz Et</button><div class="result" id="ruyaOut">Yorum burada...</div><div class="share-btn"><button onclick="shareText('ruyaOut','X')">X'te Paylaş</button><button onclick="shareText('ruyaOut','WA')">WhatsApp</button></div></div>
+        <div class="tool"><h2>Rüya Analizi</h2><textarea id="ruyaIn" placeholder="Rüyanı detaylı anlat"></textarea><button onclick="ruyaNe()">Yorumla</button><div class="result" id="ruyaOut">Yorum burada...</div><div class="share-btn"><button onclick="shareText('ruyaOut','X')">X</button><button onclick="shareText('ruyaOut','WA')">WA</button></div></div>
 
-        <div class="tool"><h2>İçerik Stratejisi</h2><input id="memeIn" placeholder="Platform, hedef kitle, amaç"><button onclick="memeNe()">Strateji Oluştur</button><div class="result" id="memeOut">Plan burada...</div><div class="share-btn"><button onclick="shareText('memeOut','X')">X'te Paylaş</button><button onclick="shareText('memeOut','WA')">WhatsApp</button></div></div>
+        <div class="tool"><h2>Meslek Önerisi</h2><input id="meslekIn" placeholder="İlgi alanların, yeteneklerin, hedeflerin"><button onclick="meslekNe()">Öner</button><div class="result" id="meslekOut">Meslek önerileri burada...</div><div class="share-btn"><button onclick="shareText('meslekOut','X')">X</button><button onclick="shareText('meslekOut','WA')">WA</button></div></div>
 
-        <div class="tool"><h2>Sosyal Medya Metni</h2><input id="tweetIn" placeholder="Konu, platform, hedef"><button onclick="tweetNe()">Metin Üret</button><div class="result" id="tweetOut">Metin burada...</div><div class="share-btn"><button onclick="shareText('tweetOut','X')">X'te Paylaş</button><button onclick="shareText('tweetOut','WA')">WhatsApp</button></div></div>
+        <div class="tool"><h2>İçerik Stratejisi</h2><input id="memeIn" placeholder="Platform, hedef kitle, amaç"><button onclick="memeNe()">Strateji Oluştur</button><div class="result" id="memeOut">Plan burada...</div><div class="share-btn"><button onclick="shareText('memeOut','X')">X</button><button onclick="shareText('memeOut','WA')">WA</button></div></div>
 
-        <div class="tool"><h2>Senaryo & Hikaye</h2><input id="filmIn" placeholder="Tür, tema, süre"><button onclick="filmNe()">Senaryo Yaz</button><div class="result" id="filmOut">Hikaye burada...</div><div class="share-btn"><button onclick="shareText('filmOut','X')">X'te Paylaş</button><button onclick="shareText('filmOut','WA')">WhatsApp</button></div></div>
+        <div class="tool"><h2>Sosyal Medya Metni</h2><input id="tweetIn" placeholder="Konu ve hedef"><button onclick="tweetNe()">Metin Yaz</button><div class="result" id="tweetOut">Metin burada...</div><div class="share-btn"><button onclick="shareText('tweetOut','X')">X</button><button onclick="shareText('tweetOut','WA')">WA</button></div></div>
 
-        <div class="tool"><h2>Karar Destek Sistemi</h2><button onclick="kararNe()">Tavsiye Al</button><div class="result" id="kararOut">Karar burada...</div><div class="share-btn"><button onclick="shareText('kararOut','X')">X'te Paylaş</button><button onclick="shareText('kararOut','WA')">WhatsApp</button></div></div>
+        <div class="tool"><h2>Senaryo & Hikaye</h2><input id="filmIn" placeholder="Tür, tema, süre"><button onclick="filmNe()">Senaryo Yaz</button><div class="result" id="filmOut">Hikaye burada...</div><div class="share-btn"><button onclick="shareText('filmOut','X')">X</button><button onclick="shareText('filmOut','WA')">WA</button></div></div>
 
     </div>
 </div>
 
-<div style="max-width:1200px;margin:30px auto;text-align:center;">
+<div style="max-width:1200px;margin:40px auto;text-align:center;">
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1554661709211540" data-ad-slot="9876543210" data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
 </div>
 
-<footer style="text-align:center;padding:30px;color:#888;font-size:.9rem">© 2025 Neyapay.com.tr – Tüm hakları saklıdır.</footer>
+<footer style="text-align:center;padding:40px;color:#777;font-size:.95rem">© 2025 Neyapay.com.tr – Geleceği Bugünden Şekillendir</footer>
 
 <script>
 const proxyUrl = "https://neyapay-api.vercel.app/api/zap";
 
-async function updateZapCounter() {
-    try {
-        const r = await fetch("https://neyapay-api.vercel.app/api/stats");
-        if (r.ok) {
-            const d = await r.json();
-            document.getElementById('limitInfo').innerText = `${(d.limit||500)-(d.used||0)}/${d.limit||500}`;
-        }
-    } catch(e) { document.getElementById('limitInfo').innerText = "Offline"; }
-}
-updateZapCounter(); setInterval(updateZapCounter, 30000);
-
 async function neAI(p) {
     try {
         const r = await fetch(proxyUrl, {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt:p})});
-        const d = await r.json(); updateZapCounter();
+        const d = await r.json();
         return d.cevap || "Sonuç üretilemedi.";
     } catch(e) { return "Bağlantı hatası."; }
 }
@@ -261,18 +234,18 @@ function shareText(id,p){
             : open(`https://wa.me/?text=${encodeURIComponent(t+"\n\nNEYAPAY → "+u)}`);
 }
 
-async function promptNe(){ const k=document.getElementById('promptIn').value||'genel'; L('promptOut'); const r=await neAI(`En etkili ve detaylı prompt yapısını oluştur: "${k}". Türkçe, profesyonel, adım adım, örnekli.`); document.getElementById('promptOut').innerHTML=r.replace(/\n/g,'<br>'); }
-async function neNick(){ const k=document.getElementById('nickIn').value||'marka'; L('nickOut'); const r=await neAI(`10 güçlü, akılda kalıcı, modern marka/nick ismi öner. Alan: ${k}. Türkçe ve global kullanıma uygun olsun.`); document.getElementById('nickOut').innerHTML=r.replace(/\n/g,'<br>'); }
-async function askNe(){ const a=document.getElementById('ad1').value||'A', b=document.getElementById('ad2').value||'B'; L('askOut'); const r=await neAI(`İki kişi arasındaki uyum analizi yap: ${a} ve ${b}. Psikolojik, duygusal, iletişim, uzun vadeli potansiyel. Profesyonel ve derinlemesine.`); document.getElementById('askOut').innerHTML=`<strong>${a} ↔ ${b}</strong><br><br>${r.replace(/\n/g,'<br>')}`; }
-async function ruyaNe(){ const t=document.getElementById('ruyaIn').value; if(!t)return; L('ruyaOut'); const r=await neAI(`Rüya analizi yap: "${t}". Psikolojik, sembolik, bilinçaltı mesajları. Derin ve gerçekçi yorum.`); document.getElementById('ruyaOut').innerHTML=r.replace(/\n/g,'<br>'); }
-async function memeNe(){ const k=document.getElementById('memeIn').value||'genel'; L('memeOut'); const r=await neAI(`30 günlük içerik stratejisi oluştur: ${k}. Viral potansiyel, trendler, posting takvimi, format önerileri.`); document.getElementById('memeOut').innerHTML=r.replace(/\n/g,'<br>'); }
-async function tweetNe(){ const k=document.getElementById('tweetIn').value||'genel'; L('tweetOut'); const r=await neAI(`Yüksek etkileşimli sosyal medya metni yaz: Konu "${k}". Türkçe, dikkat çekici, call-to-action güçlü.`); document.getElementById('tweetOut').innerHTML=r.replace(/\n/g,'<br>'); }
-async function filmNe(){ const k=document.getElementById('filmIn').value||'kısa film'; L('filmOut'); const r=await neAI(`Tam senaryo taslağı yaz: Tür ${k}. Giriş, gelişme, sonuç. Karakterler, diyaloglar, twist.`); document.getElementById('filmOut').innerHTML=r.replace(/\n/g,'<br>'); }
-function kararNe(){ const o=["Devam et","Dur ve yeniden değerlendir","Küçük adımlarla başla","Şimdi tam zamanı","Risk almaya değer"]; const s=o[Math.floor(Math.random()*o.length)]; document.getElementById('kararOut').innerHTML=`<strong>${s}</strong>`; }
+async function promptNe(){ const k=document.getElementById('promptIn').value||'genel'; L('promptOut'); const r=await neAI(`En etkili, detaylı ve profesyonel prompt yapısı oluştur: "${k}". Türkçe, adım adım, örnekli.`); document.getElementById('promptOut').innerHTML=r.replace(/\n/g,'<br>'); }
+async function neNick(){ const k=document.getElementById('nickIn').value||'marka'; L('nickOut'); const r=await neAI(`10 güçlü, modern, akılda kalıcı marka/nick ismi öner. Alan: ${k}. Global ve Türkçe kullanıma uygun.`); document.getElementById('nickOut').innerHTML=r.replace(/\n/g,'<br>'); }
+async function askNe(){ const a=document.getElementById('ad1').value||'A', b=document.getElementById('ad2').value||'B'; L('askOut'); const r=await neAI(`İki kişi arasındaki uyum analizi: ${29} ve ${b}. Duygusal, iletişim, uzun vadeli potansiyel. Derin ve gerçekçi.`); document.getElementById('askOut').innerHTML=`<strong>${a} ↔ ${b}</strong><br><br>${r.replace(/\n/g,'<br>')}`; }
+async function ruyaNe(){ const t=document.getElementById('ruyaIn').value; if(!t)return; L('ruyaOut'); const r=await neAI(`Rüya analizi: "${t}". Psikolojik, sembolik, bilinçaltı mesajları. Gerçekçi ve derin yorum.`); document.getElementById('ruyaOut').innerHTML=r.replace(/\n/g,'<br>'); }
+async function meslekNe(){ const k=document.getElementById('meslekIn').value||'genel'; L('meslekOut'); const r=await neAI(`Kişiye özel meslek önerisi yap: İlgi alanları, yetenekler, hedefler: "${k}". 5 güçlü öneri, gerekçeli, geleceğe yönelik.`); document.getElementById('meslekOut').innerHTML=r.replace(/\n/g,'<br>'); }
+async function memeNe(){ const k=document.getElementById('memeIn').value||'genel'; L('memeOut'); const r=await neAI(`30 günlük profesyonel içerik stratejisi: ${k}. Viral potansiyel, posting takvimi, format önerileri.`); document.getElementById('memeOut').innerHTML=r.replace(/\n/g,'<br>'); }
+async function tweetNe(){ const k=document.getElementById('tweetIn').value||'genel'; L('tweetOut'); const r=await neAI(`Yüksek etkileşimli sosyal medya metni yaz: "${k}". Dikkat çekici, doğal, CTA güçlü.`); document.getElementById('tweetOut').innerHTML=r.replace(/\n/g,'<br>'); }
+async function filmNe(){ const k=document.getElementById('filmIn').value||'kısa film'; L('filmOut'); const r=await neAI(`Tam senaryo taslağı yaz: Tür ${k}. Giriş, gelişme, sonuç, twist, karakterler.`); document.getElementById('filmOut').innerHTML=r.replace(/\n/g,'<br>'); }
 
 function toggleSidebar(){ document.getElementById('sidebar').classList.toggle('open'); document.getElementById('burger').classList.toggle('active'); }
 function toggleThemePanel(){ document.getElementById('themePanel').classList.toggle('open'); }
-function setTheme(t){ document.body.className=''; if(t!=='dark')document.body.classList.add(t); localStorage.setItem('neyapay_theme',t||'dark'); }
+function setTheme(t){ document.body.className=''; document.body.classList.add(t); localStorage.setItem('neyapay_theme',t); }
 (function(){ const s=localStorage.getItem('neyapay_theme')||'dark'; setTheme(s); })();
 </script>
 </body>
