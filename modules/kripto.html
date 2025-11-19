@@ -1,249 +1,231 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kripto Analiz</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>NEYAPAY — Kripto Analiz</title>
+<meta name="description" content="Kripto fikirleri — NEYAPAY" />
+<link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/325/zap_26a1.png">
 
-    <style>
-        body {
-            background: linear-gradient(135deg, #0b0015, #16002e);
-            color: white;
-            font-family: "Inter", sans-serif;
-            margin: 0;
-            padding: 0;
-            transition: 0.25s;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo+2:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --zap:#00f7ff; --pink:#ff00ff; --bg:#0d0020; --card1:#1a0039; --card2:#15002e; --text:#e0e0ff; --glow:0 0 30px rgba(0,247,255,.7);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Exo 2',sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+  padding-top:92px;
+  position:relative;
+  transition:background .35s,color .35s;
+}
+body::before{
+  content:'';
+  position:fixed; inset:0;
+  background:repeating-radial-gradient(circle at 20% 20%,rgba(0,247,255,.04)0,transparent 12px),
+             repeating-radial-gradient(circle at 80% 80%,rgba(255,0,255,.04)0,transparent 12px);
+  pointer-events:none; animation:stars 40s linear infinite; z-index:0;
+}
+@keyframes stars{0%,100%{opacity:.5}50%{opacity:.9}}
 
-        /* --- TOP GLOBAL HEADER (Index ile aynı) --- */
-        .global-header {
-            width: 100%;
-            text-align: center;
-            padding: 22px 0 10px 0;
-            font-size: 26px;
-            font-weight: 800;
-            color: #00eaff;
-            text-shadow: 0 0 14px rgba(0,255,255,0.55);
-            letter-spacing: 1px;
-        }
+header{
+  position:fixed; top:0; left:0; width:100%; text-align:center; padding:18px 10px; z-index:999;
+  background:linear-gradient(0deg, rgba(13,0,32,.85), rgba(13,0,32,.6));
+  border-bottom:2px solid rgba(0,247,255,.08);
+}
+h1{
+  font-family:'Orbitron',sans-serif;
+  font-size:clamp(2rem,7vw,3rem);
+  background:linear-gradient(90deg,#00f7ff,#ff00ff,#00ff88);
+  -webkit-background-clip:text;color:transparent;text-shadow:0 0 12px #00f7ff; margin:0; line-height:1;
+}
+.tagline{font-size:0.9rem;opacity:.95;margin-top:6px}
 
-        /* --- SIDEBAR INDEX. HTML İLE AYNI --- */
-        .sidebar {
-            position: fixed;
-            top: 0; left: -265px;
-            width: 260px;
-            height: 100vh;
-            background: rgba(5,5,20,0.92);
-            padding: 25px;
-            transition: 0.3s;
-            z-index: 99999;
-            backdrop-filter: blur(14px);
-        }
+/* api badge (küçük top ayarlandı - boşluk azaltıldı) */
+.api-limit{position:fixed;top:78px;right:14px;background:rgba(0,0,0,.6);padding:8px 14px;border-radius:26px;font-size:.95rem;z-index:999;border:1px solid var(--zap);backdrop-filter:blur(6px)}
 
-        .sidebar.open {
-            left: 0;
-        }
+/* sidebar */
+#burger{position:fixed;top:18px;left:18px;width:46px;height:46px;border-radius:50%;background:var(--zap);color:#000;display:grid;place-items:center;font-size:1.4rem;z-index:1002;cursor:pointer;box-shadow:var(--glow)}
+#sidebar{
+  position:fixed;top:0;left:-280px;width:260px;height:100%;background:rgba(0,0,0,.76);
+  backdrop-filter:blur(6px);border-right:1px solid rgba(255,255,255,.03);padding:22px;z-index:1001;transition:left .28s ease;
+}
+#sidebar.open{left:0}
+#sidebar h3{color:var(--zap);text-align:center;margin-bottom:12px}
+#sidebar a{display:block;padding:12px;margin:8px 0;background:rgba(255,255,255,.03);text-decoration:none;border-radius:10px;color:var(--text);font-weight:600}
+#sidebar a:hover{background:rgba(255,255,255,.06)}
 
-        .sidebar h2 {
-            margin-top: 10px;
-            color: #00eaff;
-        }
+/* theme toggle round */
+#darkToggle{position:fixed;bottom:18px;right:18px;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--zap);color:#000;font-weight:800;z-index:999;box-shadow:var(--glow);cursor:pointer}
 
-        .sidebar a {
-            display: block;
-            margin: 15px 0;
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-        }
+/* container content */
+.container{max-width:1100px;margin:0 auto;padding:120px 18px 100px;position:relative;z-index:2}
 
-        /* Menü Butonu */
-        .menu-button {
-            width: 48px;
-            height: 48px;
-            background: #00eaff;
-            color: black;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 100000;
-            cursor: pointer;
-            font-size: 28px;
-            font-weight: 700;
-        }
+/* cards */
+.card{
+  background:linear-gradient(180deg, rgba(26,0,57,.85), rgba(21,0,46,.9));
+  border-radius:18px;padding:22px;margin:18px 0;border:1px solid rgba(255,255,255,.03);box-shadow:0 10px 30px rgba(0,0,0,.6);
+}
+.input{
+  width:100%;padding:14px;border-radius:12px;border:none;background:rgba(255,255,255,.04);color:#fff;outline:none;margin-top:10px;
+}
+.btn{
+  display:block;width:100%;padding:14px;border-radius:14px;border:none;margin-top:12px;font-weight:800;background:linear-gradient(90deg,#00cfff,#7b2bff);color:#fff;cursor:pointer;
+}
 
-        /* Container */
-        .container {
-            padding: 40px 23px;
-            margin-top: 20px;
-        }
+/* result */
+.result{margin-top:12px;background:rgba(0,0,0,.45);padding:14px;border-radius:12px;color:var(--text);min-height:64px;border:1px solid rgba(0,247,255,.06);}
 
-        .back-button {
-            display: inline-block;
-            padding: 12px 18px;
-            background: rgba(255,255,255,0.12);
-            border-radius: 12px;
-            color: white;
-            text-decoration: none;
-        }
+/* responsive */
+@media(max-width:480px){ .container{padding-top:110px} }
 
-        .card {
-            margin-top: 25px;
-            padding: 20px;
-            background: rgba(255,255,255,0.08);
-            border-radius: 14px;
-        }
-
-        input {
-            width: 100%;
-            padding: 14px;
-            border-radius: 10px;
-            border: none;
-            background: rgba(255,255,255,0.15);
-            color: white;
-            font-size: 16px;
-        }
-
-        button {
-            width: 100%;
-            padding: 15px;
-            margin-top: 15px;
-            border: none;
-            border-radius: 12px;
-            background: linear-gradient(90deg, #00eaff, #7d2bff);
-            color: white;
-            font-size: 17px;
-            cursor: pointer;
-        }
-
-        /* AYARLAR BUTONU (index ile aynı) */
-        .settings-btn {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            padding: 12px 20px;
-            border-radius: 12px;
-            background: rgba(255,255,255,0.15);
-            color: white;
-            cursor: pointer;
-            z-index: 999999;
-        }
-
-        .settings-box {
-            position: fixed;
-            bottom: -200px;
-            right: 22px;
-            width: 200px;
-            padding: 18px;
-            background: rgba(0,0,0,0.85);
-            border-radius: 12px;
-            transition: 0.3s;
-            color: white;
-            z-index: 999999;
-        }
-
-        .settings-box.open {
-            bottom: 70px;
-        }
-
-        .settings-box button {
-            margin-top: 10px;
-        }
-    </style>
+/* body sidebar open shift on wide screens */
+@media(min-width:900px){ body.sidebar-open .container{transform:translateX(240px);transition:transform .28s} }
+</style>
 </head>
-
 <body>
 
-    <!-- ÜST GLOBAL BANNER (index.html ile birebir) -->
-    <div class="global-header">🧠 NEYAPAY — GEL BİZ YAPAY</div>
+<!-- BURGER + SIDEBAR -->
+<div id="burger" onclick="toggleSidebar()">☰</div>
 
-    <!-- Menü Butonu -->
-    <div class="menu-button" onclick="toggleSidebar()">☰</div>
+<div id="sidebar" aria-hidden="true">
+  <h3>NEYAPAY</h3>
+  <a href="/index.html">🏠 Anasayfa</a>
+  <a href="/modules/kripto.html">🤑 Kripto Alanı</a>
+  <a href="/modules/prompt.html">💡 Prompt Jeneratör</a>
+  <a href="/modules/nick.html">✨ Nick Generator</a>
+  <a href="/modules/ruya.html">🌙 Rüya Yorum</a>
+  <a href="/modules/meme.html">😂 Meme Fabrikası</a>
+  <a href="/modules/film.html">🎬 Film Fikir</a>
+  <hr style="margin:12px 0;border:0;border-top:1px solid rgba(255,255,255,.06)">
+  <a href="#" onclick="setTheme('dark');return false;">🌙 Dark</a>
+  <a href="#" onclick="setTheme('light');return false;">☀️ Light</a>
+  <a href="#" onclick="setTheme('neon');return false;">⚡ Neon</a>
+  <a href="#" onclick="setTheme('hacker');return false;">💻 Hacker</a>
+</div>
 
-    <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
-        <h2>Menü</h2>
-        <a href="../index.html">🏠 Anasayfa</a>
-        <a href="kripto.html">💰 Kripto Analiz</a>
-        <a href="plaka.html">🚘 Plaka Sorgu</a>
-        <a href="sohbet.html">💬 Sohbet</a>
-    </div>
+<header>
+  <h1>NE YAPAY!</h1>
+  <div class="tagline">GEL BİZ YAPAY!</div>
+</header>
 
-    <!-- İçerik -->
-    <div class="container">
-        <a href="../index.html" class="back-button">← Anasayfa</a>
+<div class="api-limit" id="limitInfo">Zap: ∞ / ∞</div>
 
-        <h1>Kripto Analiz</h1>
-        <p>Yapay zeka ile hızlı kripto fikri.</p>
+<!-- PAGE CONTENT -->
+<div class="container">
+  <a href="/index.html" style="display:inline-block;background:rgba(255,255,255,.06);padding:10px 14px;border-radius:14px;color:var(--text);text-decoration:none;margin-bottom:12px">← Anasayfaya Dön</a>
 
-        <div class="card">
-            <h2>Token Fikir Üret</h2>
-            <input id="tokenInput" placeholder="Örn: yeni meme coin fikri">
-            <button onclick="generateCrypto()">Üret</button>
-            <p id="result" style="margin-top:12px;">Sonuç burada...</p>
-        </div>
-    </div>
+  <h2 style="font-size:2rem;margin-top:12px">🤑 Kripto Analiz</h2>
+  <p style="opacity:.85;margin-top:8px">Kısa, eğlenceli, yapay zeka destekli piyasa fikirleri (bilgilendirme amaçlı).</p>
 
-    <!-- AYARLAR -->
-    <div class="settings-btn" onclick="toggleSettings()">⚙️ Ayarlar</div>
+  <div class="card" aria-labelledby="tokenTitle">
+    <h3 id="tokenTitle" style="font-size:1.4rem;margin-bottom:8px;color:var(--zap)">Token Fikir Üret</h3>
+    <input id="tokenInput" class="input" placeholder="Örn: yeni meme coin fikri">
+    <button class="btn" id="genBtn" onclick="generate()">Üret</button>
+    <div id="tokenResult" class="result">Token fikri burada görünecek...</div>
+  </div>
 
-    <div class="settings-box" id="settings">
-        <strong>Temalar</strong><br>
-        <button onclick="lightMode()">☀️ Açık Tema</button>
-        <button onclick="darkMode()">🌙 Koyu Tema</button>
-    </div>
+  <div class="card">
+    <h3 style="font-size:1.2rem;color:var(--zap)">Risk Notu</h3>
+    <p style="opacity:.85">Buradaki içerikler fikir amaçlıdır, yatırım tavsiyesi değildir.</p>
+  </div>
+</div>
 
-    <script>
-        function toggleSidebar() {
-            document.getElementById("sidebar").classList.toggle("open");
-        }
+<div id="darkToggle" onclick="toggleDark()">Ay</div>
 
-        function toggleSettings() {
-            document.getElementById("settings").classList.toggle("open");
-        }
+<script>
+/* CONFIG: aynı proxy kullanılıyor */
+const proxyUrl = "https://neyapay-api.vercel.app/api/zap";
 
-        /* TEMA BUTONLARI */
-        function lightMode() {
-            document.body.style.background = "#f2f2f2";
-            document.body.style.color = "black";
-        }
+/* daily limit tracking (uygulamanın index mantığıyla aynı) */
+let dailyLimit = 500;
+let used = parseInt(localStorage.getItem('neyapay_used')||'0');
+const today = new Date().toDateString();
+if(localStorage.getItem('neyapay_day') !== today){
+  used = 0; localStorage.setItem('neyapay_used','0'); localStorage.setItem('neyapay_day', today);
+}
+document.getElementById('limitInfo').innerText = `Zap: ${dailyLimit-used}/${dailyLimit}`;
 
-        function darkMode() {
-            document.body.style.background = "linear-gradient(135deg, #0b0015, #16002e)";
-            document.body.style.color = "white";
-        }
+/* core neAI */
+async function neAI(promptText){
+  if(used >= dailyLimit) return "Bugün limit doldu!";
+  try{
+    const r = await fetch(proxyUrl, {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({ prompt: promptText })
+    });
+    if(!r.ok){
+      // server-side returned error
+      console.warn('server response not ok', r.status);
+      return `Sunucu hatası — Vercel API yanıt vermiyor. (${r.status})`;
+    }
+    const d = await r.json();
+    used++;
+    localStorage.setItem('neyapay_used', used);
+    document.getElementById('limitInfo').innerText = `Zap: ${dailyLimit-used}/${dailyLimit}`;
+    return d.cevap || d.result || (d.message ? d.message : JSON.stringify(d));
+  }catch(e){
+    console.error(e);
+    return "Bağlantı hatası, tekrar dene!";
+  }
+}
 
-        /* AI — Index.html ile aynı backend API kullanır */
-        async function generateCrypto() {
-            let text = document.getElementById("tokenInput").value.trim();
-            if (text === "") {
-                document.getElementById("result").innerText = "Lütfen bir fikir gir.";
-                return;
-            }
+/* helper: loading */
+function L(id){
+  const el = document.getElementById(id);
+  if(el) el.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:48px"><div style="width:22px;height:22px;border:4px solid var(--zap);border-top-color:transparent;border-radius:50%;animation:spin .8s linear infinite"></div></div>';
+}
 
-            document.getElementById("result").innerText = "Yapay zeka düşünüyor...";
+/* loading spinner keyframe (small) */
+const style = document.createElement('style');
+style.innerHTML = '@keyframes spin{to{transform:rotate(360deg)}}';
+document.head.appendChild(style);
 
-            try {
-                const res = await fetch("/api/chat", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        message: "Bana kısa bir kripto fikir metni yaz: " + text
-                    })
-                });
+/* Generate function for kripto */
+async function generate(){
+  const topic = (document.getElementById('tokenInput').value || '').trim();
+  if(!topic){ document.getElementById('tokenResult').innerText = 'Lütfen bir konu gir.'; return; }
+  L('tokenResult');
+  const prompt = `Kısa ve yaratıcı: "${topic}" için 3 kripto token fikri ve kısa açıklama (komik ve dikkat çekici başlıklarla)`;
+  const res = await neAI(prompt);
+  // güvenlik: bazı API cevapları HTML içerebilir, biz metin gösteriyoruz
+  document.getElementById('tokenResult').innerText = res;
+}
 
-                const data = await res.json();
-                document.getElementById("result").innerText = data.response || "Hata: cevap alınamadı.";
-
-            } catch (e) {
-                document.getElementById("result").innerText = "Sunucu hatası.";
-            }
-        }
-    </script>
-
+/* SIDEBAR & THEME */
+function toggleSidebar(){
+  const sb = document.getElementById('sidebar');
+  sb.classList.toggle('open');
+  const open = sb.classList.contains('open');
+  sb.setAttribute('aria-hidden', (!open).toString());
+  document.body.classList.toggle('sidebar-open', open);
+}
+function setTheme(t){
+  document.body.classList.remove('light','neon','hacker');
+  if(t && t !== 'dark') document.body.classList.add(t);
+  localStorage.setItem('neyapay_theme', t || 'dark');
+  document.getElementById('darkToggle').innerText = document.body.classList.contains('light') ? 'Güneş' : 'Ay';
+}
+function toggleDark(){
+  document.body.classList.toggle('light');
+  document.getElementById('darkToggle').innerText = document.body.classList.contains('light') ? 'Güneş' : 'Ay';
+}
+/* restore theme */
+(function restoreTheme(){
+  const saved = localStorage.getItem('neyapay_theme');
+  if(saved){
+    if(saved === 'light') document.body.classList.add('light');
+    else if(saved === 'neon') document.body.classList.add('neon');
+    else if(saved === 'hacker') document.body.classList.add('hacker');
+    document.getElementById('darkToggle').innerText = document.body.classList.contains('light') ? 'Güneş' : 'Ay';
+  }
+})();
+</script>
 </body>
 </html>
