@@ -1,260 +1,60 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>NEYAPAY — Kripto Analiz</title>
-<meta name="description" content="Kısa, eğlenceli, AI destekli kripto fikirleri — bilgilendirme amaçlı" />
-<link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/325/zap_26a1.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kripto Alanı - NeYapay</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo+2:wght@600;800&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --zap:#00f7ff;
-  --pink:#ff00ff;
-  --bg:#0d0020;
-  --card1:#1a0039;
-  --card2:#15002e;
-  --text:#e0e0ff;
-  --glow:0 0 30px rgba(0,247,255,.7);
-}
-/* reset */
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{
-  font-family:'Exo 2',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  padding-top:92px;
-  transition:background .25s,color .25s;
-  overflow-x:hidden;
-}
-
-/* header / logo (index ile uyumlu neon) */
-.header-wrap{
-  position:fixed;top:0;left:0;width:100%;z-index:1000;
-  background:linear-gradient(0deg, rgba(13,0,32,.85), rgba(13,0,32,.6));
-  border-bottom:2px solid rgba(0,247,255,.06);
-  padding:14px 16px;display:flex;align-items:center;gap:12px;
-}
-.logo-wrap{display:flex;align-items:center;gap:12px;margin:auto}
-.logo-emoji{font-size:28px;filter:drop-shadow(0 0 8px rgba(0,247,255,.35))}
-.logo-text{
-  font-family:'Orbitron',sans-serif;
-  font-size:1.6rem;
-  background:linear-gradient(90deg,#00f7ff,#ff00ff,#00ff88);
-  -webkit-background-clip:text;color:transparent;text-shadow:0 0 18px rgba(0,247,255,.25)
-}
-
-/* hamburger */
-#burger{
-  position:fixed;top:18px;left:18px;width:46px;height:46px;border-radius:50%;
-  background:var(--zap);color:#000;display:grid;place-items:center;font-size:1.4rem;
-  z-index:1100;cursor:pointer;box-shadow:var(--glow);
-}
-
-/* SIDEBAR (overlay) */
-#sidebar{
-  position:fixed;top:0;left:0;height:100%;width:260px;
-  transform:translateX(-100%);
-  background:linear-gradient(180deg, rgba(9,9,18,.98), rgba(6,6,12,.94));
-  backdrop-filter:blur(6px);
-  border-right:1px solid rgba(255,255,255,.04);
-  padding:28px 18px;z-index:1200;transition:transform .28s ease;
-}
-#sidebar.open{transform:translateX(0)}
-#sidebar h3{color:var(--zap);margin-bottom:12px;font-size:1.2rem}
-#sidebar a{display:block;color:var(--text);text-decoration:none;padding:10px 6px;border-radius:8px;margin:6px 0;font-weight:600}
-#sidebar a:hover{background:rgba(255,255,255,.03)}
-
-/* overlay (kapatmak için) */
-#sbOverlay{
-  position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .25s;z-index:1150;
-}
-#sbOverlay.show{opacity:1;pointer-events:all}
-
-/* container (sayfa içeriği) */
-.container{max-width:1100px;margin:0 auto;padding:120px 18px 80px;position:relative;z-index:2}
-
-/* section card */
-.card{
-  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
-  border:1px solid rgba(255,255,255,.04);
-  padding:22px;border-radius:14px;margin-bottom:22px;backdrop-filter:blur(6px)
-}
-h1{font-family:'Orbitron',sans-serif;font-size:clamp(1.8rem,3.4vw,2.6rem);margin-bottom:8px}
-.lead{opacity:.9;margin-bottom:12px}
-
-/* form */
-.input{
-  width:100%;padding:14px;border-radius:12px;border:none;background:rgba(255,255,255,.04);color:var(--text);
-  margin-bottom:12px;font-size:1rem;
-}
-.btn{
-  display:inline-block;width:100%;padding:14px;border-radius:12px;border:none;background:linear-gradient(90deg,#00c6ff,#7d2bff);
-  color:#fff;font-weight:800;cursor:pointer;font-size:1rem;
-  box-shadow:0 8px 22px rgba(0,0,0,.45);
-}
-
-/* result */
-.result{
-  margin-top:14px;background:rgba(0,0,0,.35);padding:14px;border-radius:12px;border:1px solid rgba(0,247,255,.06);
-  min-height:76px;color:var(--text);white-space:pre-wrap;line-height:1.45;
-}
-
-/* back link */
-.back-link{display:inline-block;margin-bottom:18px;padding:10px 16px;background:rgba(255,255,255,0.04);border-radius:12px;color:var(--text);text-decoration:none}
-
-/* responsive tweaks */
-@media(min-width:900px){
-  #sidebar{width:300px}
-  .container{padding-left:32px;padding-right:32px}
-}
-</style>
+  <link rel="stylesheet" href="/styles.css"> <!-- ANA CSS -->
+  <script src="/sidebar.js" defer></script> <!-- YAN MENÜ -->
+  <script src="/api.js" defer></script>     <!-- INDEXTEKİ API SİSTEMİ -->
 </head>
+
 <body>
 
-<!-- header + burger -->
-<div id="burger" aria-label="menu" onclick="toggleSidebar()">☰</div>
+  <!-- 🔥 Sidebar (Ana Sayfadakiyle %100 Aynı) -->
+  <div id="sidebar" class="sidebar">
+      <button class="closeSidebar" onclick="toggleSidebar()">✖</button>
 
-<div class="header-wrap" role="banner" aria-hidden="false">
-  <div class="logo-wrap">
-    <div class="logo-emoji">🧠</div>
-    <div class="logo-text">NEYAPAY</div>
-  </div>
-</div>
+      <h2 class="sidebar-title">NE YAPAY</h2>
 
-<!-- sidebar and overlay -->
-<div id="sidebar" aria-hidden="true">
-  <h3>Menü</h3>
-  <a href="../index.html">🏠 Anasayfa</a>
-  <a href="/modules/kripto.html">💹 Kripto Analiz</a>
-  <a href="/modules/plaka.html">🚗 Plaka Sorgu</a>
-  <a href="/modules/oyun.html">🎮 Oyun Merkezi</a>
-  <a href="/modules/yapayzeka.html">🤖 Yapay Zeka</a>
-  <hr style="margin:14px 0;border:0;border-top:1px solid rgba(255,255,255,.06)">
-  <a href="#" onclick="setTheme('dark');return false;">🌙 Dark</a>
-  <a href="#" onclick="setTheme('light');return false;">☀️ Light</a>
-  <a href="#" onclick="setTheme('neon');return false;">⚡ Neon</a>
-</div>
-<div id="sbOverlay" onclick="closeSidebar()"></div>
-
-<!-- main content -->
-<div class="container" role="main">
-  <a class="back-link" href="../index.html">← Anasayfaya Dön</a>
-
-  <h1>Kripto Analiz</h1>
-  <p class="lead">Kısa, eğlenceli, yapay zeka destekli piyasa fikirleri (bilgilendirme amaçlı).</p>
-
-  <div class="card">
-    <h2>Token Fikir & Başlık</h2>
-    <input id="tokenInput" class="input" placeholder="Örn: yeni meme coin fikri">
-    <button class="btn" id="generateBtn">Üret</button>
-    <div id="result" class="result">Sonuç burada görünecek...</div>
+      <a href="/index.html">🏠 Anasayfa</a>
+      <a href="/modules/kripto.html">💸 Kripto Alanı</a>
+      <a href="/modules/prompt.html">💡 Prompt Jeneratör</a>
+      <a href="/modules/nick.html">✨ Nick Generator</a>
+      <a href="/modules/ruya.html">🌙 Rüya Yorum</a>
+      <a href="/modules/meme.html">😂 Meme Fabrikası</a>
+      <a href="/modules/ask.html">💕 Aşk Merkezi</a>
+      <a href="/modules/tiktok.html">🎵 TikTok Alanı</a>
+      <a href="/modules/youtube.html">📺 YouTube Merkezi</a>
   </div>
 
-  <div class="card">
-    <h3>Risk Notu</h3>
-    <p>Buradaki içerikler fikir amaçlıdır, yatırım tavsiyesi değildir.</p>
-  </div>
-</div>
+  <!-- 🔥 Üstteki Ana Banner (Ana Sayfadakiyle Aynı) -->
+  <header class="main-header">
+      <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+      <h1 class="logo">🧠 NE YAPAY!</h1>
+      <p class="tagline">GEL BİZ YAPAY!</p>
+  </header>
 
-<script>
-/* ====== CONFIG (index ile aynı proxy) ====== */
-const proxyUrl = "https://neyapay-api.vercel.app/api/zap"; // index'teki ile aynıysa bırak
-const proxyFallback = "https://neyapay-api-alt.vercel.app/api/zap"; // fallback
+  <main class="content">
 
-/* daily usage (same logic, client-side) */
-let dailyLimit = 500;
-let used = parseInt(localStorage.getItem('neyapay_used')||'0');
-const today = new Date().toDateString();
-if(localStorage.getItem('neyapay_day')!==today){
-  used = 0; localStorage.setItem('neyapay_used','0'); localStorage.setItem('neyapay_day',today);
-}
+      <!-- 🔙 Her sayfada Anasayfa geri tuşu -->
+      <a href="/index.html" class="back-btn">← Anasayfaya Dön</a>
 
-/* CORE AI CALL (with fallback) */
-async function neAI(promptText){
-  if(used >= dailyLimit) return "Bugün limit doldu!";
-  try{
-    const r = await fetch(proxyUrl, {
-      method: "POST",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify({ prompt: promptText })
-    });
-    if(!r.ok) throw new Error('proxy error '+r.status);
-    const d = await r.json();
-    used++; localStorage.setItem('neyapay_used', used);
-    return d.cevap || d.result || JSON.stringify(d);
-  }catch(e){
-    // try fallback
-    try{
-      const r2 = await fetch(proxyFallback, {
-        method: "POST",
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify({ prompt: promptText })
-      });
-      if(!r2.ok) throw new Error('fallback error '+r2.status);
-      const d2 = await r2.json();
-      used++; localStorage.setItem('neyapay_used', used);
-      return d2.cevap || d2.result || JSON.stringify(d2);
-    }catch(e2){
-      console.error('neAI error', e, e2);
-      // show friendly message so user knows it's server-side
-      return "Sunucu hatası — Vercel API yanıt vermiyor.";
-    }
-  }
-}
+      <h2>💸 Kripto Alanı</h2>
+      <p>Yapay zeka ile komik / faydalı kripto token fikirleri üret!</p>
 
-/* UI helpers */
-function toggleSidebar(){
-  const sb = document.getElementById('sidebar');
-  const ov = document.getElementById('sbOverlay');
-  const open = !sb.classList.contains('open');
-  if(open){
-    sb.classList.add('open'); ov.classList.add('show'); sb.setAttribute('aria-hidden','false');
-  } else {
-    sb.classList.remove('open'); ov.classList.remove('show'); sb.setAttribute('aria-hidden','true');
-  }
-}
-function closeSidebar(){
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('sbOverlay').classList.remove('show');
-  document.getElementById('sidebar').setAttribute('aria-hidden','true');
-}
+      <!-- 🔥 TOKEN FİKİR KUTUSU -->
+      <div class="box">
+          <label>Token Fikir & Başlık</label>
+          <input id="tokenInput" placeholder="Token konusu gir..." />
 
-/* theme */
-function setTheme(t){
-  document.body.classList.remove('light','neon','hacker');
-  if(t && t!=='dark') document.body.classList.add(t);
-  localStorage.setItem('neyapay_theme', t || 'dark');
-}
-(function restoreTheme(){
-  const saved = localStorage.getItem('neyapay_theme');
-  if(saved){
-    if(saved==='light') document.body.classList.add('light');
-    else if(saved==='neon') document.body.classList.add('neon');
-    else if(saved==='hacker') document.body.classList.add('hacker');
-  }
-})();
+          <button onclick="generateKripto()">Üret</button>
 
-/* generate handler (use same prompt style as index) */
-document.getElementById('generateBtn').addEventListener('click', async ()=>{
-  const q = (document.getElementById('tokenInput').value || '').trim();
-  const out = document.getElementById('result');
-  if(!q){ out.innerText = "Lütfen bir konu gir."; return; }
-  out.innerHTML = '<em>AI üretiliyor...</em>';
-  const prompt = `2025'te ${q} konusunda kripto/token fikri, kısa başlık ve 2 cümle açıklama yaz (bilgilendirici, eğlenceli).`;
-  const r = await neAI(prompt);
-  out.innerText = r;
-});
+          <p id="tokenOutput">Token fikri burada görünecek...</p>
+      </div>
 
-/* keyboard: enter to submit */
-document.getElementById('tokenInput').addEventListener('keydown', (e)=>{
-  if(e.key === 'Enter'){ document.getElementById('generateBtn').click(); }
-});
-</script>
+  </main>
+
 </body>
 </html>
