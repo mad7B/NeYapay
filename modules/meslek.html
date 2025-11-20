@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesleki Yardım Merkezi — NEYAPAY</title>
-    <meta name="description" content="Avukat, Doktor, Polis, Hakim, Öğretmen, Zabıta… Türkiye'nin en tecrübeli meslek uzmanları 7/24 burada!">
+    <meta name="description" content="Psikolog, Avukat, Doktor, Polis, Hakim, Öğretmen… Türkiye'nin en tecrübeli uzmanları 7/24 burada!">
     <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/325/zap_26a1.png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo+2:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -27,7 +27,7 @@
         #sidebar{position:fixed;top:0;left:-300px;width:300px;height:100%;background:rgba(8,0,22,.98);backdrop-filter:blur(16px);border-right:2px solid rgba(0,247,255,.2);padding:100px 24px 30px;z-index:1001;transition:left .35s ease;overflow-y:auto}
         #sidebar.open{left:0}
         #sidebar h3{color:var(--zap);text-align:center;font-size:1.9rem;margin-bottom:32px;text-shadow:0 0 20px var(--zap)}
-        #sidebar a{display:block;padding:16px 20px;margin:10px 0;background:rgba(255,255,255,.06);border-radius:14px;color:var(--text);text-decoration:none;font-weight:600;transition:.3s;border:1px solid rgba(0,247,255,.1)}
+        #sidebar a{display:block;padding:16px 20px;margin:10px 0;background:rgba(255,255,255,.06);border-radius:14px;color:var(--text);text-decoration:none;font-weight:600;transition:.3s;border:1px solid rgba(0,247,255,.1);font-size:1.05rem}
         #sidebar a:hover{background:rgba(0,247,255,.25);transform:translateX(8px);border-color:var(--zap)}
         #sidebar a.active{background:rgba(0,247,255,.2);border-color:var(--zap);font-weight:800}
 
@@ -54,13 +54,9 @@
 
         body.neon{--zap:#39ff14;--bg:#001a0d;--text:#39ff14;background:radial-gradient(circle at 50% 50%,#001a0d,#000)}
         body.light{--bg:#f8f9ff;--text:#1a0038;background:#f8f9ff}
-        body.light .tool{background:#fff;color:#222;border:1px solid #e0e0ff}
+        body.light .tool{background:#ffffff;color:#333;border:1px solid #e0e0ff}
 
-        @media(max-width:480px){
-            .tools{grid-template-columns:1fr;gap:20px;padding:0 12px}
-            .tool{padding:24px 20px}
-            textarea{min-height:100px}
-        }
+        @media(max-width:480px){.tools{grid-template-columns:1fr;gap:20px;padding:0 12px}.tool{padding:24px 20px}textarea{min-height:100px}}
     </style>
 </head>
 <body class="dark">
@@ -94,7 +90,7 @@
     <a href="/modules/prompt.html">Prompt Mühendisi</a>
     <a href="/modules/nick.html">Marka & Nick</a>
     <a href="/modules/ruya.html">Rüya Analizi</a>
-    <a href="/modules/meme.html">İçerik Stratejisi</a>
+    <a href="/modules/meme.html">Meme Fabrikası</a>
     <a href="/modules/film.html">Senaryo Geliştirme</a>
     <a href="/modules/bahis.html">Tahmin Merkezi</a>
     <hr>
@@ -103,15 +99,25 @@
     <a onclick="setTheme('light');return false;">Light</a>
     <a onclick="setTheme('hacker');return false;">Hacker</a>
 </div>
+
 <div class="container">
     <div class="tools">
+
+        <!-- PSİKOLOG EN ÜSTTE -->
+        <div class="tool">
+            <h2>Psikolog</h2>
+            <div class="role">20 yıllık klinik psikolog & terapist</div>
+            <textarea id="psikologIn" placeholder="Duygusal durum, ilişki, stres, kaygı, depresyon..."></textarea>
+            <button onclick="danis('psikolog')">Danış</button>
+            <div class="result" id="psikologOut">Cevap burada görünecek...</div>
+        </div>
 
         <div class="tool">
             <h2>Avukat</h2>
             <div class="role">30 yıllık ceza ve hukuk uzmanı</div>
             <textarea id="avukatIn" placeholder="Davanız, sözleşmeniz, miras, boşanma..."></textarea>
             <button onclick="danis('avukat')">Sor</button>
-            <div class="result" id="avukatOut">Cevap burada görünecek...</div>
+            <div class="result" id="avukatOut">Cevap burada...</div>
         </div>
 
         <div class="tool">
@@ -193,6 +199,7 @@ async function danis(meslek){
     L(out);
 
     const roller = {
+        psikolog: "20 yıllık klinik psikolog ve terapistsin. Empati dolu, yargılamadan, destekleyici cevap ver. Gerekirse profesyonel yardım öner.",
         avukat: "30 yıllık ceza ve hukuk avukatısın. Türkiye yasalarına göre net, resmi, uygulanabilir cevap ver.",
         doktor: "Uzman doktor ve dahiliye & acil tıp uzmanısın. Tıbbi tavsiye verirken 'doktorunuza danışın' uyarısını ekle.",
         polis: "25 yıllık emniyet mensubusun. Resmi prosedür ve güvenlik konularında net bilgi ver.",
